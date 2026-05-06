@@ -7,7 +7,8 @@ import {
   useSpring,
   useInView,
 } from "motion/react";
-import { Github, Linkedin, Download } from "lucide-react";
+import { Download } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
 
 function AnimatedNumber({
   target,
@@ -95,18 +96,18 @@ export function Hero() {
 
       {/* Animated gradient orbs */}
       <motion.div
-        className="absolute top-1/4 -right-40 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]"
+        className="absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]"
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -bottom-20 -left-40 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]"
+        className="absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <motion.div
-        className="relative z-10 px-16 max-w-[1400px] w-full mx-auto"
+        className="relative z-10 px-16 max-w-350 w-full mx-auto"
         style={{ y, opacity }}
       >
         {/* Tag line */}
@@ -152,7 +153,7 @@ export function Hero() {
           transition={{ delay: 1.3, duration: 0.5 }}
         >
           <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse" />
-          <span className="font-space text-white/60 text-[clamp(16px,2vw,22px)] tracking-[0.05em]">
+          <span className="font-space text-white/60 text-[clamp(16px,2vw,22px)] tracking-wider">
             {displayText}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
@@ -169,7 +170,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.7 }}
-          className="font-space text-white/45 text-[15px] leading-[1.8] max-w-[480px] mb-10"
+          className="font-space text-white/45 text-[15px] leading-[1.8] max-w-120 mb-10"
         >
           25 years old Full-Stack Developer from Hungary. Computer Science
           Engineer at Óbuda University. 5+ years building robust web
@@ -212,7 +213,7 @@ export function Hero() {
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Github size={18} className="text-white/70" />
+            <GithubIcon size={18} className="text-white/70" />
             <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
               GitHub
             </span>
@@ -226,7 +227,7 @@ export function Hero() {
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Linkedin size={18} className="text-white/70" />
+            <LinkedinIcon size={18} className="text-white/70" />
             <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
               LinkedIn
             </span>
@@ -249,7 +250,7 @@ export function Hero() {
               <span className="font-bebas text-[#ccff00] text-[48px] leading-none">
                 <AnimatedNumber target={stat.value} delay={2} />+
               </span>
-              <span className="font-space text-white/40 text-[12px] tracking-[0.1em] uppercase mt-1">
+              <span className="font-space text-white/40 text-[12px] tracking-widest uppercase mt-1">
                 {stat.label}
               </span>
             </div>
@@ -268,7 +269,7 @@ export function Hero() {
           Scroll
         </span>
         <motion.div
-          className="w-px h-16 bg-gradient-to-b from-[#ccff00] to-transparent"
+          className="w-px h-16 bg-linear-to-b from-[#ccff00] to-transparent"
           animate={{ scaleY: [0, 1, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           style={{ originY: 0 }}

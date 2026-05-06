@@ -315,9 +315,9 @@ const MarqueeRow = ({
   return (
     <div className="relative w-full overflow-hidden">
       {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#030213] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-[#030213] to-transparent" />
       {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#030213] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-[#030213] to-transparent" />
 
       <div
         className={`flex gap-4 w-max ${animClass} group/row`}
@@ -354,7 +354,7 @@ export function TechMarquee() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="self-stretch px-16 inline-flex justify-center items-center gap-2"
       >
-        <div className="max-w-[560px] w-full text-center">
+        <div className="max-w-140 w-full text-center">
           <p className="text-white/40 text-xs uppercase tracking-[0.25em] font-semibold mb-2">
             Tools &amp; Technologies
           </p>

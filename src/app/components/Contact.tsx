@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { Github, Linkedin, Mail, ArrowUpRight, Send } from "lucide-react";
+import { Mail, ArrowUpRight, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
 
 export function Contact() {
   const sectionRef = useRef(null);
@@ -20,13 +21,13 @@ export function Contact() {
 
   const socials = [
     {
-      icon: Github,
+      icon: GithubIcon,
       label: "GitHub",
       href: "https://github.com/istvanszasz99",
       username: "@istvanszasz99",
     },
     {
-      icon: Linkedin,
+      icon: LinkedinIcon,
       label: "LinkedIn",
       href: "https://linkedin.com/in/istvanszasz99",
       username: "Istvan Szasz",
@@ -48,7 +49,7 @@ export function Contact() {
       <div className="noise-overlay" />
 
       {/* Lime gradient bg */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none bg-[radial-gradient(ellipse_at_50%_100%,rgba(204,255,0,0.07)_0%,transparent_70%)]" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-200 h-100 pointer-events-none bg-[radial-gradient(ellipse_at_50%_100%,rgba(204,255,0,0.07)_0%,transparent_70%)]" />
 
       {/* Section label */}
       <motion.div
@@ -63,7 +64,7 @@ export function Contact() {
         </span>
       </motion.div>
 
-      <div className="max-w-[1400px] mx-auto px-16">
+      <div className="max-w-350 mx-auto px-16">
         {/* Big heading */}
         <div className="text-center mb-20">
           <div className="overflow-hidden mb-2">
@@ -264,7 +265,7 @@ export function Contact() {
                     transition={{ duration: 0.35 }}
                     style={{ originX: 0 }}
                   />
-                  <span className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-[0.1em] uppercase">
+                  <span className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-widest uppercase">
                     Send Message
                     <Send size={16} />
                   </span>

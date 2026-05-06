@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
 
 export function Footer() {
   const navLinks = [
@@ -21,7 +22,7 @@ export function Footer() {
     <footer className="relative bg-[#030303] border-t border-white/5 py-16 overflow-hidden">
       <div className="noise-overlay" />
 
-      <div className="max-w-[1400px] mx-auto px-16">
+      <div className="max-w-350 mx-auto px-16">
         <div className="grid grid-cols-[1fr_auto_auto] gap-12 items-center mb-12">
           {/* Brand */}
           <div>
@@ -31,7 +32,7 @@ export function Footer() {
             >
               ISTVAN <span className="text-[#ccff00]">SZASZ</span>
             </motion.div>
-            <p className="font-space text-white/30 text-[13px] tracking-[0.05em]">
+            <p className="font-space text-white/30 text-[13px] tracking-wider">
               Full-Stack Developer · Budapest, Hungary
             </p>
           </div>
@@ -54,12 +55,12 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             {[
               {
-                Icon: Github,
+                Icon: GithubIcon,
                 href: "https://github.com/istvanszasz99",
                 label: "GitHub",
               },
               {
-                Icon: Linkedin,
+                Icon: LinkedinIcon,
                 href: "https://linkedin.com/in/istvanszasz99",
                 label: "LinkedIn",
               },

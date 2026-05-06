@@ -49,7 +49,7 @@ export function Navbar() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 px-8 py-5 flex items-center justify-between transition-all duration-400 ease-in-out ${
         scrolled
-          ? "bg-[#050505]/95 backdrop-blur-[12px] border-b border-white/[0.05]"
+          ? "bg-[#050505]/95 backdrop-blur-md border-b border-white/5"
           : "bg-transparent border-b border-transparent"
       }`}
       initial={{ y: -100, opacity: 0 }}
@@ -66,7 +66,7 @@ export function Navbar() {
         <div className="w-8 h-8 rounded-full bg-[#ccff00] flex items-center justify-center">
           <span className="font-bebas text-[#050505] text-[14px]">IS</span>
         </div>
-        <span className="font-space text-white text-[14px] tracking-[0.05em]">
+        <span className="font-space text-white text-[14px] tracking-wider">
           ISTVAN SZASZ
         </span>
       </motion.a>

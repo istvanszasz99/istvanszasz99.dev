@@ -51,7 +51,7 @@ export function CustomCursor() {
     <>
       {/* Main dot */}
       <motion.div
-        className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
+        className="fixed top-0 left-0 z-9999 pointer-events-none mix-blend-difference"
         style={{
           x: mouseX,
           y: mouseY,
@@ -71,7 +71,7 @@ export function CustomCursor() {
 
       {/* Follower ring */}
       <motion.div
-        className="fixed top-0 left-0 z-[9998] pointer-events-none"
+        className="fixed top-0 left-0 z-9998 pointer-events-none"
         style={{
           x: followerX,
           y: followerY,
@@ -84,7 +84,9 @@ export function CustomCursor() {
           animate={{
             width: isHovering ? 80 : isClicking ? 28 : 40,
             height: isHovering ? 80 : isClicking ? 28 : 40,
-            backgroundColor: isHovering ? "rgba(204,255,0,0.15)" : "transparent",
+            backgroundColor: isHovering
+              ? "rgba(204,255,0,0.15)"
+              : "transparent",
           }}
           transition={{ type: "spring", stiffness: 200, damping: 25 }}
         >

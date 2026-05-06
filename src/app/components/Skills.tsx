@@ -119,7 +119,7 @@ function SkillBar({
       <div className="flex justify-between items-center mb-1.5">
         <span className="font-space text-white/70 text-[13px]">{name}</span>
         <motion.span
-          className="font-space text-[var(--sc)] text-[12px] tracking-[0.05em]"
+          className="font-space text-(--sc) text-[12px] tracking-wider"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: delay + 0.4 }}
@@ -129,7 +129,7 @@ function SkillBar({
       </div>
       <div className="h-px w-full bg-white/10 overflow-hidden rounded-full">
         <motion.div
-          className="h-full rounded-full bg-[var(--sc)]"
+          className="h-full rounded-full bg-(--sc)"
           initial={{ width: 0 }}
           animate={isInView ? { width: `${level}%` } : {}}
           transition={{ duration: 1.2, delay, ease: [0.33, 1, 0.68, 1] }}
@@ -172,7 +172,7 @@ export function Skills() {
         </span>
       </motion.div>
 
-      <div className="max-w-[1400px] mx-auto px-16">
+      <div className="max-w-350 mx-auto px-16">
         {/* Heading */}
         <div className="mb-16">
           <div className="overflow-hidden">
@@ -198,7 +198,7 @@ export function Skills() {
               <motion.button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className="w-full text-left px-5 py-4 border border-[var(--btn-border)] bg-[var(--btn-bg)] transition-all relative overflow-hidden group"
+                className="w-full text-left px-5 py-4 border border-(--btn-border) bg-(--btn-bg) transition-all relative overflow-hidden group"
                 style={
                   {
                     "--cc": cat.color,
@@ -219,20 +219,18 @@ export function Skills() {
               >
                 {activeCategory === cat.id && (
                   <motion.div
-                    className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--cc)]"
+                    className="absolute left-0 top-0 bottom-0 w-1 bg-(--cc)"
                     layoutId="activeBorder"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
                 <div className="flex items-center gap-3">
-                  <span className="text-[var(--cc)] text-[18px]">
-                    {cat.icon}
-                  </span>
+                  <span className="text-(--cc) text-[18px]">{cat.icon}</span>
                   <div>
                     <div
-                      className={`font-space text-[14px] font-semibold tracking-[0.05em] ${
+                      className={`font-space text-[14px] font-semibold tracking-wider ${
                         activeCategory === cat.id
-                          ? "text-[var(--cc)]"
+                          ? "text-(--cc)"
                           : "text-white/70"
                       }`}
                     >
@@ -250,17 +248,17 @@ export function Skills() {
           {/* Skill bars panel */}
           <motion.div
             key={activeCategory}
-            className="p-8 border border-white/5 bg-white/[0.02] rounded-2xl"
+            className="p-8 border border-white/5 bg-white/2 rounded-2xl"
             style={{ "--ac": active.color } as React.CSSProperties}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="mb-8">
-              <div className="font-bebas text-[var(--ac)] text-[48px] leading-none mb-2">
+              <div className="font-bebas text-(--ac) text-[48px] leading-none mb-2">
                 {active.title}
               </div>
-              <p className="font-space text-white/35 text-[13px] tracking-[0.05em]">
+              <p className="font-space text-white/35 text-[13px] tracking-wider">
                 {active.description}
               </p>
             </div>
@@ -289,7 +287,7 @@ export function Skills() {
             {[...techStack, ...techStack, ...techStack].map((tech, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 px-5 py-2.5 border border-white/10 rounded-full font-space text-white/40 text-[13px] tracking-[0.06em] whitespace-nowrap"
+                className="shrink-0 px-5 py-2.5 border border-white/10 rounded-full font-space text-white/40 text-[13px] tracking-[0.06em] whitespace-nowrap"
               >
                 {tech}
               </div>

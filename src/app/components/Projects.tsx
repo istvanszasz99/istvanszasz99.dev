@@ -6,7 +6,8 @@ import {
   useTransform,
   useSpring,
 } from "motion/react";
-import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { GithubIcon } from "./ui/brand-icons";
 
 const projects = [
   {
@@ -164,7 +165,7 @@ function ProjectCard({
               whileHover={{ scale: 1.1, backgroundColor: project.color }}
               onClick={(e) => e.stopPropagation()}
             >
-              <Github size={18} className="text-white" />
+              <GithubIcon size={18} className="text-white" />
             </motion.a>
             <motion.a
               href={project.live}

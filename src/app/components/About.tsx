@@ -73,7 +73,7 @@ export function About() {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
           {/* Big letter */}
-          <div className="absolute -left-8 -top-12 select-none pointer-events-none font-bebas text-[300px] text-[#ccff00]/[0.04] leading-none z-0">
+          <div className="absolute -left-8 -top-12 select-none pointer-events-none font-bebas text-[300px] text-[#ccff00]/4 leading-none z-0">
             I
           </div>
 
@@ -84,7 +84,7 @@ export function About() {
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
           >
             {/* Profile visual */}
-            <div className="w-full h-[500px] relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
+            <div className="w-full h-125 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
               {/* Decorative code block */}
               <div className="absolute top-8 left-8 right-8">
                 <motion.div
@@ -127,7 +127,7 @@ export function About() {
                       {i === 0 ? (
                         <span className="font-mono text-[#7c9eff] text-[13px]">
                           {line.key}{" "}
-                          <span className="text-[var(--lc)]">{line.val}</span> ={" "}
+                          <span className="text-(--lc)">{line.val}</span> ={" "}
                           {"{"}
                         </span>
                       ) : i === 4 ? (
@@ -138,7 +138,7 @@ export function About() {
                           <span className="font-mono text-white/50 text-[13px]">
                             {line.key}:{" "}
                           </span>
-                          <span className="font-mono text-[var(--lc)] text-[13px]">
+                          <span className="font-mono text-(--lc) text-[13px]">
                             {line.val}
                           </span>
                           <span className="font-mono text-white/30 text-[13px]">
@@ -153,7 +153,7 @@ export function About() {
                           <span className="font-mono text-white/50 text-[13px]">
                             {line.key}:{" "}
                           </span>
-                          <span className="font-mono text-[var(--lc)] text-[13px]">
+                          <span className="font-mono text-(--lc) text-[13px]">
                             {line.val}
                           </span>
                         </>
@@ -195,7 +195,7 @@ export function About() {
             transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
             whileHover={{ rotate: 0, scale: 1.05 }}
           >
-            <div className="font-space text-[#050505] text-[11px] font-bold tracking-[0.05em] text-center">
+            <div className="font-space text-[#050505] text-[11px] font-bold tracking-wider text-center">
               <div>Available</div>
               <div>for work</div>
             </div>
@@ -270,7 +270,7 @@ export function About() {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
               >
-                <span className="font-space text-white/30 text-[12px] tracking-[0.1em] uppercase w-[100px] shrink-0">
+                <span className="font-space text-white/30 text-[12px] tracking-widest uppercase w-25 shrink-0">
                   {item.label}
                 </span>
                 <span
@@ -291,7 +291,7 @@ export function About() {
             whileHover={{ scale: 1.03, backgroundColor: "rgba(204,255,0,0.1)" }}
             whileTap={{ scale: 0.97 }}
           >
-            <span className="font-space text-[#ccff00] text-[13px] tracking-[0.1em] uppercase">
+            <span className="font-space text-[#ccff00] text-[13px] tracking-widest uppercase">
               Download Resume
             </span>
             <motion.span
