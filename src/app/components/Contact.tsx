@@ -30,13 +30,13 @@ export function Contact() {
       icon: LinkedinIcon,
       label: "LinkedIn",
       href: "https://linkedin.com/in/istvanszasz99",
-      username: "Istvan Szasz",
+      username: "in/istvanszasz99",
     },
     {
       icon: Mail,
       label: "Email",
-      href: "mailto:istvan@example.com",
-      username: "istvan@example.com",
+      href: "mailto:istvanszasz99@gmail.com",
+      username: "istvanszasz99@gmail.com",
     },
   ];
 
@@ -60,11 +60,11 @@ export function Contact() {
       >
         <div className="w-6 h-px bg-[#ccff00]" />
         <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          04 / Contact
+          Contact
         </span>
       </motion.div>
 
-      <div className="max-w-350 mx-auto px-16">
+      <div className="max-w-7xl mx-auto ">
         {/* Big heading */}
         <div className="text-center mb-20">
           <div className="overflow-hidden mb-2">
@@ -116,21 +116,13 @@ export function Contact() {
               transition={{ delay: 0.4, duration: 0.7 }}
             >
               <p className="font-space text-white/50 text-[15px] leading-[1.8] mb-8">
-                Whether you have a project in mind, want to collaborate, or just
-                want to say hi — my inbox is always open. I'll get back to you
-                as soon as possible.
+                Whether you have a project in mind or want to collaborate, my
+                inbox is always open. I'll get back to you as soon as possible.
               </p>
 
               {/* Availability indicator */}
               <div className="flex items-center gap-3 mb-10">
-                <div className="relative w-3 h-3">
-                  <div className="w-3 h-3 rounded-full bg-[#ccff00] absolute" />
-                  <motion.div
-                    className="w-3 h-3 rounded-full bg-[#ccff00] absolute"
-                    animate={{ scale: [1, 2], opacity: [0.7, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </div>
+                <div className="w-3 h-3 rounded-full bg-[#ccff00] animate-pulse" />
                 <span className="font-space text-[#ccff00] text-[13px] tracking-[0.08em] uppercase">
                   Available for new projects
                 </span>
@@ -190,13 +182,13 @@ export function Contact() {
                     key: "name",
                     label: "Your Name",
                     type: "text",
-                    placeholder: "Istvan Szasz",
+                    placeholder: "Your Name",
                   },
                   {
                     key: "email",
                     label: "Email Address",
                     type: "email",
-                    placeholder: "hello@example.com",
+                    placeholder: "Your Email Address",
                   },
                 ].map((field) => (
                   <div key={field.key}>
@@ -255,7 +247,6 @@ export function Contact() {
                 <motion.button
                   type="submit"
                   className="w-full py-5 flex items-center justify-center gap-3 bg-[#ccff00] relative overflow-hidden group"
-                  whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <motion.span
@@ -265,10 +256,14 @@ export function Contact() {
                     transition={{ duration: 0.35 }}
                     style={{ originX: 0 }}
                   />
-                  <span className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-widest uppercase">
+                  <motion.span
+                    className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-widest uppercase"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     Send Message
                     <Send size={16} />
-                  </span>
+                  </motion.span>
                 </motion.button>
               </form>
             ) : (

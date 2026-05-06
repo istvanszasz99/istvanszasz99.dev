@@ -86,7 +86,7 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505]"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-16"
     >
       {/* Noise overlay */}
       <div className="noise-overlay" />
@@ -107,7 +107,7 @@ export function Hero() {
       />
 
       <motion.div
-        className="relative z-10 px-16 max-w-350 w-full mx-auto"
+        className="relative z-10  max-w-7xl w-full mx-auto"
         style={{ y, opacity }}
       >
         {/* Tag line */}
@@ -119,7 +119,7 @@ export function Hero() {
         >
           <div className="w-8 h-px bg-[#ccff00]" />
           <span className="font-space text-[#ccff00] text-[12px] tracking-[0.2em] uppercase">
-            Istvan Zoltan Szasz — Portfolio 2025
+            Personal Website
           </span>
         </motion.div>
 
@@ -147,7 +147,7 @@ export function Hero() {
 
         {/* Typewriter role */}
         <motion.div
-          className="flex items-center gap-4 mb-10"
+          className="flex items-center gap-4 mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.5 }}
@@ -170,11 +170,16 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.7 }}
-          className="font-space text-white/45 text-[15px] leading-[1.8] max-w-120 mb-10"
+          className="font-space text-white/45 text-[15px] leading-[1.8] max-w-140 mb-6"
         >
-          25 years old Full-Stack Developer from Hungary. Computer Science
-          Engineer at Óbuda University. 5+ years building robust web
-          applications with modern technologies.
+          {new Date().getFullYear() -
+            1999 -
+            (new Date() < new Date(new Date().getFullYear(), 9, 2)
+              ? 1
+              : 0)}{" "}
+          years old Full-Stack Developer from Hungary with a Computer Science
+          Engineering bachelor's degree from Óbuda University. 6+ years
+          experience in building web applications with modern technologies.
         </motion.p>
 
         {/* CTA buttons */}
@@ -260,7 +265,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 right-16 flex flex-col items-center gap-2"
+        className="absolute bottom-16 right-16 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}

@@ -116,7 +116,7 @@ function ProjectCard({
       }}
     >
       <motion.div
-        className="relative overflow-hidden border border-white/10 rounded-2xl cursor-pointer group [transform-style:preserve-3d] [perspective:1000px]"
+        className="relative overflow-hidden border border-white/10 rounded-2xl cursor-pointer group transform-3d perspective-[1000px]"
         style={{ rotateX, rotateY }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
@@ -141,12 +141,12 @@ function ProjectCard({
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_40%,rgba(5,5,5,0.95)_100%)]" />
 
           {/* Project number */}
-          <div className="absolute top-4 left-5 font-bebas text-[var(--pc)] text-[13px] tracking-[0.15em]">
+          <div className="absolute top-4 left-5 font-bebas text-(--pc) text-[13px] tracking-[0.15em]">
             {project.number}
           </div>
 
           {/* Category badge */}
-          <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full border font-space text-[var(--pc)] text-[10px] tracking-[0.1em] uppercase border-[var(--pc40)] bg-[var(--pc15)]">
+          <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full border font-space text-(--pc) text-[10px] tracking-widest uppercase border-(--pc40) bg-(--pc15)">
             {project.category}
           </div>
 
@@ -202,7 +202,7 @@ function ProjectCard({
 
         {/* Bottom line animated */}
         <motion.div
-          className="w-full h-0.5 bg-[var(--pc)]"
+          className="w-full h-0.5 bg-(--pc)"
           style={{ originX: 0 }}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: hovered ? 1 : 0 }}
@@ -234,11 +234,11 @@ export function Projects() {
       >
         <div className="w-6 h-px bg-[#ccff00]" />
         <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          03 / Projects
+          Projects
         </span>
       </motion.div>
 
-      <div className="max-w-[1400px] mx-auto px-16">
+      <div className="max-w-7xl mx-auto ">
         {/* Header */}
         <div className="flex items-end justify-between mb-16">
           <div>
@@ -253,7 +253,7 @@ export function Projects() {
                   ease: [0.33, 1, 0.68, 1],
                 }}
               >
-                FEATURED <span className="text-[#ccff00]">WORK</span>
+                FEATURED <span className="text-[#ccff00]">WORKS</span>
               </motion.h2>
             </div>
           </div>

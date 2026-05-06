@@ -5,7 +5,7 @@ import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
 export function Footer() {
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
+    { label: "About Me", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
@@ -22,16 +22,13 @@ export function Footer() {
     <footer className="relative bg-[#030303] border-t border-white/5 py-16 overflow-hidden">
       <div className="noise-overlay" />
 
-      <div className="max-w-350 mx-auto px-16">
-        <div className="grid grid-cols-[1fr_auto_auto] gap-12 items-center mb-12">
+      <div className="max-w-7xl mx-auto ">
+        <div className="grid grid-cols-[1fr_auto_auto] gap-12 items-center mb-16">
           {/* Brand */}
           <div>
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="font-bebas text-white text-[48px] leading-none mb-2"
-            >
-              ISTVAN <span className="text-[#ccff00]">SZASZ</span>
-            </motion.div>
+            <div className="font-bebas text-white text-[48px] leading-none mb-2">
+              ISTVAN <span className="text-[#ccff00]">{"{ZOLTAN}"} SZASZ</span>
+            </div>
             <p className="font-space text-white/30 text-[13px] tracking-wider">
               Full-Stack Developer · Budapest, Hungary
             </p>
@@ -64,7 +61,11 @@ export function Footer() {
                 href: "https://linkedin.com/in/istvanszasz99",
                 label: "LinkedIn",
               },
-              { Icon: Mail, href: "mailto:istvan@example.com", label: "Email" },
+              {
+                Icon: Mail,
+                href: "mailto:istvanszasz99@gmail.com",
+                label: "Email",
+              },
             ].map(({ Icon, href, label }) => (
               <motion.a
                 key={label}
@@ -92,19 +93,14 @@ export function Footer() {
         {/* Bottom row */}
         <div className="flex items-center justify-between">
           <span className="font-space text-white/20 text-[12px] tracking-[0.06em]">
-            © 2025 Istvan Zoltan Szasz. All rights reserved.
+            © {new Date().getFullYear()} Istvan Zoltan Szasz. All rights
+            reserved.
           </span>
 
           <div className="flex items-center gap-6">
             <span className="font-space text-white/20 text-[12px]">
               Built with React · TailwindCSS · Motion
             </span>
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse" />
-              <span className="font-space text-[#ccff00]/60 text-[11px] tracking-[0.08em] uppercase">
-                Live
-              </span>
-            </div>
           </div>
         </div>
       </div>

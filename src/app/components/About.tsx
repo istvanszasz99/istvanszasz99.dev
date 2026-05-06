@@ -60,11 +60,11 @@ export function About() {
       >
         <div className="w-6 h-px bg-[#ccff00]" />
         <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          01 / About
+          About Me
         </span>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-16 grid grid-cols-2 gap-20 items-center">
+      <div className="max-w-7xl mx-auto  grid grid-cols-2 gap-20 items-center">
         {/* Left: visual card */}
         <motion.div
           className="relative"
@@ -84,7 +84,7 @@ export function About() {
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
           >
             {/* Profile visual */}
-            <div className="w-full h-125 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
+            <div className="w-full h-105 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
               {/* Decorative code block */}
               <div className="absolute top-8 left-8 right-8">
                 <motion.div
@@ -98,22 +98,36 @@ export function About() {
                     <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
                     <div className="w-3 h-3 rounded-full bg-green-500/70" />
                     <span className="ml-2 font-space text-white/20 text-[11px]">
-                      istvan.ts
+                      profile.ts
                     </span>
                   </div>
                   {[
                     { key: "const", val: "developer", color: "#ccff00" },
                     {
                       key: "name",
-                      val: '"Istvan Zoltan Szasz"',
+                      val: '"István Zoltán Szász"',
+                      color: "#88d8b0",
+                    },
+                    {
+                      key: "age",
+                      val: "26",
+                      color: "#ccff00",
+                    },
+                    {
+                      key: "gender",
+                      val: '"Male"',
                       color: "#88d8b0",
                     },
                     {
                       key: "location",
-                      val: '"Budapest, Hungary"',
+                      val: '"Érd, Hungary"',
                       color: "#88d8b0",
                     },
-                    { key: "focus", val: '"Full-Stack"', color: "#88d8b0" },
+                    {
+                      key: "role",
+                      val: '"Full-Stack Developer"',
+                      color: "#88d8b0",
+                    },
                     { key: "available", val: "true", color: "#ccff00" },
                   ].map((line, i) => (
                     <motion.div
@@ -130,7 +144,7 @@ export function About() {
                           <span className="text-(--lc)">{line.val}</span> ={" "}
                           {"{"}
                         </span>
-                      ) : i === 4 ? (
+                      ) : i === 6 ? (
                         <>
                           <span className="font-mono text-white/25 text-[13px]">
                             &nbsp;&nbsp;
@@ -229,7 +243,7 @@ export function About() {
                 ease: [0.33, 1, 0.68, 1],
               }}
             >
-              ME.
+              ME
             </motion.span>
           </div>
 
@@ -239,9 +253,15 @@ export function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            I'm a 25 years old Full-Stack Developer from Hungary. Recently
-            graduated with a Bachelor's degree as Computer Science Engineer at
-            Óbuda University.
+            I'm a{" "}
+            {new Date().getFullYear() -
+              1999 -
+              (new Date() < new Date(new Date().getFullYear(), 9, 2)
+                ? 1
+                : 0)}{" "}
+            years old Full-Stack Developer from Hungary. Recently graduated with
+            a Bachelor's degree as Computer Science Engineer at Óbuda
+            University.
           </motion.p>
 
           <motion.p
@@ -281,27 +301,6 @@ export function About() {
               </motion.div>
             ))}
           </div>
-
-          <motion.a
-            href="#"
-            className="inline-flex items-center gap-3 mt-8 px-6 py-3 border border-[#ccff00] no-underline group"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 1.1, duration: 0.5 }}
-            whileHover={{ scale: 1.03, backgroundColor: "rgba(204,255,0,0.1)" }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <span className="font-space text-[#ccff00] text-[13px] tracking-widest uppercase">
-              Download Resume
-            </span>
-            <motion.span
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-[#ccff00]"
-            >
-              ↓
-            </motion.span>
-          </motion.a>
         </div>
       </div>
     </section>

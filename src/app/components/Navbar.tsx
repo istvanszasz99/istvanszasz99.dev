@@ -67,58 +67,67 @@ export function Navbar() {
           <span className="font-bebas text-[#050505] text-[14px]">IS</span>
         </div>
         <span className="font-space text-white text-[14px] tracking-wider">
-          ISTVAN SZASZ
+          ISTVAN{" "}
+          <span className="text-[#ccff00]">
+            {"{"}ZOLTAN{"}"} SZASZ
+          </span>
         </span>
       </motion.a>
 
       {/* Nav links */}
       <div className="flex items-center gap-8">
-        {navItems.map((item, i) => (
-          <motion.a
-            key={item.label}
-            href={item.href}
-            onClick={(e) => handleNavClick(e, item.href)}
-            className={`relative no-underline font-space text-[13px] tracking-[0.08em] uppercase ${
-              activeSection === item.href.replace("#", "")
-                ? "text-[#ccff00]"
-                : "text-white/60"
-            }`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
-          >
-            <motion.span whileHover={{ color: "#ccff00" }}>
-              {item.label}
-            </motion.span>
-            {activeSection === item.href.replace("#", "") && (
+        {navItems.map((item, i) => {
+          const isContact = item.href === "#contact";
+          return isContact ? (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="no-underline px-5 py-2 border border-[#ccff00] rounded-full text-[#ccff00] relative overflow-hidden group font-space text-[13px] tracking-[0.08em] uppercase"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
+            >
               <motion.span
-                className="absolute -bottom-1 left-0 right-0 h-px bg-[#ccff00]"
-                layoutId="activeNav"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="absolute inset-0 bg-[#ccff00]"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+                style={{ originX: 0 }}
               />
-            )}
-          </motion.a>
-        ))}
-
-        <motion.a
-          href="#contact"
-          onClick={(e) => handleNavClick(e, "#contact")}
-          className="no-underline px-5 py-2 border border-[#ccff00] rounded-full text-[#ccff00] relative overflow-hidden group font-space text-[13px] tracking-[0.08em] uppercase"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <motion.span
-            className="absolute inset-0 bg-[#ccff00]"
-            initial={{ scaleX: 0 }}
-            whileHover={{ scaleX: 1 }}
-            transition={{ duration: 0.3 }}
-            style={{ originX: 0 }}
-          />
-          <span className="relative">Hire Me</span>
-        </motion.a>
+              <span className="relative group-hover:text-[#050505] transition-colors duration-300">
+                {item.label}
+              </span>
+            </motion.a>
+          ) : (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={`relative no-underline font-space text-[13px] tracking-[0.08em] uppercase ${
+                activeSection === item.href.replace("#", "")
+                  ? "text-[#ccff00]"
+                  : "text-white/60"
+              }`}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
+            >
+              <motion.span whileHover={{ color: "#ccff00" }}>
+                {item.label}
+              </motion.span>
+              {activeSection === item.href.replace("#", "") && (
+                <motion.span
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-[#ccff00]"
+                  layoutId="activeNav"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+            </motion.a>
+          );
+        })}
       </div>
     </motion.nav>
   );

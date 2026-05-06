@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
 
 const skillCategories = [
   {
@@ -144,6 +144,12 @@ export function Skills() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-20% 0px" });
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgX = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+
   const active = skillCategories.find((c) => c.id === activeCategory)!;
 
   return (
@@ -154,10 +160,23 @@ export function Skills() {
     >
       <div className="noise-overlay" />
 
-      {/* Big BG text */}
-      <div className="absolute right-0 top-0 select-none pointer-events-none opacity-[0.025] font-bebas text-[320px] text-white leading-none">
-        SKILLS
-      </div>
+      {/* Mosaic BG text */}
+      <motion.div
+        className="absolute inset-0 select-none pointer-events-none overflow-hidden flex items-center"
+        style={{ x: bgX }}
+      >
+        <div className="flex gap-24 whitespace-nowrap">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span
+              key={i}
+              className="font-bebas text-[700px] leading-none select-none text-white"
+              style={{ opacity: i % 2 === 0 ? 0.015 : 0.008 }}
+            >
+              SKILLS
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Section label */}
       <motion.div
@@ -168,11 +187,11 @@ export function Skills() {
       >
         <div className="w-6 h-px bg-[#ccff00]" />
         <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          02 / Skills
+          Skills
         </span>
       </motion.div>
 
-      <div className="max-w-350 mx-auto px-16">
+      <div className="max-w-7xl mx-auto ">
         {/* Heading */}
         <div className="mb-16">
           <div className="overflow-hidden">
