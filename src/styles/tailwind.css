@@ -1,0 +1,60 @@
+@import "tailwindcss" source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+@import "tw-animate-css";
+
+/* ── Custom font utilities ─────────────────────────────────────── */
+@utility font-space {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+@utility font-bebas {
+  font-family: "Bebas Neue", cursive;
+}
+
+@utility writing-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+/* ── Grid background utility ────────────────────────────────────── */
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ── Marquee scroll animations ─────────────────────────────────── */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@utility animate-marquee-left {
+  animation: marquee-left var(--marquee-duration, 40s) linear infinite;
+  &:hover,
+  .group\/row:hover & {
+    animation-play-state: paused;
+  }
+}
+
+@utility animate-marquee-right {
+  animation: marquee-right var(--marquee-duration, 40s) linear infinite;
+  &:hover,
+  .group\/row:hover & {
+    animation-play-state: paused;
+  }
+}
