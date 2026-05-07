@@ -172,14 +172,8 @@ export function Hero() {
           transition={{ delay: 1.5, duration: 0.7 }}
           className="font-space text-white/45 text-[15px] leading-[1.8] max-w-140 mb-6"
         >
-          {new Date().getFullYear() -
-            1999 -
-            (new Date() < new Date(new Date().getFullYear(), 9, 2)
-              ? 1
-              : 0)}{" "}
-          years old Full-Stack Developer from Hungary with a Computer Science
-          Engineering bachelor's degree from Óbuda University. 6+ years
-          experience in building web applications with modern technologies.
+          Full-Stack Web Developer from Hungary with a Bachelor's degree in
+          Computer Science Engineering from Óbuda University.
         </motion.p>
 
         {/* CTA buttons */}

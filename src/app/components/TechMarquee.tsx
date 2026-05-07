@@ -315,9 +315,9 @@ const MarqueeRow = ({
   return (
     <div className="relative w-full overflow-hidden">
       {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-[#030213] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-[#050505] to-transparent" />
       {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-[#030213] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-[#050505] to-transparent" />
 
       <div
         className={`flex gap-4 w-max ${animClass} group/row`}
@@ -345,38 +345,55 @@ export function TechMarquee() {
   return (
     <section
       ref={containerRef}
-      className="self-stretch py-20 inline-flex flex-col justify-start items-center gap-12 overflow-hidden w-full"
+      id="tech-stack"
+      className="relative bg-[#050505] py-16 overflow-hidden w-full"
     >
-      {/* Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="self-stretch px-16 inline-flex justify-center items-center gap-2"
-      >
-        <div className="max-w-140 w-full text-center">
-          <p className="text-white/40 text-xs uppercase tracking-[0.25em] font-semibold mb-2">
-            Tools &amp; Technologies
-          </p>
-          <h2 className="text-white text-2xl font-bold font-['Roboto'] leading-8">
-            My Tech Stack
-          </h2>
-          <p className="mt-2 text-white/50 text-sm leading-6">
-            A collection of languages, frameworks and tools I use daily to build
-            fast, scalable &amp; beautiful products.
-          </p>
-        </div>
-      </motion.div>
+      <div className="noise-overlay" />
+      <div className="flex flex-col items-center gap-12">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="self-stretch px-16 inline-flex justify-center items-center gap-2"
+        >
+          <div className="w-full text-center">
+            <div className="overflow-hidden mb-3">
+              <motion.h2
+                className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0 whitespace-nowrap"
+                initial={{ y: "110%" }}
+                animate={isInView ? { y: "0%" } : {}}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.1,
+                  ease: [0.33, 1, 0.68, 1],
+                }}
+              >
+                TOOLS &amp; <span className="text-[#ccff00]">TECHNOLOGIES</span>
+              </motion.h2>
+            </div>
+            <motion.p
+              className="text-white/40 text-lg font-normal font-['Roboto'] leading-7"
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.25 }}
+            >
+              A collection of languages, frameworks and tools I use to build
+              fast, scalable &amp; beautiful products.
+            </motion.p>
+          </div>
+        </motion.div>
 
-      {/* Marquee rows */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="self-stretch flex flex-col justify-start items-center gap-5"
-      >
-        <MarqueeRow items={rowOne} direction="left" speed={35} />
-      </motion.div>
+        {/* Marquee rows */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="self-stretch flex flex-col justify-start items-center gap-5"
+        >
+          <MarqueeRow items={rowOne} direction="left" speed={35} />
+        </motion.div>
+      </div>
     </section>
   );
 }

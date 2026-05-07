@@ -181,8 +181,8 @@ export function About() {
               <div className="w-full p-6 grid grid-cols-3 gap-4 border-t border-white/10">
                 {[
                   { num: 5, suffix: "+", label: "Years Exp" },
-                  { num: 20, suffix: "+", label: "Projects" },
-                  { num: 10, suffix: "+", label: "Technologies" },
+                  { num: 20, suffix: "+", label: "Projects completed" },
+                  { num: 100, suffix: "+", label: "Technologies" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
                     <div className="font-bebas text-[#ccff00] text-[42px] leading-none">
@@ -218,9 +218,9 @@ export function About() {
 
         {/* Right: text content */}
         <div>
-          <div className="overflow-hidden mb-2">
+          <div className="overflow-hidden mb-8">
             <motion.span
-              className="font-bebas text-white text-[100px] leading-[0.9] block"
+              className="font-bebas text-white text-[100px] leading-[0.9] block whitespace-nowrap"
               initial={{ y: "110%" }}
               animate={isInView ? { y: "0%" } : {}}
               transition={{
@@ -229,21 +229,7 @@ export function About() {
                 ease: [0.33, 1, 0.68, 1],
               }}
             >
-              ABOUT
-            </motion.span>
-          </div>
-          <div className="overflow-hidden mb-8">
-            <motion.span
-              className="font-bebas text-[#ccff00] text-[100px] leading-[0.9] block"
-              initial={{ y: "110%" }}
-              animate={isInView ? { y: "0%" } : {}}
-              transition={{
-                duration: 0.9,
-                delay: 0.2,
-                ease: [0.33, 1, 0.68, 1],
-              }}
-            >
-              ME
+              ABOUT <span className="text-[#ccff00]">ME</span>
             </motion.span>
           </div>
 
@@ -259,9 +245,8 @@ export function About() {
               (new Date() < new Date(new Date().getFullYear(), 9, 2)
                 ? 1
                 : 0)}{" "}
-            years old Full-Stack Developer from Hungary. Recently graduated with
-            a Bachelor's degree as Computer Science Engineer at Óbuda
-            University.
+            years old Full-Stack Developer from Hungary with a Bachelor's degree
+            in Computer Science Engineering from Óbuda University.
           </motion.p>
 
           <motion.p
@@ -271,16 +256,23 @@ export function About() {
             transition={{ delay: 0.65, duration: 0.7 }}
           >
             I built a solid foundation in both Front-End and Back-End
-            development. Experienced in building and maintaining robust web
-            applications using a wide range of modern technologies.
+            development. Over 5 years of experience building modern web
+            applications with a strong focus on React and the modern JavaScript
+            ecosystem. Expertise in React, Vite, Next.js, TypeScript, and
+            scalable backend integrations for high-performance web platforms.
           </motion.p>
 
           {/* Attributes */}
           <div className="space-y-3">
             {[
-              { label: "Location", value: "Budapest, Hungary" },
-              { label: "Education", value: "BSc Computer Science Engineering" },
-              { label: "University", value: "Óbuda University" },
+              {
+                label: "Soft Skills",
+                value: "Problem-solving , Communication , Teamwork",
+              },
+              {
+                label: "Hobbies",
+                value: "Hobby Cooking , Gaming , Following F1 & WEC",
+              },
               { label: "Status", value: "Open to opportunities", accent: true },
             ].map((item, i) => (
               <motion.div
