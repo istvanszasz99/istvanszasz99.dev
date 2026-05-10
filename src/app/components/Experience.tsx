@@ -138,7 +138,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
   return (
     <motion.div
       key={exp.id}
-      className="self-stretch py-6 border-t border-white/10 flex flex-row items-start justify-between gap-6"
+      className="self-stretch py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:justify-between gap-4 sm:gap-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -182,7 +182,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
       </div>
 
       {/* Right: date range + badge + location */}
-      <div className="flex flex-col items-end gap-1 shrink-0">
+      <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-white/50 text-sm font-['Roboto'] whitespace-nowrap">
             {exp.type}
@@ -249,7 +249,7 @@ export function Experience() {
 
       {/* Section label — absolute, side positioned (matches About) */}
       <motion.div
-        className="absolute top-12 left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -260,7 +260,7 @@ export function Experience() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-20">
+      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex flex-col items-center gap-20">
         {/* ── Header ── */}
         <div className="w-full max-w-3xl flex flex-col items-center gap-4">
           <div className="overflow-hidden w-full text-center">

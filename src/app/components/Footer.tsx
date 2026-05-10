@@ -23,8 +23,8 @@ export function Footer() {
     <footer className="relative bg-[#030303] border-t border-white/5 py-16 overflow-hidden">
       <div className="noise-overlay" />
 
-      <div className="max-w-7xl mx-auto ">
-        <div className="grid grid-cols-[1fr_auto_auto] gap-12 items-center mb-16">
+      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-12 items-center mb-16 text-center sm:text-left">
           {/* Brand */}
           <div>
             <div className="font-bebas text-white text-[48px] leading-none mb-2">
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           {/* Nav */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 items-center sm:items-start">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 items-center sm:items-start">
             {[
               {
                 Icon: GithubIcon,

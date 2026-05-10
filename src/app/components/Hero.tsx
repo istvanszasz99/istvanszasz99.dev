@@ -107,7 +107,7 @@ export function Hero() {
       />
 
       <motion.div
-        className="relative z-10  max-w-7xl w-full mx-auto"
+        className="relative z-10 max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto"
         style={{ y, opacity }}
       >
         {/* Tag line */}
@@ -258,7 +258,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-32 right-16 flex flex-col items-center gap-2"
+        className="absolute bottom-32 right-0 sm:right-2 md:right-8 lg:right-16 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}

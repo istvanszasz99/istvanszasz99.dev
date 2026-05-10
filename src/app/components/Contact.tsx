@@ -53,7 +53,7 @@ export function Contact() {
 
       {/* Section label */}
       <motion.div
-        className="absolute top-12 left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -64,7 +64,7 @@ export function Contact() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
         {/* Big heading */}
         <div className="text-center mb-20">
           <div className="overflow-hidden mb-2">
@@ -106,7 +106,7 @@ export function Contact() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-[1fr_1.2fr] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
           {/* Left: Info */}
           <div>
             <motion.div

@@ -56,7 +56,7 @@ export function About() {
 
       {/* Section label */}
       <motion.div
-        className="absolute top-12 left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -67,7 +67,7 @@ export function About() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto  grid grid-cols-2 gap-20 items-center">
+      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto  grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         {/* Left: visual card */}
         <motion.div
           className="relative"

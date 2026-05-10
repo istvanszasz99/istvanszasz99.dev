@@ -63,7 +63,7 @@ export function Projects() {
 
       {/* Side label — matches About positioning */}
       <motion.div
-        className="absolute top-12 left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -76,7 +76,7 @@ export function Projects() {
 
       <div className="flex flex-col justify-start items-center gap-20 overflow-hidden w-full">
         {/* ── Section header ── */}
-        <div className="w-full max-w-7xl px-8">
+        <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto">
           <div className="flex items-end justify-between">
             <div>
               <div className="overflow-hidden">
@@ -113,13 +113,13 @@ export function Projects() {
         </div>
 
         {/* ── Alternating project sections ── */}
-        <div className="w-full max-w-7xl px-8 flex flex-col justify-start items-start gap-20">
+        <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex flex-col justify-start items-start gap-20">
           {projects.map((project, i) => {
             const alignRight = i % 2 === 1;
             return (
               <motion.div
                 key={project.id}
-                className="self-stretch flex flex-row items-center gap-16"
+                className="self-stretch flex flex-col lg:flex-row items-center gap-16"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -127,7 +127,7 @@ export function Projects() {
               >
                 {/* Image — left on even, right on odd (CSS order) */}
                 <div
-                  className={`w-1/2 h-95 rounded-2xl overflow-hidden shrink-0 ${
+                  className={`w-full lg:w-1/2 h-95 rounded-2xl overflow-hidden shrink-0 ${
                     alignRight ? "order-last" : "order-first"
                   }`}
                 >
@@ -139,7 +139,7 @@ export function Projects() {
                 </div>
 
                 {/* Text */}
-                <div className="w-1/2 flex flex-col justify-start items-start gap-6">
+                <div className="w-full lg:w-1/2 flex flex-col justify-start items-start gap-6">
                   {/* Category */}
                   <div className="flex items-center gap-3">
                     <span

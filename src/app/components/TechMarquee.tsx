@@ -28,7 +28,6 @@ import {
   GitHubCopilotDark,
   Figma,
   AstroDark,
-  Expo,
   CPlusPlus,
   UnrealEngineDark,
   PostgreSQL,
@@ -260,9 +259,9 @@ const MarqueeRow = ({
   return (
     <div className="relative w-full overflow-hidden">
       {/* Left fade */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-[#050505] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-transparent" />
       {/* Right fade */}
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-[#050505] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-transparent" />
 
       <div
         className={`flex gap-4 w-max ${animClass} group/row`}
@@ -283,7 +282,7 @@ const MarqueeRow = ({
 /* ─── Main exported component ─────────────────────────────────── */
 export function TechMarquee() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
 
   const rowOne = techs;
 
@@ -297,7 +296,7 @@ export function TechMarquee() {
 
       {/* Side label — matches About positioning */}
       <motion.div
-        className="absolute top-12 left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
