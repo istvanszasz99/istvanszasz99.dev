@@ -20,7 +20,7 @@ export function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const link = target.closest("a, button, [data-cursor]");
+      const link = target.closest("a, button");
       if (link) {
         setIsHovering(true);
         const text = (link as HTMLElement).dataset.cursor || "";

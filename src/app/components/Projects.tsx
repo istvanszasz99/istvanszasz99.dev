@@ -57,7 +57,7 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative bg-[#050505] overflow-hidden py-32"
+      className="relative bg-[#080808] overflow-hidden py-32"
     >
       <div className="noise-overlay" />
 

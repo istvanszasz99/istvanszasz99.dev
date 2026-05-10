@@ -44,7 +44,7 @@ export function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative bg-[#080808] py-32 overflow-hidden"
+      className="relative bg-[#050505] py-32 overflow-hidden"
     >
       <div className="noise-overlay" />
 

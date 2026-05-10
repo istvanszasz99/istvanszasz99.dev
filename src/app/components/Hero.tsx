@@ -189,7 +189,6 @@ export function Hero() {
             className="relative group overflow-hidden px-8 py-4 bg-[#ccff00] no-underline"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            data-cursor="DOWNLOAD"
           >
             <motion.span
               className="absolute inset-0 bg-white"
