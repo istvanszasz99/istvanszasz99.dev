@@ -346,9 +346,23 @@ export function TechMarquee() {
     <section
       ref={containerRef}
       id="tech-stack"
-      className="relative bg-[#050505] py-16 overflow-hidden w-full"
+      className="relative bg-[#050505] py-32 overflow-hidden w-full"
     >
       <div className="noise-overlay" />
+
+      {/* Side label — matches About positioning */}
+      <motion.div
+        className="absolute top-12 left-16 flex items-center gap-3"
+        initial={{ opacity: 0, x: -20 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="w-6 h-px bg-[#ccff00]" />
+        <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
+          Tools &amp; Technologies
+        </span>
+      </motion.div>
+
       <div className="flex flex-col items-center gap-12">
         {/* Heading */}
         <motion.div

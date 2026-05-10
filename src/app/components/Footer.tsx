@@ -5,8 +5,9 @@ import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
 export function Footer() {
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "About Me", href: "#about" },
+    { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];

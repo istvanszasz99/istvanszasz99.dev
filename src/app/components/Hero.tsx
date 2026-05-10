@@ -86,7 +86,7 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-16"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-32"
     >
       {/* Noise overlay */}
       <div className="noise-overlay" />
@@ -243,7 +243,7 @@ export function Hero() {
           {[
             { value: 5, label: "Years Experience" },
             { value: 20, label: "Projects Completed" },
-            { value: 100, label: "Technologies" },
+            { value: 50, label: "Technologies" },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col">
               <span className="font-bebas text-[#ccff00] text-[48px] leading-none">
@@ -259,7 +259,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-16 right-16 flex flex-col items-center gap-2"
+        className="absolute bottom-32 right-16 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}

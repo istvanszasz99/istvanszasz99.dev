@@ -1,36 +1,39 @@
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "motion/react";
 import { TextReveal } from "./TextReveal";
 
-function CountUp({
-  end,
-  suffix = "",
+function AnimatedNumber({
+  target,
   delay = 0,
 }: {
-  end: number;
-  suffix?: string;
+  target: number;
   delay?: number;
 }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
+  const motionValue = useMotionValue(0);
+  const spring = useSpring(motionValue, { duration: 2000, bounce: 0 });
+  const [display, setDisplay] = useState(0);
 
-  return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : {}}
-      transition={{ delay }}
-    >
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay }}
-      >
-        {isInView ? end : 0}
-      </motion.span>
-      {suffix}
-    </motion.span>
-  );
+  useEffect(() => {
+    if (isInView) {
+      const timeout = setTimeout(() => motionValue.set(target), delay * 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isInView, motionValue, target, delay]);
+
+  useEffect(() => {
+    return spring.on("change", (v) => setDisplay(Math.round(v)));
+  }, [spring]);
+
+  return <span ref={ref}>{isInView ? display : ""}</span>;
 }
 
 export function About() {
@@ -72,11 +75,6 @@ export function About() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
-          {/* Big letter */}
-          <div className="absolute -left-8 -top-12 select-none pointer-events-none font-bebas text-[300px] text-[#ccff00]/4 leading-none z-0">
-            I
-          </div>
-
           <motion.div
             className="relative z-10 rounded-2xl overflow-hidden border border-white/10"
             style={{ y: imgY }}
@@ -182,15 +180,12 @@ export function About() {
                 {[
                   { num: 5, suffix: "+", label: "Years Exp" },
                   { num: 20, suffix: "+", label: "Projects completed" },
-                  { num: 100, suffix: "+", label: "Technologies" },
+                  { num: 50, suffix: "+", label: "Technologies" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
                     <div className="font-bebas text-[#ccff00] text-[42px] leading-none">
-                      <CountUp
-                        end={stat.num}
-                        suffix={stat.suffix}
-                        delay={0.5 + i * 0.1}
-                      />
+                      <AnimatedNumber target={stat.num} delay={0} />
+                      {stat.suffix}
                     </div>
                     <div className="font-space text-white/35 text-[10px] tracking-[0.12em] uppercase mt-0.5">
                       {stat.label}
@@ -198,20 +193,6 @@ export function About() {
                   </div>
                 ))}
               </div>
-            </div>
-          </motion.div>
-
-          {/* Floating badge */}
-          <motion.div
-            className="absolute -right-8 top-1/3 bg-[#ccff00] px-4 py-3 rounded-xl shadow-2xl"
-            initial={{ opacity: 0, scale: 0, rotate: -10 }}
-            animate={isInView ? { opacity: 1, scale: 1, rotate: 6 } : {}}
-            transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
-            whileHover={{ rotate: 0, scale: 1.05 }}
-          >
-            <div className="font-space text-[#050505] text-[11px] font-bold tracking-wider text-center">
-              <div>Available</div>
-              <div>for work</div>
             </div>
           </motion.div>
         </motion.div>

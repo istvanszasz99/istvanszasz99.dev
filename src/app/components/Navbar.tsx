@@ -5,6 +5,7 @@ const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
@@ -23,7 +24,14 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "skills", "projects", "contact"];
+      const sections = [
+        "home",
+        "about",
+        "skills",
+        "experience",
+        "projects",
+        "contact",
+      ];
       const current = sections.find((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -83,23 +91,14 @@ export function Navbar() {
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="no-underline px-5 py-2 border border-[#ccff00] rounded-full text-[#ccff00] relative overflow-hidden group font-space text-[13px] tracking-[0.08em] uppercase"
+              className="no-underline px-5 py-2 border border-[#ccff00] rounded-full text-[#ccff00] font-space text-[13px] tracking-[0.08em] uppercase transition-colors duration-200 hover:bg-[#ccff00] hover:text-[#050505]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
             >
-              <motion.span
-                className="absolute inset-0 bg-[#ccff00]"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-                style={{ originX: 0 }}
-              />
-              <span className="relative group-hover:text-[#050505] transition-colors duration-300">
-                {item.label}
-              </span>
+              {item.label}
             </motion.a>
           ) : (
             <motion.a

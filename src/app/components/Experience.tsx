@@ -8,6 +8,18 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+/* ─── Logo helper ────────────────────────────────────────────── */
+function Logo({ src, alt }: { src: string; alt: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-12 h-12 object-contain"
+      draggable={false}
+    />
+  );
+}
+
 /* ─── Data ───────────────────────────────────────────────────── */
 const workExperience = [
   {
@@ -17,8 +29,9 @@ const workExperience = [
     description: "",
     location: "Remote",
     type: "Mar 2026 –",
-    link: "https://github.com/istvanszasz99",
+    link: "",
     badge: "Present",
+    icon: <Logo src="/image/icon/molnarcodes-logo.png" alt="MolnarCodes" />,
   },
 ];
 
@@ -32,6 +45,7 @@ const education = [
     type: "Sep 2019 – Feb 2025",
     link: "",
     badge: "",
+    icon: <Logo src="/image/icon/oe-logo.png" alt="Óbuda University" />,
   },
   {
     id: 2,
@@ -42,6 +56,7 @@ const education = [
     type: "Sep 2014 – May 2019",
     link: "",
     badge: "",
+    icon: <Logo src="/image/icon/bm-logo.png" alt="Bálint Márton" />,
   },
 ];
 
@@ -53,8 +68,9 @@ const certifications = [
     description: "",
     location: "Coursera",
     type: "2025",
-    link: "https://github.com/istvanszasz99",
+    link: "https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA",
     badge: "",
+    icon: <Logo src="/image/icon/microsoft-logo.png" alt="Microsoft" />,
   },
   {
     id: 2,
@@ -63,8 +79,9 @@ const certifications = [
     description: "",
     location: "Coursera",
     type: "2025",
-    link: "https://github.com/istvanszasz99",
+    link: "https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA",
     badge: "",
+    icon: <Logo src="/image/icon/ibm-logo.png" alt="IBM" />,
   },
   {
     id: 3,
@@ -73,8 +90,11 @@ const certifications = [
     description: "",
     location: "Coursera",
     type: "2024–2025",
-    link: "https://github.com/istvanszasz99",
+    link: "https://www.coursera.org/account/accomplishments/professional-cert/YQRMQQIC9DXE",
+    link2:
+      "https://www.coursera.org/account/accomplishments/professional-cert/YHFNRJ8F336H",
     badge: "",
+    icon: <Logo src="/image/icon/meta-logo.png" alt="Meta" />,
   },
   {
     id: 4,
@@ -83,8 +103,9 @@ const certifications = [
     description: "",
     location: "Coursera",
     type: "2024",
-    link: "https://github.com/istvanszasz99",
+    link: "https://www.coursera.org/account/accomplishments/specialization/6I3G0SPNS8O3",
     badge: "",
+    icon: <Logo src="/image/icon/meta-logo.png" alt="Meta" />,
   },
   {
     id: 5,
@@ -95,6 +116,7 @@ const certifications = [
     type: "",
     link: "",
     badge: "In progress",
+    icon: <Logo src="/image/icon/epicgames-logo.png" alt="Epic Games" />,
   },
 ];
 
@@ -107,6 +129,7 @@ interface Entry {
   location: string;
   type: string;
   link: string;
+  link2?: string;
   badge: string;
   icon?: React.ReactNode;
 }
@@ -122,7 +145,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
       transition={{ duration: 0.7, delay: i * 0.08, ease: [0.33, 1, 0.68, 1] }}
     >
       {/* Icon / Logo placeholder */}
-      <div className="shrink-0 w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+      <div className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden">
         {exp.icon ?? null}
       </div>
 
@@ -135,6 +158,16 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
           {exp.link && (
             <a
               href={exp.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/30 hover:text-[#ccff00] transition-colors duration-200"
+            >
+              <ArrowUpRight size={13} />
+            </a>
+          )}
+          {exp.link2 && (
+            <a
+              href={exp.link2}
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/30 hover:text-[#ccff00] transition-colors duration-200"
@@ -241,7 +274,7 @@ export function Experience() {
                 ease: [0.33, 1, 0.68, 1],
               }}
             >
-              MY <span className="text-[#ccff00]">JOURNEY</span>
+              MY <span className="text-[#ccff00]">Experience</span>
             </motion.h2>
           </div>
 

@@ -144,6 +144,7 @@ export function Contact() {
                   whileHover={{
                     borderColor: "rgba(204,255,0,0.4)",
                     backgroundColor: "rgba(204,255,0,0.04)",
+                    transition: { duration: 0.5 },
                   }}
                 >
                   <div className="flex items-center gap-4">
