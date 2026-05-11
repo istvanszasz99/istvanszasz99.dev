@@ -1,3 +1,6 @@
 name = "istvanszasz99"
 compatibility_date = "2024-09-23"
-pages_build_output_dir = "dist"
+main = "src/worker.ts"
+
+[assets]
+directory = "./dist"
