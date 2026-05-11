@@ -243,8 +243,94 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
+      aria-label="Work experience, education, and certifications of István Zoltán Szász"
       className="relative bg-[#050505] py-32 overflow-hidden"
     >
+      {/* GEO: sr-only Experience + Education + Certifications for AI crawlers */}
+      <article className="sr-only" aria-hidden="true">
+        <h2>
+          Work Experience, Education and Certifications of István Zoltán Szász
+        </h2>
+
+        <section>
+          <h3>Work Experience</h3>
+          <article itemScope itemType="https://schema.org/OrganizationRole">
+            <h4 itemProp="roleName">Full-Stack Web Developer at MolnarCodes</h4>
+            <dl>
+              <dt>Employer</dt>
+              <dd>MolnarCodes</dd>
+              <dt>Period</dt>
+              <dd>March 2026 – Present</dd>
+              <dt>Type</dt>
+              <dd>Full-time, Remote</dd>
+            </dl>
+          </article>
+        </section>
+
+        <section>
+          <h3>Education</h3>
+          <article
+            itemScope
+            itemType="https://schema.org/EducationalOccupationalCredential"
+          >
+            <h4>BSc Computer Science Engineering — Óbuda University</h4>
+            <dl>
+              <dt>Institution</dt>
+              <dd>Óbuda University, Alba Regia Faculty of Engineering</dd>
+              <dt>Location</dt>
+              <dd>Székesfehérvár, Hungary</dd>
+              <dt>Period</dt>
+              <dd>September 2019 – February 2025</dd>
+              <dt>Credential</dt>
+              <dd itemProp="credentialCategory">Bachelor of Science degree</dd>
+              <dt>Thesis</dt>
+              <dd>
+                Simulation of the Óbuda University Campus in a 3D Environment
+                using Unreal Engine 5
+              </dd>
+            </dl>
+          </article>
+          <article>
+            <h4>
+              High School Diploma — Bálint Márton Vocational Secondary School
+            </h4>
+            <dl>
+              <dt>Specialisation</dt>
+              <dd>Computer Science</dd>
+              <dt>Location</dt>
+              <dd>Törökbálint, Hungary</dd>
+              <dt>Period</dt>
+              <dd>September 2014 – May 2019</dd>
+            </dl>
+          </article>
+        </section>
+
+        <section>
+          <h3>Professional Certifications</h3>
+          <ul>
+            <li>
+              Microsoft Full-Stack Developer Professional Certificate —
+              Coursera, 2025
+            </li>
+            <li>
+              IBM Full-Stack JavaScript Developer Professional Certificate —
+              Coursera, 2025
+            </li>
+            <li>
+              Meta Frontend Developer Professional Certificate — Coursera,
+              2024–2025
+            </li>
+            <li>
+              Meta Backend Developer Professional Certificate — Coursera,
+              2024–2025
+            </li>
+            <li>Meta React Native Specialisation — Coursera, 2024</li>
+            <li>
+              Epic Games Game Design Professional Certificate — In progress
+            </li>
+          </ul>
+        </section>
+      </article>
       <div className="noise-overlay" />
 
       {/* Section label — absolute, side positioned (matches About) */}

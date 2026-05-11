@@ -47,8 +47,53 @@ export function Contact() {
     <section
       id="contact"
       ref={sectionRef}
+      aria-label="Contact István Zoltán Szász for freelance, full-time, or collaboration opportunities"
       className="relative bg-[#050505] py-32 overflow-hidden"
     >
+      {/* GEO: sr-only contact details for AI crawlers */}
+      <article className="sr-only" aria-hidden="true">
+        <h2>Contact István Zoltán Szász</h2>
+        <p>
+          István Zoltán Szász is open to freelance projects, full-time roles,
+          and exciting collaborations. Whether you have a project in mind or
+          want to discuss opportunities, he can be reached via email or social
+          profiles below.
+        </p>
+        <address itemScope itemType="https://schema.org/Person">
+          <dl>
+            <dt>Email</dt>
+            <dd>
+              <a href="mailto:istvanszasz99@gmail.com" itemProp="email">
+                istvanszasz99@gmail.com
+              </a>
+            </dd>
+            <dt>GitHub</dt>
+            <dd>
+              <a
+                href="https://github.com/istvanszasz99"
+                rel="me"
+                itemProp="sameAs"
+              >
+                github.com/istvanszasz99
+              </a>
+            </dd>
+            <dt>LinkedIn</dt>
+            <dd>
+              <a
+                href="https://linkedin.com/in/istvanszasz99"
+                rel="me"
+                itemProp="sameAs"
+              >
+                linkedin.com/in/istvanszasz99
+              </a>
+            </dd>
+            <dt>Location</dt>
+            <dd itemProp="address">Érd, Hungary</dd>
+            <dt>Availability</dt>
+            <dd>Open to freelance, full-time, and collaboration</dd>
+          </dl>
+        </address>
+      </article>
       <div className="noise-overlay" />
 
       {/* Lime gradient bg */}

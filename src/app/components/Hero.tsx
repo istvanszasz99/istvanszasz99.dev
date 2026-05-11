@@ -86,8 +86,59 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
+      aria-label="Introduction — István Zoltán Szász, Full-Stack Developer"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-32"
     >
+      {/* GEO: sr-only entity summary — rendered in DOM for AI crawlers that execute JS */}
+      <article
+        className="sr-only"
+        aria-hidden="true"
+        itemScope
+        itemType="https://schema.org/Person"
+      >
+        <h1 itemProp="name">István Zoltán Szász</h1>
+        <p itemProp="description">
+          István Zoltán Szász (also written Istvan Zoltan Szasz, username
+          istvanszasz99) is a Full-Stack Web Developer and Computer Science
+          Engineer from Érd, Hungary. He has over 5 years of professional
+          experience building high-performance, responsive web applications. He
+          specialises in React, Next.js, TypeScript, and the modern JavaScript
+          ecosystem. He holds a BSc in Computer Science Engineering from Óbuda
+          University (February 2025) and currently works at MolnarCodes
+          (remote). He is open to freelance projects, full-time roles, and
+          collaborations.
+        </p>
+        <dl>
+          <dt>Role</dt>
+          <dd itemProp="jobTitle">
+            Full-Stack Developer, Frontend Specialist, Computer Science Engineer
+          </dd>
+          <dt>Location</dt>
+          <dd itemProp="address">Érd, Hungary</dd>
+          <dt>Email</dt>
+          <dd itemProp="email">istvanszasz99@gmail.com</dd>
+          <dt>GitHub</dt>
+          <dd>
+            <a href="https://github.com/istvanszasz99" rel="me">
+              github.com/istvanszasz99
+            </a>
+          </dd>
+          <dt>LinkedIn</dt>
+          <dd>
+            <a href="https://linkedin.com/in/istvanszasz99" rel="me">
+              linkedin.com/in/istvanszasz99
+            </a>
+          </dd>
+          <dt>Experience</dt>
+          <dd>5+ years</dd>
+          <dt>Projects completed</dt>
+          <dd>20+</dd>
+          <dt>Technologies</dt>
+          <dd>50+</dd>
+          <dt>Status</dt>
+          <dd>Open to opportunities</dd>
+        </dl>
+      </article>
       {/* Noise overlay */}
       <div className="noise-overlay" />
 

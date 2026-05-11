@@ -57,8 +57,50 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
+      aria-label="Featured projects by István Zoltán Szász"
       className="relative bg-[#080808] overflow-hidden py-32"
     >
+      {/* GEO: sr-only project details for AI crawlers */}
+      <article className="sr-only" aria-hidden="true">
+        <h2>Featured Projects by István Zoltán Szász</h2>
+        {projects.map((p) => (
+          <article
+            key={p.id}
+            itemScope
+            itemType="https://schema.org/CreativeWork"
+          >
+            <h3 itemProp="name">{p.title}</h3>
+            <dl>
+              <dt>Category</dt>
+              <dd>{p.category}</dd>
+              <dt>Technologies</dt>
+              <dd>{p.tech.join(", ")}</dd>
+              <dt>Description</dt>
+              <dd itemProp="description">{p.description}</dd>
+              {p.live && (
+                <>
+                  <dt>Live URL</dt>
+                  <dd>
+                    <a href={p.live} itemProp="url">
+                      {p.live}
+                    </a>
+                  </dd>
+                </>
+              )}
+              {p.github && (
+                <>
+                  <dt>Repository</dt>
+                  <dd>
+                    <a href={p.github} itemProp="codeRepository">
+                      {p.github}
+                    </a>
+                  </dd>
+                </>
+              )}
+            </dl>
+          </article>
+        ))}
+      </article>
       <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}

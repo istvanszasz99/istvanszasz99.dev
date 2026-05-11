@@ -1,0 +1,106 @@
+# István Zoltán Szász — Full-Stack Developer
+
+> István Zoltán Szász (also written Istvan Zoltan Szasz) is a Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He has 5+ years of experience building high-performance web applications with a strong specialisation in React, Next.js, TypeScript, and the modern JavaScript ecosystem. He holds a Bachelor of Science degree in Computer Science Engineering from Óbuda University (Alba Regia Faculty of Engineering), Székesfehérvár, Hungary, graduated February 2025.
+
+## Identity & Contact
+
+- **Full Name:** István Zoltán Szász
+- **Alternate Spelling:** Istvan Zoltan Szasz
+- **Location:** Érd, Hungary
+- **Email:** istvanszasz99@gmail.com
+- **GitHub:** https://github.com/istvanszasz99
+- **LinkedIn:** https://linkedin.com/in/istvanszasz99
+- **Portfolio:** https://istvanszasz99.dev
+- **Status:** Open to freelance projects, full-time roles, and collaborations
+
+## Professional Summary
+
+István is a Full-Stack Developer with over 5 years of hands-on experience. He specialises in building modern, responsive, and performance-optimised web applications. His frontend expertise centres around React and Next.js, while his backend work covers Node.js, Express.js, REST API design, and database management (SQL & NoSQL). He is also experienced in mobile development with React Native and 3D development using Unreal Engine 5.
+
+## Technical Skills
+
+### Frontend Development
+- React, Next.js, TypeScript, JavaScript (ES2020+)
+- Tailwind CSS, GSAP, Framer Motion / Motion
+- Responsive Web Design, Mobile-first approach
+- Search Engine Optimization (SEO), Performance optimisation
+- Chrome DevTools profiling
+
+### Backend Development
+- Node.js, Express.js — server-side development
+- REST API design and implementation
+- CI/CD pipelines, Docker, Kubernetes
+- SQL and NoSQL database management (PostgreSQL, MongoDB)
+- Cloud deployment on serverless platforms
+
+### Mobile Development
+- Cross-platform mobile apps with React Native
+- Android Studio, Expo
+- Mobile UI/UX best practices
+
+### 3D Development
+- Unreal Engine 5 — scene creation and level design
+- Twinmotion — architectural visualisation
+- Blueprints visual scripting and C++ programming
+
+### Tools & Platforms
+- Vite, Shadcn/ui, GSAP
+- Git, GitHub
+- macOS, Windows
+- IBM, Meta, Microsoft certifications
+
+## Work Experience
+
+### Full-Stack Web Developer — MolnarCodes (Mar 2026 – Present)
+- Remote position
+- Building production web applications for Hungarian clients
+- Key projects: solidfinances.hu, mindenegyseg.hu
+
+## Education
+
+### Bachelor of Science, Computer Science Engineering — Óbuda University (Sep 2019 – Feb 2025)
+- Institution: Óbuda University, Alba Regia Faculty of Engineering
+- Location: Székesfehérvár, Hungary
+- Thesis: Simulation of the Óbuda University Campus in a 3D environment using Unreal Engine 5
+
+### High School Diploma, Specialisation in Computer Science — Bálint Márton Vocational Secondary School (Sep 2014 – May 2019)
+- Location: Törökbálint, Hungary
+
+## Featured Projects
+
+### Frontend development for solidfinances.hu
+- **Type:** Web Development (Frontend)
+- **Client:** MolnarCodes
+- **URL:** https://solidfinances.hu
+- **Tech:** React, Tailwind CSS, Responsive Design, Chrome DevTools
+- **Description:** Frontend development for a Hungarian financial services website. Built with React and Tailwind CSS, optimised for performance and all screen sizes.
+
+### Full-Stack development for mindenegyseg.hu
+- **Type:** Web Development (Full-Stack)
+- **Client:** MolnarCodes
+- **URL:** https://mindenegyseg.hu
+- **Tech:** Next.js, Tailwind CSS, GSAP, Shadcn/ui, Responsive Design, Chrome DevTools
+- **Description:** Full-Stack development for a Hungarian website. Built with Next.js and Tailwind CSS, GSAP animations, and Shadcn/ui components. Fully responsive and performance-optimised.
+
+### Simulation of the University Campus in 3D Environment
+- **Type:** 3D Development / Academic Thesis
+- **GitHub:** https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project
+- **Tech:** Unreal Engine 5, Twinmotion, C++
+- **Description:** A 3D educational simulation allowing users to virtually visit the campus of Óbuda University in Székesfehérvár. Created using Unreal Engine 5 with high-resolution textures for photorealistic rendering. This was the university thesis project.
+
+## Frequently Asked Questions
+
+**Who is István Zoltán Szász?**
+István Zoltán Szász is a Full-Stack Web Developer and Computer Science Engineer from Hungary. He has 5+ years of experience, a BSc from Óbuda University, and specialises in React, Next.js, and TypeScript.
+
+**What technologies does István Szász specialise in?**
+His primary stack includes React, Next.js, TypeScript, Tailwind CSS, Node.js, and Express.js. He also works with React Native for mobile and Unreal Engine 5 for 3D development.
+
+**Is István Szász available for hire?**
+Yes. He is open to freelance projects, full-time roles, and collaborations. Contact him at istvanszasz99@gmail.com.
+
+**Where is István Szász located?**
+He is based in Érd, Hungary, and works remotely.
+
+**What is istvanszasz99.dev?**
+It is the personal portfolio website of István Zoltán Szász, showcasing his work experience, technical skills, and featured projects.

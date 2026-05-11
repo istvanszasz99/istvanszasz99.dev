@@ -15,6 +15,15 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://istvanszasz99.dev/" />
 
+  <!-- GEO / AI citation meta -->
+  <meta name="citation_author" content="István Zoltán Szász" />
+  <meta name="citation_title" content="István Zoltán Szász — Full-Stack Developer Portfolio" />
+  <meta name="citation_language" content="en" />
+  <meta name="citation_online_date" content="2026/05/11" />
+  <meta name="entity_name" content="István Zoltán Szász" />
+  <meta name="entity_type" content="Person" />
+  <meta name="entity_url" content="https://istvanszasz99.dev/" />
+
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://istvanszasz99.dev/" />
@@ -46,41 +55,108 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#080808" />
 
-  <!-- JSON-LD Structured Data (Person + WebSite) -->
+  <!-- AI / LLM crawler hint -->
+  <link rel="profile" href="/llms.txt" />
+
+  <!-- JSON-LD Structured Data — SEO + GEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+
       {
         "@type": "Person",
         "@id": "https://istvanszasz99.dev/#person",
         "name": "István Zoltán Szász",
-        "alternateName": "Istvan Zoltan Szasz",
+        "alternateName": ["Istvan Zoltan Szasz", "istvanszasz99"],
         "url": "https://istvanszasz99.dev/",
-        "image": "https://istvanszasz99.dev/og-image.png",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://istvanszasz99.dev/og-image.png",
+          "width": 1200,
+          "height": 630
+        },
         "jobTitle": ["Full-Stack Developer", "Frontend Specialist", "Computer Science Engineer"],
-        "description": "Full-Stack Developer from Hungary with 5+ years of experience building high-performance web applications. Bachelor's degree in Computer Science Engineering from Óbuda University.",
+        "description": "Full-Stack Developer from Hungary with 5+ years of experience building high-performance web applications. Bachelor of Science in Computer Science Engineering from Óbuda University, graduated February 2025. Specialises in React, Next.js, TypeScript, Node.js, and the modern JavaScript ecosystem.",
         "email": "istvanszasz99@gmail.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Érd",
+          "addressRegion": "Pest County",
           "addressCountry": "HU"
         },
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "Óbuda University",
-          "url": "https://uni-obuda.hu"
+        "nationality": { "@type": "Country", "name": "Hungary" },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "@id": "https://uni-obuda.hu/#org",
+            "name": "Óbuda University",
+            "alternateName": "Óbudai Egyetem",
+            "url": "https://uni-obuda.hu",
+            "department": "Alba Regia Faculty of Engineering",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Székesfehérvár",
+              "addressCountry": "HU"
+            }
+          }
+        ],
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Bachelor of Science in Computer Science Engineering",
+          "recognizedBy": { "@id": "https://uni-obuda.hu/#org" },
+          "dateCreated": "2025-02",
+          "about": "Computer Science Engineering with focus on software development, 3D simulation, and web technologies"
+        },
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Full-Stack Web Developer",
+          "occupationLocation": { "@type": "Country", "name": "Hungary" },
+          "skills": "React, Next.js, TypeScript, JavaScript, Node.js, Express.js, Tailwind CSS, GSAP, REST API, SQL, NoSQL, Docker, Kubernetes, React Native, Unreal Engine 5"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "MolnarCodes",
+          "url": "https://molnarcodes.hu"
         },
         "knowsAbout": [
-          "React", "Next.js", "TypeScript", "JavaScript", "Vite",
-          "Tailwind CSS", "Node.js", "Full-Stack Web Development",
-          "Frontend Development", "GSAP", "Unreal Engine 5"
+          "React", "Next.js", "TypeScript", "JavaScript", "Vite", "Tailwind CSS",
+          "Node.js", "Express.js", "REST API Development", "Docker", "Kubernetes",
+          "SQL", "NoSQL", "React Native", "Full-Stack Web Development",
+          "Frontend Development", "Backend Development", "Mobile Development",
+          "GSAP", "Framer Motion", "Unreal Engine 5", "Twinmotion", "C++",
+          "Search Engine Optimization", "Web Performance Optimisation",
+          "Responsive Web Design", "Mobile-first Development"
         ],
+        "availableForHire": true,
         "sameAs": [
           "https://github.com/istvanszasz99",
           "https://linkedin.com/in/istvanszasz99"
+        ],
+        "award": [
+          "Microsoft Full-Stack Developer Professional Certificate (2025, Coursera)",
+          "IBM Full-Stack JavaScript Developer Professional Certificate (2025, Coursera)",
+          "Meta Frontend Developer Professional Certificate (2024–2025, Coursera)",
+          "Meta Backend Developer Professional Certificate (2024–2025, Coursera)"
         ]
       },
+
+      {
+        "@type": "ProfilePage",
+        "@id": "https://istvanszasz99.dev/#profilepage",
+        "url": "https://istvanszasz99.dev/",
+        "name": "István Zoltán Szász — Portfolio",
+        "description": "Official portfolio of István Zoltán Szász, Full-Stack Developer from Hungary. Contains work experience, technical skills, featured projects, and contact information.",
+        "mainEntity": { "@id": "https://istvanszasz99.dev/#person" },
+        "inLanguage": "en-US",
+        "dateModified": "2026-05-11",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["#about", "#home", "#projects", "#contact"]
+        }
+      },
+
       {
         "@type": "WebSite",
         "@id": "https://istvanszasz99.dev/#website",
@@ -89,7 +165,122 @@
         "description": "Portfolio website of István Zoltán Szász, Full-Stack Developer from Hungary.",
         "author": { "@id": "https://istvanszasz99.dev/#person" },
         "inLanguage": "en-US"
+      },
+
+      {
+        "@type": "ItemList",
+        "@id": "https://istvanszasz99.dev/#projects",
+        "name": "Featured Projects by István Zoltán Szász",
+        "description": "A selection of web development and 3D development projects completed by István Zoltán Szász.",
+        "numberOfItems": 3,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "WebSite",
+              "name": "solidfinances.hu — Frontend Development",
+              "url": "https://solidfinances.hu",
+              "description": "Frontend development for solidfinances.hu, a Hungarian financial services website. Built with React and Tailwind CSS at MolnarCodes. Optimised for performance and all screen sizes.",
+              "creator": { "@id": "https://istvanszasz99.dev/#person" },
+              "keywords": "React, Tailwind CSS, Responsive Design, Financial Services, Frontend Development",
+              "inLanguage": "hu"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "WebSite",
+              "name": "mindenegyseg.hu — Full-Stack Development",
+              "url": "https://mindenegyseg.hu",
+              "description": "Full-Stack development for mindenegyseg.hu at MolnarCodes. Built with Next.js and Tailwind CSS, GSAP animations, and Shadcn/ui components. Fully responsive and performance-optimised.",
+              "creator": { "@id": "https://istvanszasz99.dev/#person" },
+              "keywords": "Next.js, Tailwind CSS, GSAP, Shadcn UI, Full-Stack Development",
+              "inLanguage": "hu"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Simulation of the University Campus in 3D Environment",
+              "codeRepository": "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
+              "description": "A 3D educational simulation of the Óbuda University campus in Székesfehérvár, created with Unreal Engine 5. University thesis project with high-resolution textures and photorealistic rendering.",
+              "creator": { "@id": "https://istvanszasz99.dev/#person" },
+              "applicationCategory": "EducationalApplication",
+              "operatingSystem": "Windows",
+              "programmingLanguage": ["C++", "Unreal Blueprints"],
+              "keywords": "Unreal Engine 5, Twinmotion, C++, 3D Simulation, University Thesis"
+            }
+          }
+        ]
+      },
+
+      {
+        "@type": "FAQPage",
+        "@id": "https://istvanszasz99.dev/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who is István Zoltán Szász?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "István Zoltán Szász (also written Istvan Zoltan Szasz, username istvanszasz99) is a Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He has 5+ years of experience building high-performance web applications and holds a BSc in Computer Science Engineering from Óbuda University (graduated February 2025)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What technologies does István Szász specialise in?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "His primary stack includes React, Next.js, TypeScript, and Tailwind CSS on the frontend; Node.js and Express.js on the backend; React Native for mobile; and Unreal Engine 5 for 3D development. He also works with GSAP, Docker, Kubernetes, SQL, and NoSQL databases."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is István Szász available for hire or freelance work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. István Szász is open to freelance projects, full-time roles, and collaborations. He can be contacted at istvanszasz99@gmail.com or through his LinkedIn profile at https://linkedin.com/in/istvanszasz99."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where did István Szász study?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "He studied Computer Science Engineering (BSc) at Óbuda University, Alba Regia Faculty of Engineering, in Székesfehérvár, Hungary (September 2019 – February 2025). Before that, he attended Bálint Márton Vocational Secondary School in Törökbálint, where he specialised in Computer Science (2014–2019)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does István Szász currently work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Since March 2026, he works as a Full-Stack Web Developer at MolnarCodes, remotely. He contributed to projects including solidfinances.hu and mindenegyseg.hu."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What certifications does István Szász hold?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "István Szász holds professional certifications including: Microsoft Full-Stack Developer Professional Certificate (2025), IBM Full-Stack JavaScript Developer Professional Certificate (2025), Meta Frontend Developer Professional Certificate (2024–2025), and Meta Backend Developer Professional Certificate (2024–2025). All completed via Coursera."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is istvanszasz99.dev?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "istvanszasz99.dev is the personal portfolio website of István Zoltán Szász. It showcases his technical skills, work experience, and featured projects, and provides contact information for professional enquiries."
+            }
+          }
+        ]
       }
+
     ]
   }
   </script>
@@ -98,6 +289,248 @@
 <body class="h-full m-0">
   <div id="root" class="h-full"></div>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!--
+    NOSCRIPT FALLBACK — full structured content for AI crawlers & non-JS environments.
+    This block is intentionally hidden from sighted users but is readable by every
+    crawler that does not execute JavaScript (Perplexity, Bing Copilot, many LLM bots).
+  -->
+  <noscript>
+    <article itemscope itemtype="https://schema.org/Person"
+      style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+
+      <h1 itemprop="name">István Zoltán Szász</h1>
+      <p itemprop="description">
+        István Zoltán Szász (alternate spelling: Istvan Zoltan Szasz, username: istvanszasz99) is a
+        Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He has over
+        5 years of professional experience building high-performance, responsive web applications.
+        He holds a Bachelor of Science in Computer Science Engineering from Óbuda University
+        (Alba Regia Faculty of Engineering, Székesfehérvár), graduated February 2025.
+        He currently works as a Full-Stack Web Developer at MolnarCodes (remote, March 2026 – present).
+        He is open to freelance projects, full-time roles, and collaborations worldwide.
+      </p>
+
+      <section>
+        <h2>Contact</h2>
+        <address>
+          <dl>
+            <dt>Email</dt>
+            <dd itemprop="email"><a href="mailto:istvanszasz99@gmail.com">istvanszasz99@gmail.com</a></dd>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/istvanszasz99" rel="me">github.com/istvanszasz99</a></dd>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://linkedin.com/in/istvanszasz99" rel="me">linkedin.com/in/istvanszasz99</a></dd>
+            <dt>Website</dt>
+            <dd itemprop="url"><a href="https://istvanszasz99.dev">istvanszasz99.dev</a></dd>
+            <dt>Location</dt>
+            <dd itemprop="address">Érd, Pest County, Hungary</dd>
+            <dt>Status</dt>
+            <dd>Open to opportunities</dd>
+          </dl>
+        </address>
+      </section>
+
+      <section>
+        <h2>Technical Skills</h2>
+
+        <h3>Frontend Development</h3>
+        <ul>
+          <li>React — component-based UI development, hooks, context, state management</li>
+          <li>Next.js — server-side rendering, static site generation, App Router</li>
+          <li>TypeScript — static typing, interfaces, generics</li>
+          <li>JavaScript (ES2020+) — modern JS, async/await, modules</li>
+          <li>Tailwind CSS — utility-first CSS framework</li>
+          <li>GSAP — high-performance animation library</li>
+          <li>Motion (Framer Motion) — React animation library</li>
+          <li>Vite — fast build tooling</li>
+          <li>Responsive Web Design and Mobile-first development</li>
+          <li>Search Engine Optimisation (SEO) and Web Performance Optimisation</li>
+          <li>Chrome DevTools — profiling and debugging</li>
+        </ul>
+
+        <h3>Backend Development</h3>
+        <ul>
+          <li>Node.js — server-side JavaScript runtime</li>
+          <li>Express.js — web application framework</li>
+          <li>REST API design and implementation</li>
+          <li>SQL databases — PostgreSQL, MySQL</li>
+          <li>NoSQL databases — MongoDB</li>
+          <li>Docker — containerisation</li>
+          <li>Kubernetes — container orchestration</li>
+          <li>CI/CD pipelines</li>
+          <li>Cloud deployment on serverless platforms</li>
+        </ul>
+
+        <h3>Mobile Development</h3>
+        <ul>
+          <li>React Native — cross-platform iOS and Android development</li>
+          <li>Expo — React Native toolchain</li>
+          <li>Android Studio</li>
+          <li>Mobile UI/UX best practices</li>
+        </ul>
+
+        <h3>3D Development</h3>
+        <ul>
+          <li>Unreal Engine 5 — 3D scene creation, level design, game development</li>
+          <li>Twinmotion — architectural visualisation</li>
+          <li>Blueprints visual scripting</li>
+          <li>C++ programming within Unreal Engine</li>
+        </ul>
+
+        <h3>UI/UX Design</h3>
+        <ul>
+          <li>UI design and UX research principles</li>
+          <li>Design systems and component libraries (Shadcn/ui)</li>
+          <li>Wireframing and prototyping with Figma</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Work Experience</h2>
+        <article itemscope itemtype="https://schema.org/OrganizationRole">
+          <h3 itemprop="roleName">Full-Stack Web Developer</h3>
+          <dl>
+            <dt>Employer</dt>
+            <dd itemprop="employerOf">MolnarCodes</dd>
+            <dt>Period</dt>
+            <dd>March 2026 – Present</dd>
+            <dt>Type</dt>
+            <dd>Full-time, Remote</dd>
+            <dt>Projects</dt>
+            <dd>
+              <ul>
+                <li>solidfinances.hu — Frontend development using React and Tailwind CSS for a Hungarian financial
+                  services platform</li>
+                <li>mindenegyseg.hu — Full-Stack development using Next.js, Tailwind CSS, GSAP, and Shadcn/ui</li>
+              </ul>
+            </dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <article itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
+          <h3>Bachelor of Science in Computer Science Engineering</h3>
+          <dl>
+            <dt>Institution</dt>
+            <dd itemprop="recognizedBy">Óbuda University, Alba Regia Faculty of Engineering</dd>
+            <dt>Location</dt>
+            <dd>Székesfehérvár, Hungary</dd>
+            <dt>Period</dt>
+            <dd>September 2019 – February 2025</dd>
+            <dt>Thesis</dt>
+            <dd>Simulation of the Óbuda University Campus in a 3D Environment using Unreal Engine 5</dd>
+            <dt>Credential</dt>
+            <dd itemprop="credentialCategory">BSc degree</dd>
+          </dl>
+        </article>
+        <article>
+          <h3>High School Diploma, Specialisation in Computer Science</h3>
+          <dl>
+            <dt>Institution</dt>
+            <dd>Bálint Márton Vocational Secondary School</dd>
+            <dt>Location</dt>
+            <dd>Törökbálint, Hungary</dd>
+            <dt>Period</dt>
+            <dd>September 2014 – May 2019</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul>
+          <li>
+            <strong>Microsoft Full-Stack Developer Professional Certificate</strong> (2025) —
+            via Coursera —
+            <a href="https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA">verify</a>
+          </li>
+          <li>
+            <strong>IBM Full-Stack JavaScript Developer Professional Certificate</strong> (2025) —
+            via Coursera
+          </li>
+          <li>
+            <strong>Meta Frontend Developer Professional Certificate</strong> (2024–2025) —
+            via Coursera —
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/YQRMQQIC9DXE">verify</a>
+          </li>
+          <li>
+            <strong>Meta Backend Developer Professional Certificate</strong> (2024–2025) —
+            via Coursera —
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/YHFNRJ8F336H">verify</a>
+          </li>
+          <li>
+            <strong>Meta React Native Specialisation</strong> (2024) —
+            via Coursera —
+            <a href="https://www.coursera.org/account/accomplishments/specialization/6I3G0SPNS8O3">verify</a>
+          </li>
+          <li>
+            <strong>Epic Games Game Design Professional Certificate</strong> — In progress
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Featured Projects</h2>
+        <article itemscope itemtype="https://schema.org/WebSite">
+          <h3 itemprop="name">Frontend development for solidfinances.hu</h3>
+          <dl>
+            <dt>Category</dt>
+            <dd>Web Development — Frontend</dd>
+            <dt>Client</dt>
+            <dd>MolnarCodes</dd>
+            <dt>Live URL</dt>
+            <dd><a href="https://solidfinances.hu" itemprop="url">solidfinances.hu</a></dd>
+            <dt>Technologies</dt>
+            <dd>React, Tailwind CSS, Responsive Design, Chrome DevTools</dd>
+            <dt>Description</dt>
+            <dd itemprop="description">
+              Frontend development for a Hungarian financial services website. Built with React and
+              Tailwind CSS, optimised for performance and all screen sizes.
+            </dd>
+          </dl>
+        </article>
+        <article itemscope itemtype="https://schema.org/WebSite">
+          <h3 itemprop="name">Full-Stack development for mindenegyseg.hu</h3>
+          <dl>
+            <dt>Category</dt>
+            <dd>Web Development — Full-Stack</dd>
+            <dt>Client</dt>
+            <dd>MolnarCodes</dd>
+            <dt>Live URL</dt>
+            <dd><a href="https://mindenegyseg.hu" itemprop="url">mindenegyseg.hu</a></dd>
+            <dt>Technologies</dt>
+            <dd>Next.js, Tailwind CSS, GSAP, Shadcn/ui, Responsive Design, Chrome DevTools</dd>
+            <dt>Description</dt>
+            <dd itemprop="description">
+              Full-Stack development for a Hungarian website. Built with Next.js and Tailwind CSS,
+              GSAP animations, and Shadcn/ui components. Fully responsive and performance-optimised.
+            </dd>
+          </dl>
+        </article>
+        <article itemscope itemtype="https://schema.org/SoftwareApplication">
+          <h3 itemprop="name">Simulation of the University Campus in 3D Environment</h3>
+          <dl>
+            <dt>Category</dt>
+            <dd>3D Development — Academic Thesis</dd>
+            <dt>Repository</dt>
+            <dd><a href="https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project"
+                itemprop="codeRepository">GitHub</a></dd>
+            <dt>Technologies</dt>
+            <dd>Unreal Engine 5, Twinmotion, C++</dd>
+            <dt>Description</dt>
+            <dd itemprop="description">
+              A 3D educational simulation allowing users to virtually visit the campus of Óbuda
+              University in Székesfehérvár, Hungary. Created using Unreal Engine 5 with high-resolution
+              textures for photorealistic rendering. This was the university BSc thesis project.
+            </dd>
+          </dl>
+        </article>
+      </section>
+
+    </article>
+  </noscript>
 </body>
 
 </html>

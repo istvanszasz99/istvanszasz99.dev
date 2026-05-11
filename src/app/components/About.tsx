@@ -49,8 +49,44 @@ export function About() {
     <section
       id="about"
       ref={ref}
+      aria-label="About István Zoltán Szász — background, education, and skills"
       className="relative bg-[#080808] py-32 overflow-hidden"
     >
+      {/* GEO: sr-only About summary — semantic HTML for AI entity extraction */}
+      <article
+        className="sr-only"
+        aria-hidden="true"
+        itemScope
+        itemType="https://schema.org/Person"
+      >
+        <h2>About István Zoltán Szász</h2>
+        <p>
+          Born in 1999, István Zoltán Szász is a Full-Stack Developer from
+          Hungary. He earned a Bachelor of Science in Computer Science
+          Engineering from Óbuda University, Alba Regia Faculty of Engineering,
+          Székesfehérvár, graduating in February 2025. With over 5 years of
+          experience, he builds modern web applications focused on React, Vite,
+          Next.js, TypeScript, and scalable backend integrations.
+        </p>
+        <dl>
+          <dt>Age</dt>
+          <dd>Born 1999, Érd, Hungary</dd>
+          <dt>Degree</dt>
+          <dd itemProp="hasCredential">
+            BSc Computer Science Engineering, Óbuda University, 2025
+          </dd>
+          <dt>Soft Skills</dt>
+          <dd>Problem-solving, Communication, Teamwork</dd>
+          <dt>Hobbies</dt>
+          <dd>Cooking, Gaming, Following Formula 1 and WEC motorsport</dd>
+          <dt>Availability</dt>
+          <dd>
+            Open to opportunities — freelance, full-time, and collaboration
+          </dd>
+          <dt>Core stack</dt>
+          <dd>React, Next.js, TypeScript, Tailwind CSS, Node.js, Express.js</dd>
+        </dl>
+      </article>
       <div className="noise-overlay" />
 
       {/* Section label */}

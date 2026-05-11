@@ -128,7 +128,66 @@ export function TechSkills() {
   const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
 
   return (
-    <section id="skills" ref={ref} className="relative bg-[#050505] py-32">
+    <section
+      id="skills"
+      ref={ref}
+      aria-label="Technical skills of István Zoltán Szász"
+      className="relative bg-[#050505] py-32"
+    >
+      {/* GEO: sr-only skills summary for AI crawlers */}
+      <article className="sr-only" aria-hidden="true">
+        <h2>Technical Skills of István Zoltán Szász</h2>
+        <section>
+          <h3>Frontend Development</h3>
+          <ul>
+            <li>Dynamic web application development</li>
+            <li>React, Next.js, and TypeScript development</li>
+            <li>
+              Styling with Tailwind CSS, GSAP, and React Motion (Framer Motion)
+            </li>
+            <li>Responsive Web Design and Mobile-first approach</li>
+            <li>Search Engine Optimisation (SEO) and web performance</li>
+            <li>Chrome DevTools profiling and debugging</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Backend Development</h3>
+          <ul>
+            <li>
+              Next.js, Node.js, and Express.js for server-side development
+            </li>
+            <li>REST API design and implementation</li>
+            <li>CI/CD pipelines and development with Docker and Kubernetes</li>
+            <li>SQL and NoSQL database management</li>
+            <li>Cloud deployment for serverless platforms</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Mobile Development</h3>
+          <ul>
+            <li>Cross-platform apps with React Native</li>
+            <li>Development with Android Studio and Expo</li>
+            <li>Mobile UI/UX best practices</li>
+          </ul>
+        </section>
+        <section>
+          <h3>3D Development</h3>
+          <ul>
+            <li>3D modelling with Unreal Engine 5 and Twinmotion</li>
+            <li>Game development and level design with Unreal Engine 5</li>
+            <li>Blueprints visual scripting and C++ programming</li>
+          </ul>
+        </section>
+        <section>
+          <h3>UI/UX Design</h3>
+          <ul>
+            <li>UI design and UX research principles</li>
+            <li>Design systems and component libraries (Shadcn/ui)</li>
+            <li>Responsive design for desktop, tablet, and mobile</li>
+            <li>Wireframing and prototyping with Figma</li>
+          </ul>
+        </section>
+      </article>
       <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}
