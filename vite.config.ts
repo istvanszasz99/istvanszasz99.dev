@@ -20,7 +20,7 @@ export default defineConfig({
   assetsInclude: ["**/*.svg", "**/*.csv"],
 
   server: {
-    // Proxy /api to wrangler pages dev (default port 8788) for local testing
+    // Proxy /api to wrangler dev (default port 8788) for local testing
     proxy: {
       "/api": {
         target: "http://localhost:8788",

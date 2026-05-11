@@ -17,5 +17,5 @@
     },
     "types": ["node", "@cloudflare/workers-types"]
   },
-  "include": ["src", "functions"]
+  "include": ["src"]
 }
