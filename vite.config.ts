@@ -19,6 +19,16 @@ export default defineConfig({
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ["**/*.svg", "**/*.csv"],
 
+  server: {
+    // Proxy /api to wrangler pages dev (default port 8788) for local testing
+    proxy: {
+      "/api": {
+        target: "http://localhost:8788",
+        changeOrigin: true,
+      },
+    },
+  },
+
   build: {
     // Target modern browsers for smaller, faster output
     target: "es2020",

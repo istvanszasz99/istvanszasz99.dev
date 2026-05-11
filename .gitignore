@@ -5,3 +5,9 @@ package-lock.json
 dist
 
 .vscode
+.env
+.env.local
+.wrangler
+
+# Wrangler local secrets (equivalent of .env for `pnpm dev:cf`)
+.dev.vars

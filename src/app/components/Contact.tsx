@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { Mail, ArrowUpRight, Send } from "lucide-react";
+import { Mail, ArrowUpRight, Send, Loader2 } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 
 export function Contact() {
@@ -12,11 +12,28 @@ export function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+      const data = (await res.json()) as { error?: string };
+      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const socials = [
@@ -316,25 +333,41 @@ export function Contact() {
                   />
                 </div>
 
+                {error && (
+                  <p className="font-space text-red-400 text-[13px]">{error}</p>
+                )}
+
                 <motion.button
                   type="submit"
-                  className="w-full py-5 flex items-center justify-center gap-3 bg-[#ccff00] relative overflow-hidden group"
-                  whileTap={{ scale: 0.98 }}
+                  disabled={loading}
+                  className="w-full py-5 flex items-center justify-center gap-3 bg-[#ccff00] relative overflow-hidden group disabled:opacity-60 disabled:cursor-not-allowed"
+                  whileTap={loading ? {} : { scale: 0.98 }}
                 >
-                  <motion.span
-                    className="absolute inset-0 bg-white"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.35 }}
-                    style={{ originX: 0 }}
-                  />
+                  {!loading && (
+                    <motion.span
+                      className="absolute inset-0 bg-white"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.35 }}
+                      style={{ originX: 0 }}
+                    />
+                  )}
                   <motion.span
                     className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-widest uppercase"
-                    whileHover={{ x: 5 }}
+                    whileHover={loading ? {} : { x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    Send Message
-                    <Send size={16} />
+                    {loading ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send size={16} />
+                      </>
+                    )}
                   </motion.span>
                 </motion.button>
               </form>
