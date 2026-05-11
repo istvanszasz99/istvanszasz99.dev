@@ -159,9 +159,9 @@ export function Projects() {
                     </span>
                   </div>
                   {/* Title */}
-                  <div className="self-stretch text-white text-4xl font-bold font-['Roboto'] leading-12">
+                  <h3 className="self-stretch text-white text-4xl font-bold font-['Roboto'] leading-12">
                     {project.title}
-                  </div>
+                  </h3>
                   {/* Description */}
                   <div className="self-stretch text-white/50 text-lg font-normal font-['Roboto'] leading-7">
                     {project.description}

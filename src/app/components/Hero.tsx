@@ -206,7 +206,7 @@ export function Hero() {
           <motion.a
             href="https://github.com/istvanszasz99"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
             className="group flex items-center gap-3 px-6 py-4 border border-white/20 no-underline"
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -224,7 +224,7 @@ export function Hero() {
           <motion.a
             href="https://linkedin.com/in/istvanszasz99"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="me noopener noreferrer"
             className="group flex items-center gap-3 px-6 py-4 border border-white/20 no-underline"
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}

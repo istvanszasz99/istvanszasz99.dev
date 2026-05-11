@@ -25,18 +25,21 @@ export function Contact() {
       label: "GitHub",
       href: "https://github.com/istvanszasz99",
       username: "@istvanszasz99",
+      rel: "me noopener noreferrer",
     },
     {
       icon: LinkedIn,
       label: "LinkedIn",
       href: "https://linkedin.com/in/istvanszasz99",
       username: "in/istvanszasz99",
+      rel: "me noopener noreferrer",
     },
     {
       icon: Mail,
       label: "Email",
       href: "mailto:istvanszasz99@gmail.com",
       username: "istvanszasz99@gmail.com",
+      rel: "noopener noreferrer",
     },
   ];
 
@@ -67,33 +70,36 @@ export function Contact() {
       <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
         {/* Big heading */}
         <div className="text-center mb-20">
-          <div className="overflow-hidden mb-2">
-            <motion.div
-              className="font-bebas text-white text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
-              initial={{ y: "110%" }}
-              animate={isInView ? { y: "0%" } : {}}
-              transition={{
-                duration: 0.9,
-                delay: 0.1,
-                ease: [0.33, 1, 0.68, 1],
-              }}
-            >
-              LET'S BUILD
-            </motion.div>
-          </div>
-          <div className="overflow-hidden">
-            <motion.div
-              className="font-bebas text-[#ccff00] text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
-              initial={{ y: "110%" }}
-              animate={isInView ? { y: "0%" } : {}}
-              transition={{
-                duration: 0.9,
-                delay: 0.2,
-                ease: [0.33, 1, 0.68, 1],
-              }}
-            >
-              SOMETHING GREAT
-            </motion.div>
+          <h2 className="sr-only">Let&apos;s Build Something Great</h2>
+          <div aria-hidden="true">
+            <div className="overflow-hidden mb-2">
+              <motion.div
+                className="font-bebas text-white text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
+                initial={{ y: "110%" }}
+                animate={isInView ? { y: "0%" } : {}}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.1,
+                  ease: [0.33, 1, 0.68, 1],
+                }}
+              >
+                LET&apos;S BUILD
+              </motion.div>
+            </div>
+            <div className="overflow-hidden">
+              <motion.div
+                className="font-bebas text-[#ccff00] text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
+                initial={{ y: "110%" }}
+                animate={isInView ? { y: "0%" } : {}}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.2,
+                  ease: [0.33, 1, 0.68, 1],
+                }}
+              >
+                SOMETHING GREAT
+              </motion.div>
+            </div>
           </div>
           <motion.p
             className="font-space text-white/35 text-base mt-5 tracking-[0.02em]"
@@ -136,7 +142,7 @@ export function Contact() {
                   key={social.label}
                   href={social.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={social.rel}
                   className="flex items-center justify-between py-4 px-5 border border-white/10 group no-underline"
                   initial={{ opacity: 0, x: -20 }}
                   animate={

@@ -82,7 +82,7 @@ export function Footer() {
                   className="**:fill-current text-white/30 group-hover:text-[#ccff00] transition-colors duration-300"
                 />
                 <span className="font-space text-white/30 text-[13px] tracking-[0.06em] group-hover:text-[#ccff00] transition-colors duration-300">
-                  {label}[]
+                  {label}
                 </span>
               </motion.a>
             ))}

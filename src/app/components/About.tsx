@@ -199,7 +199,7 @@ export function About() {
         {/* Right: text content */}
         <div>
           <div className="overflow-hidden mb-8">
-            <motion.span
+            <motion.h2
               className="font-bebas text-white text-[100px] leading-[0.9] block whitespace-nowrap"
               initial={{ y: "110%" }}
               animate={isInView ? { y: "0%" } : {}}
@@ -210,7 +210,7 @@ export function About() {
               }}
             >
               ABOUT <span className="text-[#ccff00]">ME</span>
-            </motion.span>
+            </motion.h2>
           </div>
 
           <motion.p
