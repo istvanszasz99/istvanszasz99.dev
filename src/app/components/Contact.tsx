@@ -53,7 +53,7 @@ export function Contact() {
 
       {/* Section label */}
       <motion.div
-        className="absolute top-12 left-4 sm:left-8 md:left-4 sm:left-8 md:left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
