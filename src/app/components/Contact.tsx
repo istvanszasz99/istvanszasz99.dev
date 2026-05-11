@@ -139,12 +139,28 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-between py-4 px-5 border border-white/10 group no-underline"
                   initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  animate={
+                    isInView
+                      ? {
+                          opacity: 1,
+                          x: 0,
+                          scale: 1,
+                          borderColor: "rgba(255,255,255,0.1)",
+                          backgroundColor: "rgba(0,0,0,0)",
+                        }
+                      : {}
+                  }
                   transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
                   whileHover={{
                     borderColor: "rgba(204,255,0,0.4)",
                     backgroundColor: "rgba(204,255,0,0.04)",
                     transition: { duration: 0.5 },
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                    borderColor: "rgba(204,255,0,0.4)",
+                    backgroundColor: "rgba(204,255,0,0.04)",
+                    transition: { duration: 0.1 },
                   }}
                 >
                   <div className="flex items-center gap-4">

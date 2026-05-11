@@ -221,12 +221,28 @@ export function TechSkills() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.35 }}
             >
-              <a
+              <motion.a
                 href="#tech-stack"
-                className="px-6 py-3 border border-white/20 text-white text-base font-['Roboto'] hover:border-[#ccff00] hover:text-[#ccff00] transition-colors duration-200"
+                className="px-6 py-3 border border-white/20 text-white text-base font-['Roboto'] transition-colors duration-200"
+                animate={{
+                  scale: 1,
+                  borderColor: "rgba(255,255,255,0.2)",
+                  color: "#ffffff",
+                }}
+                whileHover={{
+                  borderColor: "#ccff00",
+                  scale: 1.02,
+                  color: "#ccff00",
+                }}
+                whileTap={{
+                  scale: 0.96,
+                  borderColor: "#ccff00",
+                  color: "#ccff00",
+                }}
+                transition={{ duration: 0.15 }}
               >
                 View Tools &amp; Technologies
-              </a>
+              </motion.a>
             </motion.div>
           </div>
 

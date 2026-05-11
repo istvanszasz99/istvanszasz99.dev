@@ -100,9 +100,18 @@ export function Projects() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 no-underline pb-1 border-b border-white/20"
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      scale: 1,
+                      borderColor: "rgba(255,255,255,0.2)",
+                    }
+                  : {}
+              }
               transition={{ delay: 0.5 }}
               whileHover={{ borderColor: "#ccff00" }}
+              whileTap={{ scale: 0.96, borderColor: "#ccff00" }}
             >
               <span className="font-space text-white/50 text-[13px] tracking-[0.08em] uppercase">
                 View All on GitHub
@@ -119,18 +128,14 @@ export function Projects() {
             return (
               <motion.div
                 key={project.id}
-                className="self-stretch flex flex-col lg:flex-row items-center gap-16"
+                className={`self-stretch flex flex-col items-center gap-16 ${alignRight ? "lg:flex-row-reverse" : "lg:flex-row"}`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
               >
                 {/* Image — left on even, right on odd (CSS order) */}
-                <div
-                  className={`w-full lg:w-1/2 h-95 rounded-2xl overflow-hidden shrink-0 ${
-                    alignRight ? "order-last" : "order-first"
-                  }`}
-                >
+                <div className="w-full lg:w-1/2 h-95 rounded-2xl overflow-hidden shrink-0">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -180,8 +185,16 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 rounded-full flex items-center justify-center no-underline bg-white/5 border border-white/10"
+                        animate={{
+                          scale: 1,
+                          backgroundColor: "rgba(255,255,255,0.05)",
+                        }}
                         whileHover={{
                           scale: 1.1,
+                          backgroundColor: project.color,
+                        }}
+                        whileTap={{
+                          scale: 0.92,
                           backgroundColor: project.color,
                         }}
                       >
@@ -194,8 +207,16 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 rounded-full flex items-center justify-center no-underline bg-white/5 border border-white/10"
+                        animate={{
+                          scale: 1,
+                          backgroundColor: "rgba(255,255,255,0.05)",
+                        }}
                         whileHover={{
                           scale: 1.1,
+                          backgroundColor: project.color,
+                        }}
+                        whileTap={{
+                          scale: 0.92,
                           backgroundColor: project.color,
                         }}
                       >
@@ -221,9 +242,19 @@ export function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/5 no-underline group"
+              animate={{
+                scale: 1,
+                borderColor: "rgba(255,255,255,0.1)",
+                backgroundColor: "rgba(255,255,255,0.05)",
+              }}
               whileHover={{
                 borderColor: "#ccff00",
                 backgroundColor: "rgba(204,255,0,0.06)",
+              }}
+              whileTap={{
+                scale: 0.96,
+                borderColor: "#ccff00",
+                backgroundColor: "rgba(204,255,0,0.1)",
               }}
               transition={{ duration: 0.2 }}
             >

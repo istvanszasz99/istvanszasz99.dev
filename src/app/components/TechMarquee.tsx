@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { useRef, useEffect } from "react";
+import { motion, useInView, useMotionValue } from "motion/react";
 import {
   HTML5,
   CSS,
@@ -251,30 +251,117 @@ const MarqueeRow = ({
   direction = "left",
   speed = 40,
 }: MarqueeRowProps) => {
-  // Duplicate for seamless loop
-  const doubled = [...items, ...items, ...items];
-  const animClass =
-    direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
+  const tripled = [...items, ...items, ...items];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const offsetRef = useRef(0);
+  const segmentWidthRef = useRef(0);
+  const isDragging = useRef(false);
+  const velocityRef = useRef(0); // px/ms — inertia after drag
+  const isPaused = useRef(false);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    track.style.willChange = "transform";
+
+    const init = () => {
+      segmentWidthRef.current = track.scrollWidth / 3;
+      offsetRef.current = -segmentWidthRef.current;
+      x.set(offsetRef.current);
+      const autoDir = direction === "left" ? -1 : 1;
+      const baseSpeed = segmentWidthRef.current / (speed * 1000); // px/ms
+      let lastTime: number | null = null;
+
+      const tick = (time: number) => {
+        if (lastTime === null) lastTime = time;
+        const delta = Math.min(time - lastTime, 50);
+        lastTime = time;
+
+        if (!isDragging.current) {
+          if (isPaused.current) {
+            // coast: decay inertia velocity, no auto-scroll pull
+            velocityRef.current *= Math.pow(0.94, delta);
+            offsetRef.current += velocityRef.current * delta;
+          } else {
+            // auto-scroll: blend velocity toward base speed
+            velocityRef.current +=
+              (autoDir * baseSpeed - velocityRef.current) *
+              (1 - Math.pow(0.92, delta));
+            offsetRef.current += velocityRef.current * delta;
+          }
+
+          // Seamless wrap
+          const seg = segmentWidthRef.current;
+          if (offsetRef.current <= -seg * 2) offsetRef.current += seg;
+          if (offsetRef.current >= 0) offsetRef.current -= seg;
+
+          x.set(offsetRef.current);
+        }
+
+        rafRef.current = requestAnimationFrame(tick);
+      };
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    const frame = requestAnimationFrame(init);
+    return () => {
+      cancelAnimationFrame(frame);
+      cancelAnimationFrame(rafRef.current);
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    };
+  }, [direction, speed, x]);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
       {/* Left fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-transparent" />
       {/* Right fade */}
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-transparent" />
 
-      <div
-        className={`flex gap-4 w-max ${animClass} group/row`}
-        style={
-          {
-            "--marquee-duration": `${speed}s`,
-          } as React.CSSProperties
-        }
+      <motion.div
+        ref={trackRef}
+        className="flex gap-4 w-max select-none"
+        style={{ x }}
+        drag="x"
+        dragMomentum={false}
+        whileDrag={{ opacity: 0.85, scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        onDragStart={() => {
+          isDragging.current = true;
+          if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+          isPaused.current = false;
+        }}
+        onDrag={() => {
+          // sync offsetRef so seamless-wrap logic stays in range
+          let off = x.get();
+          const seg = segmentWidthRef.current;
+          if (seg > 0) {
+            while (off <= -seg * 2) off += seg;
+            while (off >= 0) off -= seg;
+            if (off !== x.get()) x.set(off);
+            offsetRef.current = off;
+          }
+        }}
+        onDragEnd={(_, info) => {
+          isDragging.current = false;
+          // carry fling velocity from Motion into our inertia system (px/s → px/ms)
+          velocityRef.current = info.velocity.x / 1000;
+          offsetRef.current = x.get();
+          isPaused.current = true;
+          pauseTimerRef.current = setTimeout(() => {
+            isPaused.current = false;
+          }, 5000);
+        }}
       >
-        {doubled.map((tech, i) => (
+        {tripled.map((tech, i) => (
           <TechPill key={`${tech.name}-${i}`} tech={tech} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -313,12 +400,12 @@ export function TechMarquee() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="self-stretch px-16 inline-flex justify-center items-center gap-2"
+          className="self-stretch inline-flex justify-center items-center gap-2"
         >
-          <div className="w-full text-center">
+          <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 text-center">
             <div className="overflow-hidden mb-3">
               <motion.h2
-                className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0 whitespace-nowrap"
+                className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
                 initial={{ y: "110%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{

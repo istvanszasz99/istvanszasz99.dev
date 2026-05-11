@@ -2,6 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useSpring } from "motion/react";
 
 export function CustomCursor() {
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    (navigator.maxTouchPoints > 0 || "ontouchstart" in window);
+
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [cursorText, setCursorText] = useState("");
@@ -47,6 +51,8 @@ export function CustomCursor() {
     };
   }, [mouseX, mouseY, followerX, followerY]);
 
+  if (isTouchDevice) return null;
+
   return (
     <>
       {/* Main dot */}
@@ -82,8 +88,8 @@ export function CustomCursor() {
         <motion.div
           className="rounded-full border border-[#ccff00] flex items-center justify-center overflow-hidden"
           animate={{
-            width: isHovering ? 80 : isClicking ? 28 : 40,
-            height: isHovering ? 80 : isClicking ? 28 : 40,
+            width: isHovering ? 65 : isClicking ? 28 : 40,
+            height: isHovering ? 65 : isClicking ? 28 : 40,
             backgroundColor: isHovering
               ? "rgba(204,255,0,0.15)"
               : "transparent",
