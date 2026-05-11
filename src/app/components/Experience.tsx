@@ -16,6 +16,8 @@ function Logo({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       className="w-12 h-12 object-contain"
       draggable={false}
+      loading="lazy"
+      decoding="async"
     />
   );
 }

@@ -182,6 +182,8 @@ export function Projects() {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 

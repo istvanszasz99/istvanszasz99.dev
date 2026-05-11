@@ -1,11 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useSpring } from "motion/react";
 
-export function CustomCursor() {
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    (navigator.maxTouchPoints > 0 || "ontouchstart" in window);
-
+// Inner cursor — only mounted on pointer devices, so all hooks/effects are safe
+function CursorInner() {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [cursorText, setCursorText] = useState("");
@@ -38,10 +35,12 @@ export function CustomCursor() {
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseover", handleMouseOver);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
+    // passive: true tells the browser these listeners never call preventDefault,
+    // allowing it to scroll / composite without blocking on JS.
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    window.addEventListener("mousedown", handleMouseDown, { passive: true });
+    window.addEventListener("mouseup", handleMouseUp, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -50,8 +49,6 @@ export function CustomCursor() {
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [mouseX, mouseY, followerX, followerY]);
-
-  if (isTouchDevice) return null;
 
   return (
     <>
@@ -110,4 +107,15 @@ export function CustomCursor() {
       </motion.div>
     </>
   );
+}
+
+// Outer wrapper — renders nothing on touch/pointer-coarse devices,
+// preventing unnecessary hooks, springs, and event listeners.
+export function CustomCursor() {
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    (navigator.maxTouchPoints > 0 || "ontouchstart" in window);
+
+  if (isTouchDevice) return null;
+  return <CursorInner />;
 }

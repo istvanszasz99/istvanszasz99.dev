@@ -3,39 +3,11 @@ import {
   motion,
   useScroll,
   useTransform,
-  useMotionValue,
-  useSpring,
   useInView,
 } from "motion/react";
 import { Download } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
-
-function AnimatedNumber({
-  target,
-  delay = 0,
-}: {
-  target: number;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { duration: 2000, bounce: 0 });
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const timeout = setTimeout(() => motionValue.set(target), delay * 1000);
-      return () => clearTimeout(timeout);
-    }
-  }, [isInView, motionValue, target, delay]);
-
-  useEffect(() => {
-    return spring.on("change", (v) => setDisplay(Math.round(v)));
-  }, [spring]);
-
-  return <span ref={ref}>{display}</span>;
-}
+import { AnimatedNumber } from "./AnimatedNumber";
 
 const roles = [
   "Computer Science Engineer",
@@ -150,11 +122,13 @@ export function Hero() {
         className="absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]"
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform, opacity" }}
       />
       <motion.div
         className="absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform, opacity" }}
       />
 
       <motion.div
