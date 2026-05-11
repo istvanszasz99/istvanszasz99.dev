@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { GithubIcon } from "./ui/brand-icons";
+import { GitHubDark } from "@ridemountainpig/svgl-react";
 
 const projects = [
   {
@@ -198,7 +198,11 @@ export function Projects() {
                           backgroundColor: project.color,
                         }}
                       >
-                        <GithubIcon size={16} className="text-white" />
+                        <GitHubDark
+                          width={16}
+                          height={16}
+                          className="**:fill-current text-white"
+                        />
                       </motion.a>
                     )}
                     {project.live && (
@@ -258,9 +262,10 @@ export function Projects() {
               }}
               transition={{ duration: 0.2 }}
             >
-              <GithubIcon
-                size={18}
-                className="text-white/50 group-hover:text-[#ccff00] transition-colors duration-200"
+              <GitHubDark
+                width={18}
+                height={18}
+                className="**:fill-current text-white/50 group-hover:text-[#ccff00] transition-colors duration-200"
               />
               <span className="font-space text-white/50 text-[13px] tracking-[0.08em] uppercase group-hover:text-[#ccff00] transition-colors duration-200">
                 More Projects

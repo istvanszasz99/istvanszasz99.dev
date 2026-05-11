@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
+import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 
 export function Footer() {
   const navLinks = [
@@ -53,12 +53,12 @@ export function Footer() {
           <div className="flex flex-col gap-3 items-center sm:items-start">
             {[
               {
-                Icon: GithubIcon,
+                Icon: GitHubDark,
                 href: "https://github.com/istvanszasz99",
                 label: "GitHub",
               },
               {
-                Icon: LinkedinIcon,
+                Icon: LinkedIn,
                 href: "https://linkedin.com/in/istvanszasz99",
                 label: "LinkedIn",
               },
@@ -77,11 +77,12 @@ export function Footer() {
                 whileHover={{ x: 4 }}
               >
                 <Icon
-                  size={16}
-                  className="text-white/30 group-hover:text-[#ccff00] transition-colors duration-300"
+                  width={16}
+                  height={16}
+                  className="**:fill-current text-white/30 group-hover:text-[#ccff00] transition-colors duration-300"
                 />
                 <span className="font-space text-white/30 text-[13px] tracking-[0.06em] group-hover:text-[#ccff00] transition-colors duration-300">
-                  {label}
+                  {label}[]
                 </span>
               </motion.a>
             ))}

@@ -1,13 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
-import {
-  Layers,
-  Server,
-  Smartphone,
-  Box,
-  Paintbrush,
-  ArrowUpRight,
-} from "lucide-react";
+import { Layers, Server, Smartphone, Box, Paintbrush } from "lucide-react";
 
 /* ─── Data ───────────────────────────────────────────────────── */
 const skills = [

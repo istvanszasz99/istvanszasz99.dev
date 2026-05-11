@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { Mail, ArrowUpRight, Send } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
+import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 
 export function Contact() {
   const sectionRef = useRef(null);
@@ -21,13 +21,13 @@ export function Contact() {
 
   const socials = [
     {
-      icon: GithubIcon,
+      icon: GitHubDark,
       label: "GitHub",
       href: "https://github.com/istvanszasz99",
       username: "@istvanszasz99",
     },
     {
-      icon: LinkedinIcon,
+      icon: LinkedIn,
       label: "LinkedIn",
       href: "https://linkedin.com/in/istvanszasz99",
       username: "in/istvanszasz99",
@@ -164,7 +164,11 @@ export function Contact() {
                   }}
                 >
                   <div className="flex items-center gap-4">
-                    <social.icon size={18} className="text-white/40" />
+                    <social.icon
+                      width={18}
+                      height={18}
+                      className="**:fill-current text-white/40"
+                    />
                     <div>
                       <div className="font-space text-white/80 text-[14px]">
                         {social.label}

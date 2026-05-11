@@ -7,7 +7,6 @@ import {
   useMotionValue,
   useSpring,
 } from "motion/react";
-import { TextReveal } from "./TextReveal";
 
 function AnimatedNumber({
   target,

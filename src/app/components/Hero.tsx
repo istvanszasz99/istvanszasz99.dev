@@ -8,7 +8,7 @@ import {
   useInView,
 } from "motion/react";
 import { Download } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./ui/brand-icons";
+import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 
 function AnimatedNumber({
   target,
@@ -211,7 +211,11 @@ export function Hero() {
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <GithubIcon size={18} className="text-white/70" />
+            <GitHubDark
+              width={18}
+              height={18}
+              className="**:fill-current text-white/70"
+            />
             <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
               GitHub
             </span>
@@ -225,7 +229,11 @@ export function Hero() {
             whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <LinkedinIcon size={18} className="text-white/70" />
+            <LinkedIn
+              width={18}
+              height={18}
+              className="**:fill-current text-white/70"
+            />
             <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
               LinkedIn
             </span>
