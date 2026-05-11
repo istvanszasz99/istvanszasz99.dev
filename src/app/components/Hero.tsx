@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-} from "motion/react";
+import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { Download } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { AnimatedNumber } from "./AnimatedNumber";

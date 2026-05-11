@@ -32,13 +32,19 @@ export default defineConfig({
       output: {
         // Split vendor and feature chunks for optimal long-term caching
         manualChunks(id) {
-          if (id.includes("node_modules/react") || id.includes("node_modules/react-dom")) {
+          if (
+            id.includes("node_modules/react") ||
+            id.includes("node_modules/react-dom")
+          ) {
             return "vendor-react";
           }
           if (id.includes("node_modules/motion")) {
             return "vendor-motion";
           }
-          if (id.includes("node_modules/lucide-react") || id.includes("node_modules/@ridemountainpig")) {
+          if (
+            id.includes("node_modules/lucide-react") ||
+            id.includes("node_modules/@ridemountainpig")
+          ) {
             return "vendor-icons";
           }
         },

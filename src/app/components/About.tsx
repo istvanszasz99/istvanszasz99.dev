@@ -1,10 +1,5 @@
 import { useRef } from "react";
-import {
-  motion,
-  useInView,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { AnimatedNumber } from "./AnimatedNumber";
 
 export function About() {
