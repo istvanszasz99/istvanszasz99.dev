@@ -51,7 +51,7 @@ István is a Full-Stack Developer with over 5 years of hands-on experience. He s
 
 ## Work Experience
 
-### Full-Stack Web Developer — MolnarCodes (Mar 2026 – Present)
+### Full-Stack Web Developer — MolnarCodes (Mar 2026 – May 2026)
 - Remote position
 - Building production web applications for Hungarian clients
 - Key projects: solidfinances.hu, mindenegyseg.hu

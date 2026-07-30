@@ -30,9 +30,9 @@ const workExperience = [
     department: "MolnarCodes",
     description: "",
     location: "Remote",
-    type: "Mar 2026 –",
-    link: "",
-    badge: "Present",
+    type: "Mar 2026 – May 2026",
+    link: "/document//Molnarcodes_ajanlolevel.pdf",
+    badge: "",
     icon: <Logo src="/image/icon/molnarcodes-logo.png" alt="MolnarCodes" />,
   },
 ];
@@ -185,12 +185,15 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
 
       {/* Right: date range + badge + location */}
       <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          {/* if current --> use gap-2*/}{" "}
+          {/* Right: date range + badge + location */}
           <span className="text-white/50 text-sm font-['Roboto'] whitespace-nowrap">
             {exp.type}
           </span>
           {exp.badge && (
-            <span className="px-2 py-0.5 rounded-sm text-[11px] font-semibold font-space tracking-wide bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30">
+            <span className="text-white/50 text-sm font-['Roboto'] whitespace-nowrap">
+              {/* if Current --> px-2 py-0.5 rounded-sm text-[11px] font-semibold font-space tracking-wide bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30 */}
               {exp.badge}
             </span>
           )}
@@ -262,7 +265,7 @@ export function Experience() {
               <dt>Employer</dt>
               <dd>MolnarCodes</dd>
               <dt>Period</dt>
-              <dd>March 2026 – Present</dd>
+              <dd>March 2026 – May 2026</dd>
               <dt>Type</dt>
               <dd>Full-time, Remote</dd>
             </dl>
