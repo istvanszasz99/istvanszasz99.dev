@@ -204,8 +204,8 @@ export function Hero() {
           transition={{ delay: 1.7, duration: 0.7 }}
         >
           <motion.a
-            href="/document/Istvan_Zoltan_Szasz_Resume.pdf"
-            download="Istvan_Zoltan_Szasz_Resume.pdf"
+            href="/document/Resume_EN.pdf"
+            download="Istvan_Zoltan_Szasz_Resume_EN.pdf"
             className="relative group overflow-hidden px-8 py-4 bg-[#ccff00] no-underline"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
