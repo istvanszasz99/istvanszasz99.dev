@@ -6,7 +6,7 @@ import { AnimatedNumber } from "./AnimatedNumber";
 
 const roles = [
   "Computer Science Engineer",
-  "Full-Stack Developer",
+  "Junior Full-Stack Developer",
   "Frontend Specialist",
 ];
 
@@ -53,7 +53,7 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      aria-label="Introduction — István Zoltán Szász, Full-Stack Developer"
+      aria-label="Introduction — István Zoltán Szász, Junior Full-Stack Developer"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-32"
     >
       {/* GEO: sr-only entity summary — rendered in DOM for AI crawlers that execute JS */}
@@ -66,19 +66,20 @@ export function Hero() {
         <h1 itemProp="name">István Zoltán Szász</h1>
         <p itemProp="description">
           István Zoltán Szász (also written Istvan Zoltan Szasz, username
-          istvanszasz99) is a Full-Stack Web Developer and Computer Science
-          Engineer from Érd, Hungary. He has over 5 years of professional
-          experience building high-performance, responsive web applications. He
-          specialises in React, Next.js, TypeScript, and the modern JavaScript
-          ecosystem. He holds a BSc in Computer Science Engineering from Óbuda
-          University (February 2025) and currently works at MolnarCodes
-          (remote). He is open to freelance projects, full-time roles, and
-          collaborations.
+          istvanszasz99) is a Junior Full-Stack Web Developer and Computer
+          Science Engineer from Érd, Hungary. He builds modern, responsive web
+          applications and specialises in React, Next.js, TypeScript, and the
+          modern JavaScript ecosystem. He holds a BSc in Computer Science
+          Engineering from Óbuda University (February 2025) and previously
+          worked as a Full-Stack Web Developer at MolnarCodes (remote, March
+          2026 – May 2026). He is open to freelance projects, full-time roles,
+          and collaborations.
         </p>
         <dl>
           <dt>Role</dt>
           <dd itemProp="jobTitle">
-            Full-Stack Developer, Frontend Specialist, Computer Science Engineer
+            Junior Full-Stack Developer, Frontend Specialist, Computer Science
+            Engineer
           </dd>
           <dt>Location</dt>
           <dd itemProp="address">Érd, Hungary</dd>
@@ -96,12 +97,14 @@ export function Hero() {
               linkedin.com/in/istvanszasz99
             </a>
           </dd>
-          <dt>Experience</dt>
-          <dd>5+ years</dd>
+          <dt>Certifications</dt>
+          <dd>
+            4 — Microsoft, IBM and Meta professional certificates (Coursera)
+          </dd>
           <dt>Projects completed</dt>
-          <dd>20+</dd>
+          <dd>10+</dd>
           <dt>Technologies</dt>
-          <dd>50+</dd>
+          <dd>30+</dd>
           <dt>Status</dt>
           <dd>Open to opportunities</dd>
         </dl>
@@ -192,8 +195,8 @@ export function Hero() {
           transition={{ delay: 1.5, duration: 0.7 }}
           className="font-space text-white/45 text-[15px] leading-[1.8] max-w-140 mb-6"
         >
-          Full-Stack Web Developer from Hungary with a Bachelor's degree in
-          Computer Science Engineering from Óbuda University.
+          Junior Full-Stack Web Developer from Hungary with a Bachelor's degree
+          in Computer Science Engineering from Óbuda University.
         </motion.p>
 
         {/* CTA buttons */}
@@ -268,9 +271,9 @@ export function Hero() {
           transition={{ delay: 2, duration: 0.7 }}
         >
           {[
-            { value: 5, label: "Years Experience" },
-            { value: 20, label: "Projects Completed" },
-            { value: 50, label: "Technologies" },
+            { value: 4, label: "Certifications" },
+            { value: 10, label: "Projects Completed" },
+            { value: 30, label: "Technologies" },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col">
               <span className="font-bebas text-[#ccff00] text-[48px] leading-none">

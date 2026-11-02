@@ -28,10 +28,11 @@ const workExperience = [
     id: 1,
     title: "Full-Stack Web Developer",
     department: "MolnarCodes",
-    description: "",
+    description:
+      "Optimised and made client websites and web interfaces fully responsive. Proposed UI/UX improvements and implemented them following joint discussion, and implemented SEO and GEO (Generative Engine Optimization) to improve visibility in search engines and AI-powered search. Independently integrated Next.js, Tailwind CSS, shadcn/ui and GSAP into production work. Refactored client codebases and resolved bugs to improve readability, maintainability and performance.",
     location: "Remote",
     type: "Mar 2026 – May 2026",
-    link: "/document//Molnarcodes_ajanlolevel.pdf",
+    link: "/document/Molnarcodes_ajanlolevel.pdf",
     badge: "",
     icon: <Logo src="/image/icon/molnarcodes-logo.png" alt="MolnarCodes" />,
   },
@@ -81,20 +82,18 @@ const certifications = [
     description: "",
     location: "Coursera",
     type: "2025",
-    link: "https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA",
+    link: "https://www.coursera.org/account/accomplishments/specialization/W8VH1LBNYHRF",
     badge: "",
     icon: <Logo src="/image/icon/ibm-logo.png" alt="IBM" />,
   },
   {
     id: 3,
-    title: "Full-Stack Developer Professional Certificate (Frontend & Backend)",
+    title: "Full-Stack Developer Professional Certificate",
     department: "Meta",
     description: "",
     location: "Coursera",
     type: "2024–2025",
-    link: "https://www.coursera.org/account/accomplishments/professional-cert/YQRMQQIC9DXE",
-    link2:
-      "https://www.coursera.org/account/accomplishments/professional-cert/YHFNRJ8F336H",
+    link: "https://www.coursera.org/account/accomplishments/specialization/JXXAG4WMAGRH",
     badge: "",
     icon: <Logo src="/image/icon/meta-logo.png" alt="Meta" />,
   },
@@ -109,17 +108,6 @@ const certifications = [
     badge: "",
     icon: <Logo src="/image/icon/meta-logo.png" alt="Meta" />,
   },
-  {
-    id: 5,
-    title: "Game Design Professional Certificate",
-    department: "Epic Games",
-    description: "",
-    location: "Coursera",
-    type: "",
-    link: "",
-    badge: "In progress",
-    icon: <Logo src="/image/icon/epicgames-logo.png" alt="Epic Games" />,
-  },
 ];
 
 /* ─── Reusable entry row ─────────────────────────────────────── */
@@ -131,7 +119,6 @@ interface Entry {
   location: string;
   type: string;
   link: string;
-  link2?: string;
   badge: string;
   icon?: React.ReactNode;
 }
@@ -167,20 +154,15 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
               <ArrowUpRight size={13} />
             </a>
           )}
-          {exp.link2 && (
-            <a
-              href={exp.link2}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-[#ccff00] transition-colors duration-200"
-            >
-              <ArrowUpRight size={13} />
-            </a>
-          )}
         </div>
         <span className="text-white text-xl font-bold font-['Roboto'] leading-7">
           {exp.department}
         </span>
+        {exp.description && (
+          <p className="text-white/50 text-sm font-['Roboto'] leading-6 mt-2 max-w-2xl">
+            {exp.description}
+          </p>
+        )}
       </div>
 
       {/* Right: date range + badge + location */}
@@ -268,6 +250,29 @@ export function Experience() {
               <dd>March 2026 – May 2026</dd>
               <dt>Type</dt>
               <dd>Full-time, Remote</dd>
+              <dt>Responsibilities</dt>
+              <dd>
+                <ul>
+                  <li>
+                    Optimised and made client websites and web interfaces fully
+                    responsive.
+                  </li>
+                  <li>
+                    Proposed UI/UX improvements and implemented them following
+                    joint discussion, and implemented SEO and GEO (Generative
+                    Engine Optimization) to improve visibility in search engines
+                    and AI-powered search.
+                  </li>
+                  <li>
+                    Independently integrated Next.js, Tailwind CSS, shadcn/ui
+                    and GSAP into production work.
+                  </li>
+                  <li>
+                    Refactored client codebases and resolved bugs to improve
+                    readability, maintainability and performance.
+                  </li>
+                </ul>
+              </dd>
             </dl>
           </article>
         </section>
@@ -322,17 +327,10 @@ export function Experience() {
               Coursera, 2025
             </li>
             <li>
-              Meta Frontend Developer Professional Certificate — Coursera,
-              2024–2025
-            </li>
-            <li>
-              Meta Backend Developer Professional Certificate — Coursera,
+              Meta Full-Stack Developer Professional Certificate — Coursera,
               2024–2025
             </li>
             <li>Meta React Native Specialisation — Coursera, 2024</li>
-            <li>
-              Epic Games Game Design Professional Certificate — In progress
-            </li>
           </ul>
         </section>
       </article>

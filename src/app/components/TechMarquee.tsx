@@ -7,7 +7,6 @@ import {
   JavaScript,
   TypeScript,
   ReactLight,
-  Vite,
   Nextjs,
   Redux,
   ExpressjsDark,
@@ -19,15 +18,11 @@ import {
   Docker,
   Kubernetes,
   MicrosoftAzure,
-  MySQLLight,
-  SQLite,
   GraphQL,
   MongoDBDark,
   Git,
   GitHubDark,
-  GitHubCopilotDark,
   Figma,
-  AstroDark,
   CPlusPlus,
   UnrealEngineDark,
   PostgreSQL,
@@ -36,6 +31,8 @@ import {
   VisualStudioCode,
   Windows,
   MicrosoftOffice,
+  MotionDark,
+  Cloudflare,
 } from "@ridemountainpig/svgl-react";
 
 /* ─── Tech stack data ─────────────────────────────────────────── */
@@ -54,6 +51,11 @@ const techs: Tech[] = [
     icon: <TailwindCSS width={32} height={32} />,
   },
   {
+    name: "Motion",
+    color: "#F7DF1E",
+    icon: <MotionDark width={32} height={32} />,
+  },
+  {
     name: "JavaScript",
     color: "#F7DF1E",
     icon: <JavaScript width={32} height={32} />,
@@ -68,7 +70,6 @@ const techs: Tech[] = [
     color: "#61DAFB",
     icon: <ReactLight width={32} height={32} />,
   },
-  { name: "Vite", color: "#646CFF", icon: <Vite width={32} height={32} /> },
   {
     name: "Next.js",
     color: "#ffffff",
@@ -117,11 +118,10 @@ const techs: Tech[] = [
     icon: <MicrosoftAzure width={32} height={32} />,
   },
   {
-    name: "MySQL",
-    color: "#4479A1",
-    icon: <MySQLLight width={32} height={32} />,
+    name: "Cloudflare",
+    color: "#0089D6",
+    icon: <Cloudflare width={32} height={32} />,
   },
-  { name: "SQLite", color: "#003B57", icon: <SQLite width={32} height={32} /> },
   {
     name: "PostgreSQL",
     color: "#336791",
@@ -144,21 +144,11 @@ const techs: Tech[] = [
     icon: <GitHubDark width={32} height={32} />,
   },
   {
-    name: "Copilot",
-    color: "#ffffff",
-    icon: <GitHubCopilotDark width={32} height={32} />,
-  },
-  {
-    name: "Claude AI",
+    name: "Claude Code",
     color: "#000000",
     icon: <ClaudeAI width={32} height={32} />,
   },
   { name: "Figma", color: "#A259FF", icon: <Figma width={32} height={32} /> },
-  {
-    name: "Astro",
-    color: "#FF5D01",
-    icon: <AstroDark width={32} height={32} />,
-  },
   {
     name: "Android Studio",
     color: "#3DDC84",
@@ -377,8 +367,18 @@ export function TechMarquee() {
     <section
       ref={containerRef}
       id="tech-stack"
+      aria-label="Tools and technologies used by István Zoltán Szász"
       className="relative bg-[#080808] py-32 overflow-hidden w-full"
     >
+      {/* GEO: sr-only tools list for AI crawlers */}
+      <article className="sr-only" aria-hidden="true">
+        <h2>Tools and Technologies used by István Zoltán Szász</h2>
+        <ul>
+          {techs.map((tech) => (
+            <li key={tech.name}>{tech.name}</li>
+          ))}
+        </ul>
+      </article>
       <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}

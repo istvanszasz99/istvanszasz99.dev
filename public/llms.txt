@@ -1,6 +1,6 @@
-# István Zoltán Szász — Full-Stack Developer
+# István Zoltán Szász — Junior Full-Stack Developer
 
-> István Zoltán Szász (also written Istvan Zoltan Szasz) is a Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He has 5+ years of experience building high-performance web applications with a strong specialisation in React, Next.js, TypeScript, and the modern JavaScript ecosystem. He holds a Bachelor of Science degree in Computer Science Engineering from Óbuda University (Alba Regia Faculty of Engineering), Székesfehérvár, Hungary, graduated February 2025.
+> István Zoltán Szász (also written Istvan Zoltan Szasz) is a Junior Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He builds modern, responsive web applications with a strong specialisation in React, Next.js, TypeScript, and the modern JavaScript ecosystem. He holds a Bachelor of Science degree in Computer Science Engineering from Óbuda University (Alba Regia Faculty of Engineering), Székesfehérvár, Hungary, graduated February 2025.
 
 ## Identity & Contact
 
@@ -12,48 +12,74 @@
 - **LinkedIn:** https://linkedin.com/in/istvanszasz99
 - **Portfolio:** https://istvanszasz99.dev
 - **Status:** Open to freelance projects, full-time roles, and collaborations
+- **At a glance:** 4 certifications, 10+ projects completed, 30+ technologies
+- **Soft Skills:** Problem-solving, Communication, Teamwork
+- **Hobbies:** Hobby cooking, Hardware repair (laptops, PCs, phones and tablets), Following Formula 1 and WEC motorsport
 
 ## Professional Summary
 
-István is a Full-Stack Developer with over 5 years of hands-on experience. He specialises in building modern, responsive, and performance-optimised web applications. His frontend expertise centres around React and Next.js, while his backend work covers Node.js, Express.js, REST API design, and database management (SQL & NoSQL). He is also experienced in mobile development with React Native and 3D development using Unreal Engine 5.
+István is a Junior Full-Stack Developer. He has developed full-stack applications through academic, certificate-based and independent projects, working across the entire stack from user interface to debugging and deployment. His frontend expertise centres around React and Next.js, while his backend work covers Node.js, Express.js, REST API design, and database management (SQL & NoSQL). He also works on mobile development with React Native and 3D development using Unreal Engine 5.
 
 ## Technical Skills
 
 ### Frontend Development
-- React, Next.js, TypeScript, JavaScript (ES2020+)
-- Tailwind CSS, GSAP, Framer Motion / Motion
+- Development with React, Next.js, TypeScript, JavaScript (ES2020+)
+- Styling with Tailwind CSS and Motion (Framer Motion); GSAP and shadcn/ui in production work
 - Responsive Web Design, Mobile-first approach
-- Search Engine Optimization (SEO), Performance optimisation
-- Chrome DevTools profiling
+- Search Engine Optimization (SEO), Generative Engine Optimization (GEO), Performance optimisation
+- Chrome DevTools debugging
 
 ### Backend Development
-- Node.js, Express.js — server-side development
+- Next.js, Node.js, Express.js, Django, ASP.NET Core — server-side development
 - REST API design and implementation
-- CI/CD pipelines, Docker, Kubernetes
-- SQL and NoSQL database management (PostgreSQL, MongoDB)
-- Cloud deployment on serverless platforms
+- Authentication, validation and secure server-side logic
+
+### DevOps
+- CI/CD pipelines automated with GitHub Actions
+- Containerised applications with Docker
+- Container orchestration and scaling with Kubernetes
+- Cloud deployment and serverless hosting for production releases
+
+### Databases
+- Relational data modelling and querying with PostgreSQL and SQL
+- Document-based storage with MongoDB and NoSQL
+- Flexible, typed API data fetching with GraphQL
 
 ### Mobile Development
 - Cross-platform mobile apps with React Native
-- Android Studio, Expo
+- Development with Android Studio and Expo
 - Mobile UI/UX best practices
 
 ### 3D Development
-- Unreal Engine 5 — scene creation and level design
-- Twinmotion — architectural visualisation
+- 3D modelling with Unreal Engine 5 and Twinmotion
+- Game development with Unreal Engine 5
+- Level design and world-building
 - Blueprints visual scripting and C++ programming
 
-### Tools & Platforms
-- Vite, Shadcn/ui, GSAP
-- Git, GitHub
-- macOS, Windows
-- IBM, Meta, Microsoft certifications
+### UI/UX Design
+- UI design and UX research principles
+- Design systems and component libraries (shadcn/ui)
+- Responsive design for desktop, tablet and mobile
+- Wireframing and prototyping with Figma
+
+### Tools & Technologies
+- Languages and markup: HTML5, CSS, JavaScript, TypeScript, Python, C#, C++
+- Frameworks and libraries: React, Next.js, Redux, Tailwind CSS, Motion, Express.js, Node.js, Django, .NET, Electron
+- DevOps and cloud: Docker, Kubernetes, Microsoft Azure, Cloudflare
+- Databases and APIs: PostgreSQL, MongoDB, GraphQL
+- Mobile: Android Studio, Expo
+- 3D: Unreal Engine, Twinmotion
+- Tooling: Git, GitHub, Claude Code, Figma, Chrome DevTools, Visual Studio Code, Microsoft Office
+- Operating systems: macOS, Windows
 
 ## Work Experience
 
 ### Full-Stack Web Developer — MolnarCodes (Mar 2026 – May 2026)
 - Remote position
-- Building production web applications for Hungarian clients
+- Optimised and made client websites and web interfaces fully responsive.
+- Proposed UI/UX improvements and implemented them following joint discussion, and implemented SEO and GEO (Generative Engine Optimization) to improve visibility in search engines and AI-powered search.
+- Independently integrated Next.js, Tailwind CSS, shadcn/ui and GSAP into production work.
+- Refactored client codebases and resolved bugs to improve readability, maintainability and performance.
 - Key projects: solidfinances.hu, mindenegyseg.hu
 
 ## Education
@@ -65,6 +91,13 @@ István is a Full-Stack Developer with over 5 years of hands-on experience. He s
 
 ### High School Diploma, Specialisation in Computer Science — Bálint Márton Vocational Secondary School (Sep 2014 – May 2019)
 - Location: Törökbálint, Hungary
+
+## Certifications
+
+- Microsoft Full-Stack Developer Professional Certificate (2025, Coursera) — https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA
+- IBM Full-Stack JavaScript Developer Professional Certificate (2025, Coursera) — https://www.coursera.org/account/accomplishments/specialization/W8VH1LBNYHRF
+- Meta Full-Stack Developer Professional Certificate (2024–2025, Coursera) — https://www.coursera.org/account/accomplishments/specialization/JXXAG4WMAGRH
+- Meta React Native Specialization (2024, Coursera) — https://www.coursera.org/account/accomplishments/specialization/6I3G0SPNS8O3
 
 ## Featured Projects
 
@@ -91,10 +124,16 @@ István is a Full-Stack Developer with over 5 years of hands-on experience. He s
 ## Frequently Asked Questions
 
 **Who is István Zoltán Szász?**
-István Zoltán Szász is a Full-Stack Web Developer and Computer Science Engineer from Hungary. He has 5+ years of experience, a BSc from Óbuda University, and specialises in React, Next.js, and TypeScript.
+István Zoltán Szász is a Junior Full-Stack Web Developer and Computer Science Engineer from Hungary. He holds a BSc from Óbuda University and specialises in React, Next.js, and TypeScript.
 
 **What technologies does István Szász specialise in?**
-His primary stack includes React, Next.js, TypeScript, Tailwind CSS, Node.js, and Express.js. He also works with React Native for mobile and Unreal Engine 5 for 3D development.
+His primary stack includes React, Next.js, TypeScript, Tailwind CSS, Motion, Node.js, and Express.js. He also works with GitHub Actions, Docker, Kubernetes, PostgreSQL, MongoDB and GraphQL, with React Native for mobile, and with Unreal Engine 5 for 3D development.
+
+**Where has István Szász worked?**
+From March 2026 to May 2026 he worked remotely as a Full-Stack Web Developer at MolnarCodes, contributing to client projects including solidfinances.hu and mindenegyseg.hu. He is currently open to new opportunities.
+
+**What certifications does István Szász hold?**
+He holds 4 professional certifications, all via Coursera: Microsoft Full-Stack Developer Professional Certificate (2025), IBM Full-Stack JavaScript Developer Professional Certificate (2025), Meta Full-Stack Developer Professional Certificate (2024–2025), and Meta React Native Specialization (2024).
 
 **Is István Szász available for hire?**
 Yes. He is open to freelance projects, full-time roles, and collaborations. Contact him at istvanszasz99@gmail.com.

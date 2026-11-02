@@ -31,7 +31,7 @@ export function Footer() {
               ISTVAN <span className="text-[#ccff00]">{"{ZOLTAN}"} SZASZ</span>
             </div>
             <p className="font-space text-white/30 text-[13px] tracking-wider">
-              Full-Stack Developer · Budapest, Hungary
+              Junior Full-Stack Developer · Érd, Hungary
             </p>
           </div>
 

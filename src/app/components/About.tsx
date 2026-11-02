@@ -28,16 +28,17 @@ export function About() {
       >
         <h2>About István Zoltán Szász</h2>
         <p>
-          Born in 1999, István Zoltán Szász is a Full-Stack Developer from
-          Hungary. He earned a Bachelor of Science in Computer Science
-          Engineering from Óbuda University, Alba Regia Faculty of Engineering,
-          Székesfehérvár, graduating in February 2025. With over 5 years of
-          experience, he builds modern web applications focused on React, Vite,
-          Next.js, TypeScript, and scalable backend integrations.
+          István Zoltán Szász is a Junior Full-Stack Developer from Hungary. He
+          earned a Bachelor of Science in Computer Science Engineering from
+          Óbuda University, Alba Regia Faculty of Engineering, Székesfehérvár,
+          graduating in February 2025. He builds modern web applications focused
+          on React, Next.js, TypeScript, and scalable backend integrations,
+          working across the entire stack from user interface to debugging and
+          deployment.
         </p>
         <dl>
-          <dt>Age</dt>
-          <dd>Born 1999, Érd, Hungary</dd>
+          <dt>Location</dt>
+          <dd>Érd, Hungary</dd>
           <dt>Degree</dt>
           <dd itemProp="hasCredential">
             BSc Computer Science Engineering, Óbuda University, 2025
@@ -45,7 +46,10 @@ export function About() {
           <dt>Soft Skills</dt>
           <dd>Problem-solving, Communication, Teamwork</dd>
           <dt>Hobbies</dt>
-          <dd>Cooking, Gaming, Following Formula 1 and WEC motorsport</dd>
+          <dd>
+            Hobby cooking, Hardware repair (laptops, PCs, phones and tablets),
+            Following Formula 1 and WEC motorsport
+          </dd>
           <dt>Availability</dt>
           <dd>
             Open to opportunities — freelance, full-time, and collaboration
@@ -109,13 +113,8 @@ export function About() {
                       color: "#88d8b0",
                     },
                     {
-                      key: "age",
-                      val: "26",
-                      color: "#ccff00",
-                    },
-                    {
-                      key: "gender",
-                      val: '"Male"',
+                      key: "stack",
+                      val: '"React · Next.js · TypeScript"',
                       color: "#88d8b0",
                     },
                     {
@@ -125,7 +124,7 @@ export function About() {
                     },
                     {
                       key: "role",
-                      val: '"Full-Stack Developer"',
+                      val: '"Junior Full-Stack Developer"',
                       color: "#88d8b0",
                     },
                     { key: "available", val: "true", color: "#ccff00" },
@@ -180,9 +179,9 @@ export function About() {
               {/* Stats at bottom */}
               <div className="w-full p-6 grid grid-cols-3 gap-4 border-t border-white/10">
                 {[
-                  { num: 5, suffix: "+", label: "Years Exp" },
-                  { num: 20, suffix: "+", label: "Projects completed" },
-                  { num: 50, suffix: "+", label: "Technologies" },
+                  { num: 4, suffix: "", label: "Certifications" },
+                  { num: 10, suffix: "+", label: "Projects completed" },
+                  { num: 30, suffix: "+", label: "Technologies" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
                     <div className="font-bebas text-[#ccff00] text-[42px] leading-none">
@@ -222,14 +221,9 @@ export function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            I'm a{" "}
-            {new Date().getFullYear() -
-              1999 -
-              (new Date() < new Date(new Date().getFullYear(), 9, 2)
-                ? 1
-                : 0)}{" "}
-            years old Full-Stack Developer from Hungary with a Bachelor's degree
-            in Computer Science Engineering from Óbuda University.
+            Junior Full-Stack Developer with a BSc in Computer Science
+            Engineering from Óbuda University, specialising in modern web
+            application development with React, Next.js and TypeScript.
           </motion.p>
 
           <motion.p
@@ -238,11 +232,9 @@ export function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.65, duration: 0.7 }}
           >
-            I built a solid foundation in both Front-End and Back-End
-            development. Over 5 years of experience building modern web
-            applications with a strong focus on React and the modern JavaScript
-            ecosystem. Expertise in React, Vite, Next.js, TypeScript, and
-            scalable backend integrations for high-performance web platforms.
+            I have developed Full-stack applications through academic,
+            certificate-based and independent projects, working across the
+            entire stack from user interface to debugging and deployment.
           </motion.p>
 
           {/* Attributes */}
@@ -254,7 +246,8 @@ export function About() {
               },
               {
                 label: "Hobbies",
-                value: "Hobby Cooking , Gaming , Following F1 & WEC",
+                value:
+                  "Hobby Cooking , Hardware repair (laptops, PCs, phones & tablets) , Following F1 & WEC",
               },
               { label: "Status", value: "Open to opportunities", accent: true },
             ].map((item, i) => (

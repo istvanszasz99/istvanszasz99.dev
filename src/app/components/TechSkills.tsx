@@ -1,6 +1,14 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
-import { Layers, Server, Smartphone, Box, Paintbrush } from "lucide-react";
+import {
+  Layers,
+  Server,
+  Smartphone,
+  Box,
+  Paintbrush,
+  Container,
+  Database,
+} from "lucide-react";
 
 /* ─── Data ───────────────────────────────────────────────────── */
 const skills = [
@@ -9,9 +17,8 @@ const skills = [
     icon: <Layers size={24} />,
     heading: "Frontend Development",
     body: [
-      "Dynamic Web Applications",
       "Development with React, Next.js & TypeScript",
-      "Styling with Tailwind CSS, GSAP & React Motion",
+      "Styling with Tailwind CSS & Motion",
       "Responsive Web Design & Mobile-first approach",
       "Search engine optimization (SEO)",
     ],
@@ -23,9 +30,28 @@ const skills = [
     body: [
       "Next.js, Node.js & Express.js for server-side development",
       "REST API design and implementation",
-      "CI/CD and development with Docker & Kubernetes",
-      "SQL & NoSQL Database management",
-      "Cloud deployment for serverless platforms",
+      "Authentication, validation and secure server-side logic",
+    ],
+  },
+  {
+    id: 6,
+    icon: <Container size={24} />,
+    heading: "DevOps",
+    body: [
+      "CI/CD pipelines automated with GitHub Actions",
+      "Containerised applications with Docker",
+      "Container orchestration and scaling with Kubernetes",
+      "Cloud deployment and serverless hosting for production releases",
+    ],
+  },
+  {
+    id: 7,
+    icon: <Database size={24} />,
+    heading: "Databases",
+    body: [
+      "Relational data modelling and querying with PostgreSQL & SQL",
+      "Document-based storage with MongoDB & NoSQL",
+      "Flexible, typed API data fetching with GraphQL",
     ],
   },
   {
@@ -140,14 +166,11 @@ export function TechSkills() {
         <section>
           <h3>Frontend Development</h3>
           <ul>
-            <li>Dynamic web application development</li>
             <li>React, Next.js, and TypeScript development</li>
-            <li>
-              Styling with Tailwind CSS, GSAP, and React Motion (Framer Motion)
-            </li>
+            <li>Styling with Tailwind CSS and Motion</li>
             <li>Responsive Web Design and Mobile-first approach</li>
             <li>Search Engine Optimisation (SEO) and web performance</li>
-            <li>Chrome DevTools profiling and debugging</li>
+            <li>Chrome DevTools debugging</li>
           </ul>
         </section>
         <section>
@@ -157,11 +180,31 @@ export function TechSkills() {
               Next.js, Node.js, and Express.js for server-side development
             </li>
             <li>REST API design and implementation</li>
-            <li>CI/CD pipelines and development with Docker and Kubernetes</li>
-            <li>SQL and NoSQL database management</li>
-            <li>Cloud deployment for serverless platforms</li>
+            <li>Authentication, validation, and secure server-side logic</li>
           </ul>
         </section>
+
+        <section>
+          <h3>DevOps</h3>
+          <ul>
+            <li>CI/CD pipelines automated with GitHub Actions</li>
+            <li>Containerised applications with Docker</li>
+            <li>Container orchestration and scaling with Kubernetes</li>
+            <li>
+              Cloud deployment and serverless hosting for production releases
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Databases</h3>
+          <ul>
+            <li>Relational data modelling and querying with PostgreSQL and SQL</li>
+            <li>Document-based storage with MongoDB and NoSQL</li>
+            <li>Flexible, typed API data fetching with GraphQL</li>
+          </ul>
+        </section>
+
         <section>
           <h3>Mobile Development</h3>
           <ul>
@@ -174,7 +217,8 @@ export function TechSkills() {
           <h3>3D Development</h3>
           <ul>
             <li>3D modelling with Unreal Engine 5 and Twinmotion</li>
-            <li>Game development and level design with Unreal Engine 5</li>
+            <li>Game development with Unreal Engine 5</li>
+            <li>Level design and world-building</li>
             <li>Blueprints visual scripting and C++ programming</li>
           </ul>
         </section>
