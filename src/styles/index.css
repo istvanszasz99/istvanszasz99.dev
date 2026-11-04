@@ -4,8 +4,48 @@
 
 /* ── Global resets & base styles ──────────────────────────────── */
 * {
-  cursor: none !important;
   box-sizing: border-box;
+}
+
+/* Cursors, sized to match a typical OS pointer. */
+:root {
+  --cursor-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='19' viewBox='1 1 19 26'%3E%3Cpath fill='%23ccff00' d='M2 2v20.5l5.6-5.3 3.5 8.3 3.7-1.6-3.5-8.1H19z'/%3E%3C/svg%3E") 1 1, auto;
+  --cursor-text: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='20' viewBox='0 0 10 20'%3E%3Cpath fill='%23ccff00' stroke='%23000' stroke-width='.8' d='M2 1.5h2l1 1 1-1h2v2H6.5v13H8v2H6l-1-1-1 1H2v-2h1.5v-13H2z'/%3E%3C/svg%3E") 5 10, text;
+  --cursor-grab: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23ccff00' stroke='%23000' stroke-width='1.2' stroke-linejoin='round' d='M7 12V6a1.5 1.5 0 0 1 3 0v4V4.5a1.5 1.5 0 0 1 3 0V10V5.5a1.5 1.5 0 0 1 3 0V11V7.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L3.2 15a1.6 1.6 0 0 1 2.4-2L7 14.5z'/%3E%3C/svg%3E") 10 10, grab;
+  --cursor-grabbing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23ccff00' stroke='%23000' stroke-width='1.2' stroke-linejoin='round' d='M6 12.5V10a1.5 1.5 0 0 1 3 0v1.5V9.5a1.5 1.5 0 0 1 3 0v2V9.5a1.5 1.5 0 0 1 3 0v2V10.5a1.5 1.5 0 0 1 3 0V15a6.5 6.5 0 0 1-6.5 6.5h-1a6 6 0 0 1-4.5-2.1L3.8 16a1.6 1.6 0 0 1 2.2-2z'/%3E%3C/svg%3E") 10 10, grabbing;
+}
+
+/* Used while the pointer is over light content, where a lime arrow would
+   disappear. The dark fill shows on light areas, the outline on dark ones. */
+:root {
+  --cursor-arrow-contrast: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='19' viewBox='1 1 19 26'%3E%3Cpath fill='%23050505' stroke='%23ccff00' stroke-width='1.4' stroke-linejoin='round' d='M2 2v20.5l5.6-5.3 3.5 8.3 3.7-1.6-3.5-8.1H19z'/%3E%3C/svg%3E") 1 1, auto;
+}
+
+/* Set on links and buttons too, since browsers give them their own cursor. Kept
+   in the base layer so cursor utilities can override it. */
+@layer base {
+  html,
+  a,
+  button,
+  label,
+  summary {
+    cursor: var(--cursor-arrow);
+  }
+
+  /* CursorTone sets this attribute. Switching a selector here is much cheaper
+     than changing a custom property on :root, which restyles the whole page. */
+  :root[data-cursor-tone="contrast"],
+  :root[data-cursor-tone="contrast"] a,
+  :root[data-cursor-tone="contrast"] button,
+  :root[data-cursor-tone="contrast"] label,
+  :root[data-cursor-tone="contrast"] summary {
+    cursor: var(--cursor-arrow-contrast);
+  }
+
+  input,
+  textarea {
+    cursor: var(--cursor-text);
+  }
 }
 
 html {
@@ -67,15 +107,10 @@ a {
   height: 100%;
   pointer-events: none;
   z-index: 9997;
-  opacity: 0.025;
+  opacity: 0.05;
+  transform: translateZ(0);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-}
-
-/* Section noise (non-fixed) */
-section .noise-overlay {
-  position: absolute;
-  pointer-events: none;
 }
 
 /* Input autofill dark mode */
@@ -96,6 +131,63 @@ textarea:-webkit-autofill {
 .input-field:focus {
   border-color: rgba(204, 255, 0, 0.5);
   outline: none;
+}
+
+/* Hero loops. Plain CSS, so they don't need JavaScript on every frame. */
+.hero-orb-a {
+  animation: hero-orb-a 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.hero-orb-b {
+  animation: hero-orb-b 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.hero-scroll-line {
+  transform-origin: top;
+  animation: hero-scroll-line 1.5s ease-in-out infinite;
+}
+.hero-caret {
+  animation: hero-caret 0.8s ease-in-out infinite;
+}
+@keyframes hero-orb-a {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+@keyframes hero-orb-b {
+  0%,
+  100% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+@keyframes hero-scroll-line {
+  0%,
+  100% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes hero-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Animated gradient for hero */

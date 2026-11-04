@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GitHubDark } from "@ridemountainpig/svgl-react";
+import { Button } from "./Button";
 
 const projects = [
   {
@@ -11,7 +12,7 @@ const projects = [
     description:
       "Frontend development for solidfinances.hu at MolnarCodes, a financial services website. Built with React & Tailwind CSS, and optimized for performance and all screen sizes.",
     tech: ["React", "Tailwind CSS", "Responsive Design", "Chrome DevTools"],
-    image: "./image/solidfinances.hu.png",
+    image: "./image/solidfinances.hu.webp",
     color: "#00ffcc",
     github: "",
     live: "https://solidfinances.hu",
@@ -30,7 +31,7 @@ const projects = [
       "Responsive Design",
       "Chrome DevTools",
     ],
-    image: "./image/mindenegyseg.hu.png",
+    image: "./image/mindenegyseg.hu.webp",
     color: "#00ffcc",
     github: "",
     live: "https://mindenegyseg.hu",
@@ -42,7 +43,7 @@ const projects = [
     description:
       "A 3D educational simulation, where the user can visit the campus of Óbuda University in Székesfehérvár. The Simulation was created using the Unreal Engine 5 3D graphics engine. It uses high resolution textures to make the environment and buildings look more realistic.",
     tech: ["Unreal Engine 5", "Twinmotion", "C++"],
-    image: "./image/3d-campus.png",
+    image: "./image/3d-campus.webp",
     color: "#ff5f9e",
     github: "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
     live: "",
@@ -97,7 +98,6 @@ export function Projects() {
           </article>
         ))}
       </article>
-      <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}
       <motion.div
@@ -132,30 +132,24 @@ export function Projects() {
                 </motion.h2>
               </div>
             </div>
-            <motion.a
-              href="https://github.com/istvanszasz99?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 no-underline pb-1 border-b border-white/20"
+            <motion.div
               initial={{ opacity: 0 }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      borderColor: "rgba(255,255,255,0.2)",
-                    }
-                  : {}
-              }
+              animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5 }}
-              whileHover={{ borderColor: "#ccff00" }}
-              whileTap={{ scale: 0.96, borderColor: "#ccff00" }}
             >
-              <span className="font-space text-white/50 text-[13px] tracking-[0.08em] uppercase">
-                View All on GitHub
-              </span>
-              <ArrowUpRight size={16} className="text-white/50" />
-            </motion.a>
+              <Button
+                variant="ghost"
+                shape="underline"
+                href="https://github.com/istvanszasz99?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="font-space text-[13px] tracking-[0.08em] uppercase">
+                  View All on GitHub
+                </span>
+                <ArrowUpRight size={16} />
+              </Button>
+            </motion.div>
           </div>
         </div>
 
@@ -220,52 +214,32 @@ export function Projects() {
                   {/* Links */}
                   <div className="flex items-center gap-3">
                     {project.github && (
-                      <motion.a
+                      <Button
+                        variant="ghost"
+                        shape="circle"
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full flex items-center justify-center no-underline bg-white/5 border border-white/10"
-                        animate={{
-                          scale: 1,
-                          backgroundColor: "rgba(255,255,255,0.05)",
-                        }}
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: project.color,
-                        }}
-                        whileTap={{
-                          scale: 0.92,
-                          backgroundColor: project.color,
-                        }}
+                        aria-label={`${project.title} on GitHub`}
                       >
                         <GitHubDark
                           width={16}
                           height={16}
-                          className="**:fill-current text-white"
+                          className="**:fill-current"
                         />
-                      </motion.a>
+                      </Button>
                     )}
                     {project.live && (
-                      <motion.a
+                      <Button
+                        variant="ghost"
+                        shape="circle"
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full flex items-center justify-center no-underline bg-white/5 border border-white/10"
-                        animate={{
-                          scale: 1,
-                          backgroundColor: "rgba(255,255,255,0.05)",
-                        }}
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: project.color,
-                        }}
-                        whileTap={{
-                          scale: 0.92,
-                          backgroundColor: project.color,
-                        }}
+                        aria-label={`${project.title} live site`}
                       >
-                        <ExternalLink size={16} className="text-white" />
-                      </motion.a>
+                        <ExternalLink size={16} />
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -281,40 +255,17 @@ export function Projects() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
           >
-            <motion.a
+            <Button
+              variant="ghost"
+              shape="pill"
               href="https://github.com/istvanszasz99?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/5 no-underline group"
-              animate={{
-                scale: 1,
-                borderColor: "rgba(255,255,255,0.1)",
-                backgroundColor: "rgba(255,255,255,0.05)",
-              }}
-              whileHover={{
-                borderColor: "#ccff00",
-                backgroundColor: "rgba(204,255,0,0.06)",
-              }}
-              whileTap={{
-                scale: 0.96,
-                borderColor: "#ccff00",
-                backgroundColor: "rgba(204,255,0,0.1)",
-              }}
-              transition={{ duration: 0.2 }}
             >
-              <GitHubDark
-                width={18}
-                height={18}
-                className="**:fill-current text-white/50 group-hover:text-[#ccff00] transition-colors duration-200"
-              />
-              <span className="font-space text-white/50 text-[13px] tracking-[0.08em] uppercase group-hover:text-[#ccff00] transition-colors duration-200">
-                More Projects
-              </span>
-              <ArrowUpRight
-                size={14}
-                className="text-white/30 group-hover:text-[#ccff00] transition-colors duration-200"
-              />
-            </motion.a>
+              <GitHubDark width={18} height={18} className="**:fill-current" />
+              More Projects
+              <ArrowUpRight size={14} />
+            </Button>
           </motion.div>
         </div>
       </div>

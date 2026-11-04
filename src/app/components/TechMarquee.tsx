@@ -258,6 +258,9 @@ const MarqueeRow = ({
 
     track.style.willChange = "transform";
 
+    let isVisible = true;
+    let observer: IntersectionObserver | undefined;
+
     const init = () => {
       segmentWidthRef.current = track.scrollWidth / 3;
       offsetRef.current = -segmentWidthRef.current;
@@ -267,6 +270,10 @@ const MarqueeRow = ({
       let lastTime: number | null = null;
 
       const tick = (time: number) => {
+        if (!isVisible) {
+          rafRef.current = 0;
+          return;
+        }
         if (lastTime === null) lastTime = time;
         const delta = Math.min(time - lastTime, 50);
         lastTime = time;
@@ -296,10 +303,21 @@ const MarqueeRow = ({
       };
 
       rafRef.current = requestAnimationFrame(tick);
+
+      // Stop the loop while off screen, and resume it without a time jump.
+      observer = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !rafRef.current) {
+          lastTime = null;
+          rafRef.current = requestAnimationFrame(tick);
+        }
+      });
+      observer.observe(track);
     };
 
     const frame = requestAnimationFrame(init);
     return () => {
+      observer?.disconnect();
       cancelAnimationFrame(frame);
       cancelAnimationFrame(rafRef.current);
       if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
@@ -307,7 +325,7 @@ const MarqueeRow = ({
   }, [direction, speed, x]);
 
   return (
-    <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
+    <div className="relative w-full overflow-hidden [cursor:var(--cursor-grab)] active:[cursor:var(--cursor-grabbing)]">
       {/* Left fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-transparent" />
       {/* Right fade */}
@@ -379,7 +397,6 @@ export function TechMarquee() {
           ))}
         </ul>
       </article>
-      <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}
       <motion.div

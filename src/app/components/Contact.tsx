@@ -2,6 +2,13 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { Mail, ArrowUpRight, Send, Loader2 } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
+import { Button } from "./Button";
+
+const socialArrowVariants = {
+  rest: { x: -5, opacity: 0 },
+  hover: { x: 0, opacity: 1 },
+  tap: { x: 0, opacity: 1 },
+};
 
 export function Contact() {
   const sectionRef = useRef(null);
@@ -109,7 +116,6 @@ export function Contact() {
           </dl>
         </address>
       </article>
-      <div className="noise-overlay" />
 
       {/* Lime gradient bg */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-200 h-100 pointer-events-none bg-[radial-gradient(ellipse_at_50%_100%,rgba(204,255,0,0.07)_0%,transparent_70%)]" />
@@ -198,60 +204,45 @@ export function Contact() {
             {/* Socials */}
             <div className="space-y-3">
               {socials.map((social, i) => (
-                <motion.a
+                <motion.div
                   key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel={social.rel}
-                  className="flex items-center justify-between py-4 px-5 border border-white/10 group no-underline"
                   initial={{ opacity: 0, x: -20 }}
-                  animate={
-                    isInView
-                      ? {
-                          opacity: 1,
-                          x: 0,
-                          scale: 1,
-                          borderColor: "rgba(255,255,255,0.1)",
-                          backgroundColor: "rgba(0,0,0,0)",
-                        }
-                      : {}
-                  }
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                  whileHover={{
-                    borderColor: "rgba(204,255,0,0.4)",
-                    backgroundColor: "rgba(204,255,0,0.04)",
-                    transition: { duration: 0.5 },
-                  }}
-                  whileTap={{
-                    scale: 0.98,
-                    borderColor: "rgba(204,255,0,0.4)",
-                    backgroundColor: "rgba(204,255,0,0.04)",
-                    transition: { duration: 0.1 },
-                  }}
                 >
-                  <div className="flex items-center gap-4">
-                    <social.icon
-                      width={18}
-                      height={18}
-                      className="**:fill-current text-white/40"
-                    />
-                    <div>
-                      <div className="font-space text-white/80 text-[14px]">
-                        {social.label}
-                      </div>
-                      <div className="font-space text-white/30 text-[12px]">
-                        {social.username}
-                      </div>
-                    </div>
-                  </div>
-                  <motion.div
-                    initial={{ x: -5, opacity: 0 }}
-                    whileHover={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.2 }}
+                  <Button
+                    variant="ghost"
+                    size="none"
+                    href={social.href}
+                    target="_blank"
+                    rel={social.rel}
+                    className="w-full py-4 px-5"
                   >
-                    <ArrowUpRight size={16} className="text-[#ccff00]" />
-                  </motion.div>
-                </motion.a>
+                    <span className="flex w-full items-center justify-between">
+                      <span className="flex items-center gap-4">
+                        <social.icon
+                          width={18}
+                          height={18}
+                          className={social.icon === Mail ? undefined : "**:fill-current"}
+                        />
+                        <span className="text-left">
+                          <span className="block font-space text-[14px]">
+                            {social.label}
+                          </span>
+                          <span className="block font-space text-[12px] opacity-50">
+                            {social.username}
+                          </span>
+                        </span>
+                      </span>
+                      <motion.span
+                        variants={socialArrowVariants}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ArrowUpRight size={16} />
+                      </motion.span>
+                    </span>
+                  </Button>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -335,39 +326,24 @@ export function Contact() {
                   <p className="font-space text-red-400 text-[13px]">{error}</p>
                 )}
 
-                <motion.button
+                <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-5 flex items-center justify-center gap-3 bg-[#ccff00] relative overflow-hidden group disabled:opacity-60 disabled:cursor-not-allowed"
-                  whileTap={loading ? {} : { scale: 0.98 }}
+                  slideOnHover
+                  className="w-full"
                 >
-                  {!loading && (
-                    <motion.span
-                      className="absolute inset-0 bg-white"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.35 }}
-                      style={{ originX: 0 }}
-                    />
+                  {loading ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={16} />
+                    </>
                   )}
-                  <motion.span
-                    className="relative flex items-center gap-3 font-space text-[#050505] text-[14px] font-bold tracking-widest uppercase"
-                    whileHover={loading ? {} : { x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send size={16} />
-                      </>
-                    )}
-                  </motion.span>
-                </motion.button>
+                </Button>
               </form>
             ) : (
               <motion.div

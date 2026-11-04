@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import "../styles/fonts.css";
-import { CustomCursor } from "./components/CustomCursor";
+import { CursorTone } from "./components/CursorTone";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 
@@ -33,8 +33,7 @@ export default function App() {
       {/* Global noise overlay */}
       <div className="noise-overlay" />
 
-      {/* Custom cursor */}
-      <CustomCursor />
+      <CursorTone />
 
       {/* Navigation */}
       <Navbar />

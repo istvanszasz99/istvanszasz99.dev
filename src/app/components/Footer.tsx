@@ -21,7 +21,6 @@ export function Footer() {
 
   return (
     <footer className="relative bg-[#030303] border-t border-white/5 py-16 overflow-hidden">
-      <div className="noise-overlay" />
 
       <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-12 items-center mb-16 text-center sm:text-left">
@@ -79,7 +78,7 @@ export function Footer() {
                 <Icon
                   width={16}
                   height={16}
-                  className="**:fill-current text-white/30 group-hover:text-[#ccff00] transition-colors duration-300"
+                  className={`${Icon === Mail ? "" : "**:fill-current"} text-white/30 group-hover:text-[#ccff00] transition-colors duration-300`}
                 />
                 <span className="font-space text-white/30 text-[13px] tracking-[0.06em] group-hover:text-[#ccff00] transition-colors duration-300">
                   {label}

@@ -332,7 +332,6 @@ export function Experience() {
           </ul>
         </section>
       </article>
-      <div className="noise-overlay" />
 
       {/* Section label — absolute, side positioned (matches About) */}
       <motion.div
