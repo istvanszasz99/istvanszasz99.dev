@@ -9,6 +9,7 @@ import {
   Container,
   Database,
 } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 import { Button } from "./Button";
 
 /* ─── Data ───────────────────────────────────────────────────── */
@@ -16,78 +17,32 @@ const skills = [
   {
     id: 1,
     icon: <Layers size={24} />,
-    heading: "Frontend Development",
-    body: [
-      "Development with React, Next.js & TypeScript",
-      "Styling with Tailwind CSS & Motion",
-      "Responsive Web Design & Mobile-first approach",
-      "Search engine optimization (SEO)",
-    ],
   },
   {
     id: 2,
     icon: <Server size={24} />,
-    heading: "Backend Development",
-    body: [
-      "Next.js, Node.js & Express.js for server-side development",
-      "REST API design and implementation",
-      "Authentication, validation and secure server-side logic",
-    ],
   },
   {
     id: 6,
     icon: <Container size={24} />,
-    heading: "DevOps",
-    body: [
-      "CI/CD pipelines automated with GitHub Actions",
-      "Containerised applications with Docker",
-      "Container orchestration and scaling with Kubernetes",
-      "Cloud deployment and serverless hosting for production releases",
-    ],
   },
   {
     id: 7,
     icon: <Database size={24} />,
-    heading: "Databases",
-    body: [
-      "Relational data modelling and querying with PostgreSQL & SQL",
-      "Document-based storage with MongoDB & NoSQL",
-      "Flexible, typed API data fetching with GraphQL",
-    ],
   },
   {
     id: 3,
     icon: <Smartphone size={24} />,
-    heading: "Mobile Development",
-    body: [
-      "Cross-platform apps with React Native",
-      "development with Android Studio and Expo",
-      "Mobile UI/UX best practices",
-    ],
   },
   {
     id: 4,
     icon: <Box size={24} />,
-    heading: "3D Development",
-    body: [
-      "3D modelling with Unreal Engine 5 & Twinmotion",
-      "Game development with Unreal Engine 5",
-      "Level design and world-building",
-      "Blueprints visual scripting & C++ programming",
-    ],
   },
   {
     id: 5,
     icon: <Paintbrush size={24} />,
-    heading: "UI/UX Design",
-    body: [
-      "UI design & UX research principles",
-      "Design systems & component libraries",
-      "Responsive design for desktop, tablet and mobile",
-      "Wireframing and prototyping with Figma",
-    ],
   },
-];
+] as const;
 
 /* ─── Stacking card ──────────────────────────────────────────── */
 function SkillCard({
@@ -98,6 +53,8 @@ function SkillCard({
   i: number;
 }) {
   const ref = useRef(null);
+  const { t } = useLanguage();
+  const text = t.skills.cards[skill.id];
 
   // While this card is pinned to the top, scale it down as the next one slides in
   const { scrollYProgress } = useScroll({
@@ -116,14 +73,14 @@ function SkillCard({
         top: `${88 + i * 20}px`,
         zIndex: i + 1,
       }}
-      className="sticky w-full p-8 border border-white/10 flex flex-col justify-start items-start gap-4 bg-[#0a0a0a] origin-top"
+      className="sticky w-full p-8 border border-line-10 flex flex-col justify-start items-start gap-4 bg-canvas-raised origin-top"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.7, delay: i * 0.08, ease: [0.33, 1, 0.68, 1] }}
     >
       <motion.div
-        className="text-[#ccff00]"
+        className="text-brand-ink"
         initial={{ scale: 0.5, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
@@ -131,16 +88,16 @@ function SkillCard({
       >
         {skill.icon}
       </motion.div>
-      <span className="text-white text-xl font-bold font-['Roboto'] leading-7">
-        {skill.heading}
+      <span className="text-ink text-xl font-bold font-['Roboto'] leading-7">
+        {text.heading}
       </span>
       <ul className="list-none m-0 p-0 flex flex-col gap-1.5">
-        {skill.body.map((item, j) => (
+        {text.body.map((item, j) => (
           <li
             key={j}
-            className="flex items-center gap-2 text-white/40 text-base font-normal font-['Roboto'] leading-6"
+            className="flex items-center gap-2 text-ink-40 text-base font-normal font-['Roboto'] leading-6"
           >
-            <span className="text-[#ccff00] shrink-0 text-[8px]">◆</span>
+            <span className="text-brand-ink shrink-0 text-[8px]">◆</span>
             {item}
           </li>
         ))}
@@ -153,13 +110,14 @@ function SkillCard({
 export function TechSkills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const { t } = useLanguage();
 
   return (
     <section
       id="skills"
       ref={ref}
-      aria-label="Technical skills of István Zoltán Szász"
-      className="relative bg-[#050505] py-32"
+      aria-label={t.skills.ariaLabel}
+      className="relative bg-canvas py-32"
     >
       {/* GEO: sr-only skills summary for AI crawlers */}
       <article className="sr-only" aria-hidden="true">
@@ -241,9 +199,9 @@ export function TechSkills() {
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <div className="w-6 h-px bg-[#ccff00]" />
-        <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          Tech Skills
+        <div className="w-6 h-px bg-brand-ink" />
+        <span className="font-space text-ink-30 text-[11px] tracking-[0.2em] uppercase">
+          {t.skills.label}
         </span>
       </motion.div>
 
@@ -256,7 +214,7 @@ export function TechSkills() {
               <div className="self-stretch flex flex-col justify-start items-start gap-4">
                 <div className="overflow-hidden">
                   <motion.h2
-                    className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
+                    className="font-bebas text-ink text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
                     initial={{ y: "110%" }}
                     animate={isInView ? { y: "0%" } : {}}
                     transition={{
@@ -265,47 +223,39 @@ export function TechSkills() {
                       ease: [0.33, 1, 0.68, 1],
                     }}
                   >
-                    TECH <span className="text-[#ccff00]">SKILLS</span>
+                    {t.skills.headingWhite}{" "}
+                    <span className="text-brand-ink">
+                      {t.skills.headingAccent}
+                    </span>
                   </motion.h2>
                 </div>
 
                 <motion.p
-                  className="self-stretch text-white/40 text-lg font-normal font-['Roboto'] leading-7"
+                  className="self-stretch text-ink-40 text-lg font-normal font-['Roboto'] leading-7"
                   initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.7, delay: 0.25 }}
                 >
-                  Proficient across the modern web stack—React, Next.js,
-                  TypeScript, and Node.js—delivering scalable applications with
-                  responsive UI, optimized performance, and production-grade
-                  deployment workflows using Docker, Kubernetes, and cloud
-                  platforms.
+                  {t.skills.paragraphs[0]}
                 </motion.p>
 
                 {/* Additional description */}
                 <motion.p
-                  className="self-stretch text-white/40 text-base font-normal font-['Roboto'] leading-7"
+                  className="self-stretch text-ink-40 text-base font-normal font-['Roboto'] leading-7"
                   initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.7, delay: 0.3 }}
                 >
-                  With expertise in frontend frameworks, backend architecture,
-                  mobile development, and emerging technologies like 3D graphics
-                  and game engines, I create comprehensive digital solutions
-                  that combine aesthetic design with robust functionality.
+                  {t.skills.paragraphs[1]}
                 </motion.p>
 
                 <motion.p
-                  className="self-stretch text-white/40 text-base font-normal font-['Roboto'] leading-7"
+                  className="self-stretch text-ink-40 text-base font-normal font-['Roboto'] leading-7"
                   initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.7, delay: 0.35 }}
                 >
-                  Beyond technical proficiency, I'm passionate about solving
-                  complex problems through clean, maintainable code and creating
-                  seamless user experiences. I stay current with industry trends
-                  and best practices, constantly exploring new technologies to
-                  expand my skill set and deliver innovative solutions.
+                  {t.skills.paragraphs[2]}
                 </motion.p>
               </div>
             </div>
@@ -318,7 +268,7 @@ export function TechSkills() {
               transition={{ duration: 0.7, delay: 0.35 }}
             >
               <Button variant="ghost" href="#tech-stack">
-                View Tools &amp; Technologies
+                {t.skills.cta}
               </Button>
             </motion.div>
           </div>

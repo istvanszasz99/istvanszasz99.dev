@@ -3,6 +3,8 @@ import "../styles/fonts.css";
 import { CursorTone } from "./components/CursorTone";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
+import { LanguageProvider } from "./i18n/LanguageContext";
+import { ThemeProvider } from "./theme/ThemeContext";
 
 // Below-the-fold components — loaded only after the initial paint
 const About = lazy(() =>
@@ -29,33 +31,35 @@ const Footer = lazy(() =>
 
 export default function App() {
   return (
-    <>
-      {/* Global noise overlay */}
-      <div className="noise-overlay" />
+    <ThemeProvider>
+      <LanguageProvider>
+        {/* Global noise overlay */}
+        <div className="noise-overlay" />
 
-      <CursorTone />
+        <CursorTone />
 
-      {/* Navigation */}
-      <Navbar />
+        {/* Navigation */}
+        <Navbar />
 
-      {/* Main content */}
-      <main>
-        {/* Hero is eager — it's the LCP element */}
-        <Hero />
-        {/* Everything below the fold is lazily loaded */}
+        {/* Main content */}
+        <main>
+          {/* Hero is eager — it's the LCP element */}
+          <Hero />
+          {/* Everything below the fold is lazily loaded */}
+          <Suspense fallback={null}>
+            <About />
+            <TechSkills />
+            <TechMarquee />
+            <Experience />
+            <Projects />
+            <Contact />
+          </Suspense>
+        </main>
+
         <Suspense fallback={null}>
-          <About />
-          <TechSkills />
-          <TechMarquee />
-          <Experience />
-          <Projects />
-          <Contact />
+          <Footer />
         </Suspense>
-      </main>
-
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-    </>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

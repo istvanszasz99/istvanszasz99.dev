@@ -5,6 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Applies the visitor's saved theme and language before the first paint -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
+        if (localStorage.getItem("lang") === "hu") document.documentElement.lang = "hu";
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Preconnect for Google Fonts to avoid render-blocking DNS/TLS handshakes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -198,7 +208,7 @@
         "name": "István Zoltán Szász — Portfolio",
         "description": "Portfolio website of István Zoltán Szász, Junior Full-Stack Developer from Hungary.",
         "author": { "@id": "https://istvanszasz99.dev/#person" },
-        "inLanguage": "en-US"
+        "inLanguage": ["en-US", "hu-HU"]
       },
 
       {

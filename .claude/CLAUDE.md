@@ -19,7 +19,9 @@ Personal portfolio of István Zoltán Szász, live at https://istvanszasz99.dev.
 ## Conventions
 
 - Components are named exports. `App.tsx` adapts them for `lazy()`, and everything below the hero is lazy-loaded.
-- Content is hardcoded in arrays at the top of each section component. There is no CMS or shared data file.
+- Visible text lives in `src/app/i18n/en.ts` and `hu.ts`, read through `useLanguage()`. `hu.ts` must match the shape of `en.ts`, or `tsc` fails. Links, logos, colors and tech names stay in arrays at the top of each section component, matched to their text by `id`.
+- The `sr-only` blocks, `<noscript>`, meta tags, JSON-LD and `llms.txt` stay in English, for crawlers.
+- Theme colors are tokens in `src/styles/index.css`, read through `useTheme()` only when a value can't be a CSS class.
 - Treat career facts, dates and links as the owner's to supply. Don't invent or embellish them.
 
 ## Gotchas
@@ -28,7 +30,7 @@ Personal portfolio of István Zoltán Szász, live at https://istvanszasz99.dev.
 - Wrangler uploads `dist/` as it is, so a deploy without a build ships old files.
 - `pnpm dev` alone cannot send contact email. Run `pnpm dev:cf` alongside it, with `RESEND_API_KEY` in `.dev.vars`. Production uses `wrangler secret put RESEND_API_KEY`.
 - A valid `POST /api/contact` sends a real email. To test without sending one, post `{}` and expect a 400.
-- Profile facts are duplicated by hand in the visible components, the `sr-only` blocks, `index.html` and `public/llms.txt`. A content change isn't finished until they all agree. Use the `/portfolio-tasks` skill.
+- Profile facts are duplicated by hand in both dictionaries, the `sr-only` blocks, `index.html` and `public/llms.txt`. A content change isn't finished until they all agree. Use the `/portfolio-tasks` skill.
 
 ## Known issues
 
@@ -37,7 +39,7 @@ Remove an entry when it is fixed.
 - `src/worker.ts` puts form input into the email HTML without escaping it.
 - `src/worker.ts` ignores the `error` field returned by `resend.emails.send`, so a failed send can report success. It also has no rate limiting.
 - `index.html` and `public/site.webmanifest` reference favicon files that don't exist in `public/`.
-- `README.md` recommends npm and claims dark mode support, and `.env.example` refers to Cloudflare Pages. All three are out of date.
+- `README.md` recommends npm, and `.env.example` refers to Cloudflare Pages. Both are out of date.
 
 ## Agents
 

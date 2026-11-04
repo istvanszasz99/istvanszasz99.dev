@@ -56,9 +56,9 @@ const primarySlideVariants: Variants = {
 };
 
 const ghostVariants: Variants = {
-  rest: { scale: 1, borderColor: "rgba(255,255,255,0.2)", color: "#ffffff" },
-  hover: { scale: 1.02, borderColor: "#ccff00", color: "#ccff00" },
-  tap: { scale: 0.96, borderColor: "#ccff00", color: "#ccff00" },
+  rest: { scale: 1 },
+  hover: { scale: 1.02 },
+  tap: { scale: 0.96 },
 };
 
 const labelSlideVariants: Variants = {
@@ -75,8 +75,10 @@ const wipeVariants: Variants = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "overflow-hidden bg-[#ccff00] text-[#050505] font-space text-[14px] font-semibold tracking-[0.08em] uppercase",
-  ghost: "text-white text-base font-['Roboto']",
+    "overflow-hidden bg-brand-fill text-on-brand font-space text-[14px] font-semibold tracking-[0.08em] uppercase",
+  // Colours are CSS rather than Motion values, so they follow the theme switch.
+  ghost:
+    "text-ink border-line-20 hover:text-brand-ink hover:border-brand-ink active:text-brand-ink active:border-brand-ink transition-colors duration-150 text-base font-['Roboto']",
 };
 
 const shapeClasses: Record<ButtonShape, string> = {
@@ -118,11 +120,11 @@ export function Button({
     transition: variant === "ghost" ? { duration: 0.15 } : undefined,
     className: [
       "relative inline-flex items-center justify-center no-underline",
-      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ccff00]",
+      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink",
       "disabled:opacity-60 disabled:cursor-not-allowed",
       variantClasses[variant],
       variant === "ghost" &&
-        (underlined ? "border-b border-white/20" : "border border-white/20"),
+        (underlined ? "border-b" : "border"),
       shapeClasses[shape],
       shape === "circle" || underlined ? "" : paddingClasses[variant][size],
       className,
@@ -136,7 +138,7 @@ export function Button({
       {variant === "primary" && (
         <motion.span
           aria-hidden="true"
-          className="absolute inset-0 bg-white"
+          className="absolute inset-0 bg-brand-wipe"
           variants={wipeVariants}
           transition={{ duration: 0.35 }}
           style={{ originX: 0 }}

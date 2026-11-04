@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: istvanszasz99-design-analysis
-description: A dark-only editorial portfolio for István Zoltán Szász. The system anchors on near-black surfaces with oversized condensed Bebas Neue headlines, a single electric-lime accent, and hard-edged primary controls. Brand voltage comes from the black/lime pairing, used with restraint so that one word or one action carries each view. Type voice runs Bebas Neue for display, Space Grotesk for tracked uppercase labels and short copy, and Roboto for titles and reading text. Grain, a faint line grid, and soft lime glows add atmosphere without any drop shadows.
+description: A dark-first editorial portfolio for István Zoltán Szász, with an optional light theme. The system anchors on near-black surfaces with oversized condensed Bebas Neue headlines, a single electric-lime accent, and hard-edged primary controls. Brand voltage comes from the black/lime pairing, used with restraint so that one word or one action carries each view. Type voice runs Bebas Neue for display, Space Grotesk for tracked uppercase labels and short copy, and Roboto for titles and reading text. Grain, a faint line grid, and soft lime glows add atmosphere without any drop shadows.
 
 colors:
   primary: "#ccff00"
@@ -358,7 +358,7 @@ The page has four surface modes that pace the scroll:
 3. **Raised card** (`{colors.surface-raised}`) — the stacking skill cards
 4. **Sunken footer** (`{colors.surface-sunken}`) — closes the page
 
-The site is **dark only**. The light and `.dark` variables in `src/styles/theme.css` are unused shadcn scaffolding, and no component uses a `dark:` variant. Components use literal Tailwind values such as `bg-[#ccff00]` and `text-white/40`, so this file is the only named source for those values.
+The site is **dark by default, with a light theme** the visitor can switch to. The tokens in this file describe dark, and **Light theme** under Colors lists how they change. The variables in `src/styles/theme.css` are unused shadcn scaffolding, and no component uses a `dark:` variant. Components use the theme tokens in `src/styles/index.css`, such as `bg-canvas` and `text-ink-40`.
 
 **Key Characteristics:**
 - Near-black canvas (`{colors.surface}` — #050505) with pure white headlines (`{colors.on-surface}` — #ffffff).
@@ -408,6 +408,35 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 - **Tech brand colors** in `TechMarquee.tsx` are data for the marquee only.
 - **Code colors** (`{colors.code-keyword}` — #7c9eff, `{colors.code-string}` — #88d8b0): Only for the About card's `profile.ts` window, along with its red, yellow and green window dots.
 
+### Light theme
+
+`<html data-theme="light">` overrides the variables in `src/styles/index.css`. In code, use the token rather than a literal, so a color follows the theme.
+
+| Code token | Used for | Dark | Light |
+|---|---|---|---|
+| `canvas` | `{colors.surface}` | #050505 | #f7f7f2 |
+| `canvas-alt` | `{colors.surface-alt}` | #080808 | #efefe8 |
+| `canvas-raised` | `{colors.surface-raised}` | #0a0a0a | #ffffff |
+| `canvas-sunken` | `{colors.surface-sunken}` | #030303 | #e8e8e0 |
+| `ink` | Headlines and titles | #ffffff | #050505 |
+| `ink-80` to `ink-20` | Text hierarchy | white at that opacity | near-black at 88% to 60% |
+| `line-20`, `line-10`, `line-5` | Hairlines and faint fills | white at that opacity | near-black at 20%, 12%, 8% |
+| `brand-fill` | Primary buttons, status dots, logo mark, text selection | #ccff00 | #4d6600 |
+| `on-brand` | Text and icons on `brand-fill` | #050505 | #f7f7f2 |
+| `brand-ink` | Accent text, lines and icons | #ccff00 | #4d6600 |
+| `brand-hairline` | Input focus border | lime at 50% | olive at 50% |
+| `brand-wipe` | Primary button hover layer | #ffffff | #3a4d00 |
+| `--glow` | Radial glows in the hero and contact sections | lime | olive |
+| `card-accent` | Code values and soft-skill icons in the `profile.ts` card | #ccff00 | #ffffff |
+| `error` | Form error text | #f87171 | #b91c1c |
+
+- **The light theme has no lime or yellow.** Olive #4d6600 replaces lime everywhere, and light-theme cursors are near-black with a white border. Third-party brand logos, such as JavaScript, and the `profile.ts` window dots keep their own colors.
+- **Ink steps are separate values, not one color at reduced opacity.** Black needs more opacity than white to stay readable, so every light step used for text passes WCAG AA on its background.
+- **The `profile.ts` card stays dark in both themes**, as a code-editor panel, so it keeps literal values, apart from `card-accent`. Its red, amber and green window dots look the same in both themes.
+- **Project colors** have a darker `colorLight` per project: #00705c and #b8185e.
+- **Marquee icons that would vanish on light** set an `iconLight` variant. MongoDB keeps its green logo in both themes, and Unreal Engine keeps its white logo on a round near-black badge.
+- **Motion can't read these tokens**, so theme-dependent colors belong in CSS classes, not in Motion props.
+
 ## Typography
 
 ### Font Family
@@ -430,7 +459,7 @@ Display tokens hold the largest size of a fluid clamp.
 | `{typography.display-xl}` | clamp(80px, 14vw, 200px) | 400 | 0.9 | -0.02em | Hero name |
 | `{typography.display-lg}` | clamp(60px, 10vw, 140px) | 400 | 0.9 | -0.02em | "LET'S BUILD SOMETHING GREAT" |
 | `{typography.display-md}` | clamp(60px, 8vw, 110px) | 400 | 0.9 | 0 | Section headings (About is a fixed 100px) |
-| `{typography.display-sm}` | 48px | 400 | 1 | 0 | Hero stats and footer wordmark (About stats are 42px, the sent message is 40px) |
+| `{typography.display-sm}` | 48px | 400 | 1 | 0 | Hero stats and footer wordmark (the sent message is 40px) |
 | `{typography.display-xs}` | 24px | 400 | 1.33 | 0.1em | Experience group headings |
 | `{typography.title-lg}` | 36px | 700 | 48px | 0 | Project titles |
 | `{typography.title-md}` | 20px | 700 | 28px | 0 | Skill and experience titles |
@@ -519,9 +548,11 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`top-nav-cta`** — The Contact link, a small `button-ghost` pill.
 
+**Nav switches** — `NavSwitch.tsx`: two 56 × 28px pills at the far right of the bar, for theme (moon and sun) and language (EN and HU). The default option is on the left, and a thumb in `ink` (white in dark, near-black in light) slides to the active one. The tap area extends to 44px high through a pseudo-element. Below `lg` they sit left of the hamburger. The wordmark is hidden below 480px and from `lg` to `xl`, where the bar has no room for it, leaving the "IS" mark. Dark and EN are the defaults, and the visitor's choice is saved in `localStorage` and applied by an inline script in `index.html` before first paint.
+
 ### Buttons
 
-**`button-primary`** — Lime fill, near-black uppercase `{typography.button}`, square corners, 16px × 32px padding. **`button-primary-hover`** wipes a white layer in from the left over 0.35s. It scales to 1.03 on hover and 0.97 on tap. **`button-primary-disabled`** shows the form's loading state.
+**`button-primary`** — Lime fill, near-black uppercase `{typography.button}`, square corners, 16px × 32px padding. **`button-primary-hover`** wipes a white layer (`brand-wipe`, darker olive in the light theme) in from the left over 0.35s. It scales to 1.03 on hover and 0.97 on tap. **`button-primary-disabled`** shows the form's loading state.
 
 **`button-ghost`** — Transparent with a `{colors.hairline-strong}` border, white `{typography.button-ghost}` label and 12px × 24px padding. **`button-ghost-hover`** turns the border, label and icons lime, scaling to 1.02 on hover and 0.96 on tap over 0.15s.
 
@@ -541,9 +572,9 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`section-label`** — A lime rule and a faint uppercase word in the section's top-left corner.
 
-**`stat-value`** + **`stat-label`** — Count-up number with a `+` suffix, above a small uppercase label.
+**`stat-value`** + **`stat-label`** — Count-up number, above a small uppercase label, with a `+` suffix on open-ended totals only (projects and technologies, not certifications). Hero only.
 
-**`profile-visual-card`** + **`profile-visual-tint`** — The About card's rounded container with a diagonal gradient.
+**`profile-visual-card`** + **`profile-visual-tint`** — The About card's rounded container with a diagonal gradient. Below the code window, a soft-skills row shows three Lucide icons in `card-accent` with short labels.
 
 **`code-window-card`** — The translucent `profile.ts` window, with `{colors.surface}` standing in for `bg-black/40`, plus **`code-keyword`** and **`code-string`** text.
 
@@ -585,18 +616,19 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`scrollbar-thumb`** — 4px lime scrollbar, darkening on hover.
 
-**Cursor** — CSS cursors in `index.css`, sized like an OS pointer: a borderless 14 × 19px lime arrow, plus lime I-beam and grab hands with a black outline for text fields and the marquee. `CursorTone.tsx` switches the arrow to a near-black fill with a lime outline over light text, light fills, images and icons. Disabled buttons keep the native not-allowed cursor.
+**Cursor** — CSS cursors in `index.css`, sized like an OS pointer: a borderless 14 × 19px lime arrow, plus lime I-beam and grab hands with a black outline for text fields and the marquee. `CursorTone.tsx` switches the arrow to a near-black fill with a lime outline over light text, light fills, images and icons, In the light theme, the arrow and grab hand are near-black with a white border, and `CursorTone.tsx` turns them white with a near-black border over dark fills, the dark `profile.ts` card, dark areas of images, large dark icons and the glyphs of dark text at 40px or larger. Smaller dark text and icons keep the dark cursor, because a white one would disappear on the page around them. Disabled buttons keep the native not-allowed cursor.
 
 **Motion standards**
 - Reveal easing: `[0.33, 1, 0.68, 1]`.
 - Durations: 0.5–0.9s for reveals, 0.2–0.35s for hovers.
-- Headlines rise from `y: "110%"` inside an `overflow-hidden` wrapper.
+- Headlines rise from `y: "110%"` inside an `overflow-hidden` wrapper. In Hungarian, `index.css` adds top padding to these so the mask doesn't cut off accents.
 - Scroll reveals use `useInView` with `{ once: true, margin: "-20% 0px" }`, or `whileInView` with `viewport={{ once: true }}`.
 
 ## Do's and Don'ts
 
 ### Do
-- Anchor every section on a near-black surface.
+- Anchor every section on a `canvas` surface.
+- Check new work in both themes and both languages. Hungarian text often runs longer.
 - Keep one lime focal point per view: one headline word and one main action.
 - Use Bebas Neue for every display headline, and split it into white and lime parts.
 - Keep reading text at `{colors.body}` or brighter.
@@ -607,7 +639,8 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 ### Don't
 - Don't add a second brand accent, or use project colors outside their row.
 - Don't round primary buttons or inputs, and don't add drop shadows.
-- Don't use grey hex values for text. Use white with opacity.
+- Don't use grey hex values for text, or `text-white` outside the `profile.ts` card. Use the `ink` steps.
+- Don't use a literal lime in components. Use `brand-fill` or `brand-ink`, so the light theme stays free of yellow.
 - Don't use `{colors.muted}` or `{colors.faint}` for information a visitor needs.
 - Don't add new font families.
 - Don't animate layout properties such as `width` or `top` for continuous effects. Use `transform` and `opacity`.
@@ -641,7 +674,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 1. Focus on ONE component at a time. Reference its YAML key (`{component.button-primary}`, `{component.skill-card}`).
 2. Variants of an existing component (`-hover`, `-disabled`, `-scrolled`) live as separate entries in `components:`.
-3. Use `{token.refs}` in this document. In code, use the matching literal Tailwind value, as the components do today.
+3. Use `{token.refs}` in this document. In code, use the matching theme token from `src/styles/index.css`.
 4. Headlines stay uppercase Bebas Neue, and labels stay tracked uppercase Space Grotesk.
 5. Black + white + lime is the trinity. Don't introduce a new surface hue.
 6. When in doubt about emphasis, go bigger before adding another accent.
@@ -651,9 +684,9 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 - **Roboto isn't loaded.** `font-['Roboto']` depends on the visitor having it installed and has no fallback declared.
 - **No reduced-motion support.** Nothing honors `prefers-reduced-motion`.
-- **Low-contrast labels.** `{component.section-label}`, `{component.footer}`, `{component.footer-legal}` and several 10–12px labels fall below WCAG AA.
+- **Low-contrast labels.** In the dark theme, `{component.section-label}`, `{component.footer}`, `{component.footer-legal}` and several 10–12px labels fall below WCAG AA.
 - **Small hamburger target.** The menu button is a 22px icon with no padding.
 - **Marquee font.** `tech-pill` names set no font family and inherit the browser default sans stack.
 - **Hard-coded About heading.** Its fixed 100px with `whitespace-nowrap` ignores the fluid `{typography.display-md}` scale.
-- **Tokens don't exist in code.** Colors are hardcoded per component and aren't generated from this file. `src/styles/theme.css` holds unrelated scaffolding values.
+- **Tokens are written by hand.** The theme tokens in `src/styles/index.css` aren't generated from this file, so keep the two in step. `src/styles/theme.css` holds unrelated scaffolding values.
 - **CSS-shorthand padding.** Two-value `padding` entries follow CSS shorthand, which is broader than the single dimension in Google's token schema, so the linter may warn about them.

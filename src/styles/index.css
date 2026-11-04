@@ -2,6 +2,120 @@
 @import "./tailwind.css";
 @import "./theme.css";
 
+/* ── Theme tokens ─────────────────────────────────────────────── */
+/* Dark is the default. Light overrides it through <html data-theme="light">.
+   The ink steps aren't one colour at reduced opacity: black text needs more
+   opacity than white text to stay readable. Motion can't read these, so
+   ThemeContext.tsx repeats the ones it animates. */
+:root {
+  --canvas: #050505;
+  --canvas-alt: #080808;
+  --canvas-raised: #0a0a0a;
+  --canvas-sunken: #030303;
+
+  --ink: #ffffff;
+  --ink-80: rgb(255 255 255 / 0.8);
+  --ink-70: rgb(255 255 255 / 0.7);
+  --ink-60: rgb(255 255 255 / 0.6);
+  --ink-50: rgb(255 255 255 / 0.5);
+  --ink-45: rgb(255 255 255 / 0.45);
+  --ink-40: rgb(255 255 255 / 0.4);
+  --ink-35: rgb(255 255 255 / 0.35);
+  --ink-30: rgb(255 255 255 / 0.3);
+  --ink-20: rgb(255 255 255 / 0.2);
+
+  --line-20: rgb(255 255 255 / 0.2);
+  --line-10: rgb(255 255 255 / 0.1);
+  --line-5: rgb(255 255 255 / 0.05);
+
+  --brand-fill: #ccff00;
+  --on-brand: #050505;
+  --brand-ink: #ccff00;
+  --brand-hairline: rgb(204 255 0 / 0.5);
+  --brand-wipe: #ffffff;
+  --glow: 204 255 0;
+  --card-accent: #ccff00;
+  --error: #f87171;
+
+  --scrollbar-thumb: #ccff00;
+  --scrollbar-thumb-hover: #aada00;
+  --grid-line: rgb(255 255 255 / 0.1);
+  --noise-opacity: 0.05;
+}
+
+:root[data-theme="light"] {
+  --canvas: #f7f7f2;
+  --canvas-alt: #efefe8;
+  --canvas-raised: #ffffff;
+  --canvas-sunken: #e8e8e0;
+
+  --ink: #050505;
+  --ink-80: rgb(5 5 5 / 0.88);
+  --ink-70: rgb(5 5 5 / 0.82);
+  --ink-60: rgb(5 5 5 / 0.76);
+  --ink-50: rgb(5 5 5 / 0.72);
+  --ink-45: rgb(5 5 5 / 0.68);
+  --ink-40: rgb(5 5 5 / 0.64);
+  --ink-35: rgb(5 5 5 / 0.62);
+  --ink-30: rgb(5 5 5 / 0.6);
+  --ink-20: rgb(5 5 5 / 0.6);
+
+  --line-20: rgb(5 5 5 / 0.2);
+  --line-10: rgb(5 5 5 / 0.12);
+  --line-5: rgb(5 5 5 / 0.08);
+
+  --brand-fill: #4d6600;
+  --on-brand: #f7f7f2;
+  --brand-ink: #4d6600;
+  --brand-hairline: rgb(77 102 0 / 0.5);
+  --brand-wipe: #3a4d00;
+  --glow: 77 102 0;
+  --card-accent: #ffffff;
+  --error: #b91c1c;
+
+  --scrollbar-thumb: #4d6600;
+  --scrollbar-thumb-hover: #3a4d00;
+  --grid-line: rgb(5 5 5 / 0.5);
+  --noise-opacity: 0.03;
+
+  /* Near-black with a white border. CursorTone switches to the white versions,
+     with a near-black border, over dark content. */
+  --cursor-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='19' viewBox='1 1 19 26'%3E%3Cpath fill='%23050505' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round' d='M2 2v20.5l5.6-5.3 3.5 8.3 3.7-1.6-3.5-8.1H19z'/%3E%3C/svg%3E") 1 1, auto;
+  --cursor-arrow-contrast: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='19' viewBox='1 1 19 26'%3E%3Cpath fill='%23fff' stroke='%23050505' stroke-width='1.4' stroke-linejoin='round' d='M2 2v20.5l5.6-5.3 3.5 8.3 3.7-1.6-3.5-8.1H19z'/%3E%3C/svg%3E") 1 1, auto;
+  --cursor-text: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='20' viewBox='0 0 10 20'%3E%3Cpath fill='%23050505' stroke='%23fff' stroke-width='.8' d='M2 1.5h2l1 1 1-1h2v2H6.5v13H8v2H6l-1-1-1 1H2v-2h1.5v-13H2z'/%3E%3C/svg%3E") 5 10, text;
+  --cursor-grab: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23050505' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round' d='M7 12V6a1.5 1.5 0 0 1 3 0v4V4.5a1.5 1.5 0 0 1 3 0V10V5.5a1.5 1.5 0 0 1 3 0V11V7.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L3.2 15a1.6 1.6 0 0 1 2.4-2L7 14.5z'/%3E%3C/svg%3E") 10 10, grab;
+  --cursor-grab-contrast: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' stroke='%23050505' stroke-width='1.2' stroke-linejoin='round' d='M7 12V6a1.5 1.5 0 0 1 3 0v4V4.5a1.5 1.5 0 0 1 3 0V10V5.5a1.5 1.5 0 0 1 3 0V11V7.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L3.2 15a1.6 1.6 0 0 1 2.4-2L7 14.5z'/%3E%3C/svg%3E") 10 10, grab;
+  --cursor-grabbing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23050505' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round' d='M6 12.5V10a1.5 1.5 0 0 1 3 0v1.5V9.5a1.5 1.5 0 0 1 3 0v2V9.5a1.5 1.5 0 0 1 3 0v2V10.5a1.5 1.5 0 0 1 3 0V15a6.5 6.5 0 0 1-6.5 6.5h-1a6 6 0 0 1-4.5-2.1L3.8 16a1.6 1.6 0 0 1 2.2-2z'/%3E%3C/svg%3E") 10 10, grabbing;
+  --cursor-grabbing-contrast: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' stroke='%23050505' stroke-width='1.2' stroke-linejoin='round' d='M6 12.5V10a1.5 1.5 0 0 1 3 0v1.5V9.5a1.5 1.5 0 0 1 3 0v2V9.5a1.5 1.5 0 0 1 3 0v2V10.5a1.5 1.5 0 0 1 3 0V15a6.5 6.5 0 0 1-6.5 6.5h-1a6 6 0 0 1-4.5-2.1L3.8 16a1.6 1.6 0 0 1 2.2-2z'/%3E%3C/svg%3E") 10 10, grabbing;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-canvas-alt: var(--canvas-alt);
+  --color-canvas-raised: var(--canvas-raised);
+  --color-canvas-sunken: var(--canvas-sunken);
+  --color-ink: var(--ink);
+  --color-ink-80: var(--ink-80);
+  --color-ink-70: var(--ink-70);
+  --color-ink-60: var(--ink-60);
+  --color-ink-50: var(--ink-50);
+  --color-ink-45: var(--ink-45);
+  --color-ink-40: var(--ink-40);
+  --color-ink-35: var(--ink-35);
+  --color-ink-30: var(--ink-30);
+  --color-ink-20: var(--ink-20);
+  --color-line-20: var(--line-20);
+  --color-line-10: var(--line-10);
+  --color-line-5: var(--line-5);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-hairline: var(--brand-hairline);
+  --color-brand-fill: var(--brand-fill);
+  --color-on-brand: var(--on-brand);
+  --color-card-accent: var(--card-accent);
+  --color-brand-wipe: var(--brand-wipe);
+  --color-error: var(--error);
+}
+
 /* ── Global resets & base styles ──────────────────────────────── */
 * {
   box-sizing: border-box;
@@ -16,7 +130,8 @@
 }
 
 /* Used while the pointer is over light content, where a lime arrow would
-   disappear. The dark fill shows on light areas, the outline on dark ones. */
+   disappear. The dark fill shows on light areas, the outline on dark ones.
+   The light theme replaces it with a white arrow for dark content. */
 :root {
   --cursor-arrow-contrast: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='19' viewBox='1 1 19 26'%3E%3Cpath fill='%23050505' stroke='%23ccff00' stroke-width='1.4' stroke-linejoin='round' d='M2 2v20.5l5.6-5.3 3.5 8.3 3.7-1.6-3.5-8.1H19z'/%3E%3C/svg%3E") 1 1, auto;
 }
@@ -48,12 +163,21 @@
   }
 }
 
+/* Over a dark logo in the marquee, in the light theme. Outside the base layer,
+   since the marquee sets its grab cursors with utilities. */
+:root[data-theme="light"][data-cursor-tone="contrast"] .marquee-grab {
+  cursor: var(--cursor-grab-contrast);
+}
+:root[data-theme="light"][data-cursor-tone="contrast"] .marquee-grab:active {
+  cursor: var(--cursor-grabbing-contrast);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #050505;
+  background: var(--canvas);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,25 +201,31 @@ a {
   text-decoration: none;
 }
 
+/* Masked headline reveals clip anything above the capitals, which would cut off
+   Hungarian accents. The hero name has none, so it keeps its tight spacing. */
+:root[lang="hu"] .overflow-hidden > .font-bebas:not(h1) {
+  padding-top: 0.18em;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: #ccff00;
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #aada00;
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Selection color */
 ::selection {
-  background: #ccff00;
-  color: #050505;
+  background: var(--brand-fill);
+  color: var(--on-brand);
 }
 
 /* Noise overlay – fixed (global) */
@@ -107,29 +237,29 @@ a {
   height: 100%;
   pointer-events: none;
   z-index: 9997;
-  opacity: 0.05;
+  opacity: var(--noise-opacity);
   transform: translateZ(0);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }
 
-/* Input autofill dark mode */
+/* Input autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-text-fill-color: #ffffff;
-  -webkit-box-shadow: 0 0 0px 1000px #050505 inset;
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: 0 0 0px 1000px var(--canvas) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Contact form border focus */
 .input-field {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--line-10);
   transition: border-color 0.3s ease;
 }
 .input-field:focus {
-  border-color: rgba(204, 255, 0, 0.5);
+  border-color: var(--brand-hairline);
   outline: none;
 }
 

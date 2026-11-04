@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
-import { AnimatedNumber } from "./AnimatedNumber";
+import { Lightbulb, MessagesSquare, Users } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export function About() {
   const ref = useRef(null);
+  const { t } = useLanguage();
   const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
 
   const { scrollYProgress } = useScroll({
@@ -16,8 +18,8 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      aria-label="About István Zoltán Szász — background, education, and skills"
-      className="relative bg-[#080808] py-32 overflow-hidden"
+      aria-label={t.about.ariaLabel}
+      className="relative bg-canvas-alt py-32 overflow-hidden"
     >
       {/* GEO: sr-only About summary — semantic HTML for AI entity extraction */}
       <article
@@ -64,9 +66,9 @@ export function About() {
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <div className="w-6 h-px bg-[#ccff00]" />
-        <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          About Me
+        <div className="w-6 h-px bg-brand-ink" />
+        <span className="font-space text-ink-30 text-[11px] tracking-[0.2em] uppercase">
+          {t.about.label}
         </span>
       </motion.div>
 
@@ -79,13 +81,13 @@ export function About() {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
           <motion.div
-            className="relative z-10 rounded-2xl overflow-hidden border border-white/10"
+            className="relative z-10 rounded-2xl overflow-hidden border border-line-10"
             style={{ y: imgY }}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
           >
             {/* Profile visual */}
-            <div className="w-full h-105 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
+            <div className="w-full h-130 min-[375px]:h-115 sm:h-105 lg:h-115 xl:h-105 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
               {/* Decorative code block */}
               <div className="absolute top-8 left-8 right-8">
                 <motion.div
@@ -103,7 +105,7 @@ export function About() {
                     </span>
                   </div>
                   {[
-                    { key: "const", val: "developer", color: "#ccff00" },
+                    { key: "const", val: "developer", color: "var(--card-accent)" },
                     {
                       key: "name",
                       val: '"István Zoltán Szász"',
@@ -124,7 +126,7 @@ export function About() {
                       val: '"Junior Full-Stack Developer"',
                       color: "#88d8b0",
                     },
-                    { key: "available", val: "true", color: "#ccff00" },
+                    { key: "available", val: "true", color: "var(--card-accent)" },
                   ].map((line, i) => (
                     <motion.div
                       key={i}
@@ -140,21 +142,6 @@ export function About() {
                           <span className="text-(--lc)">{line.val}</span> ={" "}
                           {"{"}
                         </span>
-                      ) : i === 6 ? (
-                        <>
-                          <span className="font-mono text-white/25 text-[13px]">
-                            &nbsp;&nbsp;
-                          </span>
-                          <span className="font-mono text-white/50 text-[13px]">
-                            {line.key}:{" "}
-                          </span>
-                          <span className="font-mono text-(--lc) text-[13px]">
-                            {line.val}
-                          </span>
-                          <span className="font-mono text-white/30 text-[13px]">
-                            {"}"}
-                          </span>
-                        </>
                       ) : (
                         <>
                           <span className="font-mono text-white/25 text-[13px]">
@@ -170,26 +157,45 @@ export function About() {
                       )}
                     </motion.div>
                   ))}
+                  <motion.div
+                    className="flex items-center gap-2 py-0.5"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 1.6, duration: 0.4 }}
+                  >
+                    <span className="font-mono text-[#7c9eff] text-[13px]">
+                      {"}"}
+                    </span>
+                  </motion.div>
                 </motion.div>
               </div>
 
-              {/* Stats at bottom */}
-              <div className="w-full p-6 grid grid-cols-3 gap-4 border-t border-white/10">
-                {[
-                  { num: 4, suffix: "", label: "Certifications" },
-                  { num: 10, suffix: "+", label: "Projects completed" },
-                  { num: 30, suffix: "+", label: "Technologies" },
-                ].map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <div className="font-bebas text-[#ccff00] text-[42px] leading-none">
-                      <AnimatedNumber target={stat.num} delay={0} />
-                      {stat.suffix}
-                    </div>
-                    <div className="font-space text-white/35 text-[10px] tracking-[0.12em] uppercase mt-0.5">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+              {/* Soft skills at bottom */}
+              <div className="w-full px-2 min-[375px]:px-4 py-5 border-t border-white/10">
+                <h3 className="m-0 mb-3 text-center font-space text-white/40 text-[10px] font-normal leading-normal tracking-[0.2em] uppercase">
+                  {t.about.softSkillsLabel}
+                </h3>
+                <ul className="m-0 p-0 list-none grid grid-cols-3 gap-2">
+                  {[
+                    { Icon: Lightbulb, label: t.about.softSkills.problemSolving },
+                    { Icon: MessagesSquare, label: t.about.softSkills.communication },
+                    { Icon: Users, label: t.about.softSkills.teamwork },
+                  ].map(({ Icon, label }) => (
+                    <li
+                      key={label}
+                      className="flex flex-col items-center gap-1.5 text-center"
+                    >
+                      <Icon
+                        size={22}
+                        aria-hidden="true"
+                        className="text-card-accent"
+                      />
+                      <span className="font-space text-white/70 text-[11px] leading-snug">
+                        {label}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </motion.div>
@@ -199,7 +205,7 @@ export function About() {
         <div>
           <div className="overflow-hidden mb-8">
             <motion.h2
-              className="font-bebas text-white text-[100px] leading-[0.9] block whitespace-nowrap"
+              className="font-bebas text-ink text-[100px] leading-[0.9] block whitespace-nowrap"
               initial={{ y: "110%" }}
               animate={isInView ? { y: "0%" } : {}}
               transition={{
@@ -208,58 +214,50 @@ export function About() {
                 ease: [0.33, 1, 0.68, 1],
               }}
             >
-              ABOUT <span className="text-[#ccff00]">ME</span>
+              {t.about.headingWhite}{" "}
+              <span className="text-brand-ink">{t.about.headingAccent}</span>
             </motion.h2>
           </div>
 
           <motion.p
-            className="font-space text-white/60 text-base leading-[1.8] mb-6"
+            className="font-space text-ink-60 text-base leading-[1.8] mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            Junior Full-Stack Developer with a BSc in Computer Science
-            Engineering from Óbuda University, specialising in modern web
-            application development with React, Next.js and TypeScript.
+            {t.about.lead}
           </motion.p>
 
           <motion.p
-            className="font-space text-white/45 text-[15px] leading-[1.8] mb-10"
+            className="font-space text-ink-45 text-[15px] leading-[1.8] mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.65, duration: 0.7 }}
           >
-            I have developed Full-stack applications through academic,
-            certificate-based and independent projects, working across the
-            entire stack from user interface to debugging and deployment.
+            {t.about.body}
           </motion.p>
 
           {/* Attributes */}
           <div className="space-y-3">
             {[
               {
-                label: "Soft Skills",
-                value: "Problem-solving , Communication , Teamwork",
+                label: t.about.hobbiesLabel,
+                value: t.about.hobbies,
               },
-              {
-                label: "Hobbies",
-                value:
-                  "Hobby Cooking , Hardware repair (laptops, PCs, phones & tablets) , Following F1 & WEC",
-              },
-              { label: "Status", value: "Open to opportunities", accent: true },
+              { label: t.about.statusLabel, value: t.about.status, accent: true },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="flex items-center gap-4 py-3 border-b border-white/5"
+                className="flex items-center gap-4 py-3 border-b border-line-5"
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
               >
-                <span className="font-space text-white/30 text-[12px] tracking-widest uppercase w-25 shrink-0">
+                <span className="font-space text-ink-30 text-[12px] tracking-widest uppercase w-25 shrink-0">
                   {item.label}
                 </span>
                 <span
-                  className={`font-space text-[14px] ${item.accent ? "text-[#ccff00]" : "text-white/70"}`}
+                  className={`font-space text-[14px] ${item.accent ? "text-brand-ink" : "text-ink-70"}`}
                 >
                   {item.value}
                 </span>
