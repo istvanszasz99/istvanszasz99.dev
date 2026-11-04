@@ -64,24 +64,20 @@ export function Projects() {
       <article className="sr-only" aria-hidden="true">
         <h2>Featured Projects by István Zoltán Szász</h2>
         {projects.map((p) => (
-          <article
-            key={p.id}
-            itemScope
-            itemType="https://schema.org/CreativeWork"
-          >
-            <h3 itemProp="name">{p.title}</h3>
+          <article key={p.id}>
+            <h3>{p.title}</h3>
             <dl>
               <dt>Category</dt>
               <dd>{p.category}</dd>
               <dt>Technologies</dt>
               <dd>{p.tech.join(", ")}</dd>
               <dt>Description</dt>
-              <dd itemProp="description">{p.description}</dd>
+              <dd>{p.description}</dd>
               {p.live && (
                 <>
                   <dt>Live URL</dt>
                   <dd>
-                    <a href={p.live} itemProp="url">
+                    <a href={p.live}>
                       {p.live}
                     </a>
                   </dd>
@@ -91,7 +87,7 @@ export function Projects() {
                 <>
                   <dt>Repository</dt>
                   <dd>
-                    <a href={p.github} itemProp="codeRepository">
+                    <a href={p.github}>
                       {p.github}
                     </a>
                   </dd>

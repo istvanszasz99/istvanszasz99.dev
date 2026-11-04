@@ -23,8 +23,6 @@ export function About() {
       <article
         className="sr-only"
         aria-hidden="true"
-        itemScope
-        itemType="https://schema.org/Person"
       >
         <h2>About István Zoltán Szász</h2>
         <p>
@@ -40,7 +38,7 @@ export function About() {
           <dt>Location</dt>
           <dd>Érd, Hungary</dd>
           <dt>Degree</dt>
-          <dd itemProp="hasCredential">
+          <dd>
             BSc Computer Science Engineering, Óbuda University, 2025
           </dd>
           <dt>Soft Skills</dt>

@@ -241,8 +241,8 @@ export function Experience() {
 
         <section>
           <h3>Work Experience</h3>
-          <article itemScope itemType="https://schema.org/OrganizationRole">
-            <h4 itemProp="roleName">Full-Stack Web Developer at MolnarCodes</h4>
+          <article>
+            <h4>Full-Stack Web Developer at MolnarCodes</h4>
             <dl>
               <dt>Employer</dt>
               <dd>MolnarCodes</dd>
@@ -280,8 +280,6 @@ export function Experience() {
         <section>
           <h3>Education</h3>
           <article
-            itemScope
-            itemType="https://schema.org/EducationalOccupationalCredential"
           >
             <h4>BSc Computer Science Engineering — Óbuda University</h4>
             <dl>
@@ -292,7 +290,7 @@ export function Experience() {
               <dt>Period</dt>
               <dd>September 2019 – February 2025</dd>
               <dt>Credential</dt>
-              <dd itemProp="credentialCategory">Bachelor of Science degree</dd>
+              <dd>Bachelor of Science degree</dd>
               <dt>Thesis</dt>
               <dd>
                 Simulation of the Óbuda University Campus in a 3D Environment

@@ -60,11 +60,9 @@ export function Hero() {
       <article
         className="sr-only"
         aria-hidden="true"
-        itemScope
-        itemType="https://schema.org/Person"
       >
-        <h1 itemProp="name">István Zoltán Szász</h1>
-        <p itemProp="description">
+        <h1>István Zoltán Szász</h1>
+        <p>
           István Zoltán Szász (also written Istvan Zoltan Szasz, username
           istvanszasz99) is a Junior Full-Stack Web Developer and Computer
           Science Engineer from Érd, Hungary. He builds modern, responsive web
@@ -77,14 +75,14 @@ export function Hero() {
         </p>
         <dl>
           <dt>Role</dt>
-          <dd itemProp="jobTitle">
+          <dd>
             Junior Full-Stack Developer, Frontend Specialist, Computer Science
             Engineer
           </dd>
           <dt>Location</dt>
-          <dd itemProp="address">Érd, Hungary</dd>
+          <dd>Érd, Hungary</dd>
           <dt>Email</dt>
-          <dd itemProp="email">istvanszasz99@gmail.com</dd>
+          <dd>istvanszasz99@gmail.com</dd>
           <dt>GitHub</dt>
           <dd>
             <a href="https://github.com/istvanszasz99" rel="me">
