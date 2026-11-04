@@ -368,7 +368,7 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 - Text hierarchy built from white at reduced opacity rather than grey hex values.
 - Shape signals function: square controls, rounded media, full-round chips and icon buttons.
 - Section rhythm `{spacing.section}` (128px), with `{spacing.band}` (80px) between major blocks.
-- Motion is part of the identity: masked headline reveals, wipe-in button fills and a custom spring cursor.
+- Motion is part of the identity: masked headline reveals, wipe-in button fills and a lime arrow cursor.
 
 ## Colors
 
@@ -482,7 +482,7 @@ Generous vertical space lets the oversized headlines land one at a time. Horizon
 | Blur | `backdrop-blur-md` over a translucent surface | Scrolled navbar, About code window |
 | Sticky stack | `sticky` cards with increasing `z-index` and scroll-linked scale | Skill cards |
 
-The elevation philosophy is **surface steps first, no shadows**. Layer order is navbar `z-50`, mobile backdrop `z-40`, noise overlay 9997, cursor ring `z-9998` and cursor dot `z-9999`.
+The elevation philosophy is **surface steps first, no shadows**. Layer order is navbar `z-50`, mobile backdrop `z-40`, and noise overlay 9997.
 
 ### Decorative Depth
 - `noise-overlay`: SVG fractal-noise grain at 2.5% opacity, fixed globally and repeated per section.
@@ -585,7 +585,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`scrollbar-thumb`** — 4px lime scrollbar, darkening on hover.
 
-**Custom cursor** — An 8px lime dot with `mix-blend-difference`, and a 40px ring that grows to 65px over links and buttons. An optional `data-cursor` attribute sets a label. It's disabled on touch devices.
+**Cursor** — CSS cursors in `index.css`, sized like an OS pointer: a borderless 14 × 19px lime arrow, plus lime I-beam and grab hands with a black outline for text fields and the marquee. `CursorTone.tsx` switches the arrow to a near-black fill with a lime outline over light text, light fills, images and icons. Disabled buttons keep the native not-allowed cursor.
 
 **Motion standards**
 - Reveal easing: `[0.33, 1, 0.68, 1]`.
@@ -632,7 +632,6 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 - Navigation collapses to a hamburger below `lg`, opening a centered menu that slides down under the bar.
 - Split layouts stack with the visual or info column first.
 - Display type scales through `clamp()`, so sizes shrink with the viewport instead of breaking at set points.
-- The custom cursor doesn't render on touch devices.
 
 ### Image Behavior
 - Project images are full width on mobile and half width from `lg`, at a fixed height with `object-cover`.
@@ -653,7 +652,6 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 - **Roboto isn't loaded.** `font-['Roboto']` depends on the visitor having it installed and has no fallback declared.
 - **No reduced-motion support.** Nothing honors `prefers-reduced-motion`.
 - **Low-contrast labels.** `{component.section-label}`, `{component.footer}`, `{component.footer-legal}` and several 10–12px labels fall below WCAG AA.
-- **Cursor dependency.** `cursor: none !important` applies globally, so the pointer depends entirely on `CustomCursor`.
 - **Small hamburger target.** The menu button is a 22px icon with no padding.
 - **Marquee font.** `tech-pill` names set no font family and inherit the browser default sans stack.
 - **Hard-coded About heading.** Its fixed 100px with `whitespace-nowrap` ignores the fluid `{typography.display-md}` scale.

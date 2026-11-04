@@ -307,7 +307,7 @@ const MarqueeRow = ({
   }, [direction, speed, x]);
 
   return (
-    <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
+    <div className="relative w-full overflow-hidden [cursor:var(--cursor-grab)] active:[cursor:var(--cursor-grabbing)]">
       {/* Left fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-transparent" />
       {/* Right fade */}
