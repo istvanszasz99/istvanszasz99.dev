@@ -4,3 +4,4 @@ main = "src/worker.ts"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"

@@ -1,5 +1,8 @@
-User-agent: *
-Allow: /
+# robots.txt for https://istvanszasz99.dev
+# Every path is allowed by default. Search and AI crawlers are welcome,
+# including AI training crawlers, because this portfolio wants to be found and cited.
 
-# Sitemap
 Sitemap: https://istvanszasz99.dev/sitemap.xml
+
+User-agent: *
+Disallow: /api/

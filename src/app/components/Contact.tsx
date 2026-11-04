@@ -76,11 +76,11 @@ export function Contact() {
           want to discuss opportunities, he can be reached via email or social
           profiles below.
         </p>
-        <address itemScope itemType="https://schema.org/Person">
+        <address>
           <dl>
             <dt>Email</dt>
             <dd>
-              <a href="mailto:istvanszasz99@gmail.com" itemProp="email">
+              <a href="mailto:istvanszasz99@gmail.com">
                 istvanszasz99@gmail.com
               </a>
             </dd>
@@ -89,7 +89,6 @@ export function Contact() {
               <a
                 href="https://github.com/istvanszasz99"
                 rel="me"
-                itemProp="sameAs"
               >
                 github.com/istvanszasz99
               </a>
@@ -99,13 +98,12 @@ export function Contact() {
               <a
                 href="https://linkedin.com/in/istvanszasz99"
                 rel="me"
-                itemProp="sameAs"
               >
                 linkedin.com/in/istvanszasz99
               </a>
             </dd>
             <dt>Location</dt>
-            <dd itemProp="address">Érd, Hungary</dd>
+            <dd>Érd, Hungary</dd>
             <dt>Availability</dt>
             <dd>Open to freelance, full-time, and collaboration</dd>
           </dl>

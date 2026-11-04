@@ -58,7 +58,7 @@
   <meta name="theme-color" content="#080808" />
 
   <!-- AI / LLM crawler hint -->
-  <link rel="profile" href="/llms.txt" />
+  <link rel="describedby" href="/llms.txt" />
 
   <!-- JSON-LD Structured Data — SEO + GEO -->
   <script type="application/ld+json">
@@ -74,9 +74,9 @@
         "url": "https://istvanszasz99.dev/",
         "image": {
           "@type": "ImageObject",
-          "url": "https://istvanszasz99.dev/og-image.png",
-          "width": 1200,
-          "height": 630
+          "url": "https://istvanszasz99.dev/image/istvanszasz99.dev.png",
+          "width": 1875,
+          "height": 958
         },
         "jobTitle": ["Junior Full-Stack Developer", "Frontend Specialist", "Computer Science Engineer"],
         "description": "Junior Full-Stack Developer from Hungary building modern, responsive web applications. Bachelor of Science in Computer Science Engineering from Óbuda University, graduated February 2025. Specialises in React, Next.js, TypeScript, Node.js, and the modern JavaScript ecosystem.",
@@ -95,7 +95,10 @@
             "name": "Óbuda University",
             "alternateName": "Óbudai Egyetem",
             "url": "https://uni-obuda.hu",
-            "department": "Alba Regia Faculty of Engineering",
+            "department": {
+              "@type": "Organization",
+              "name": "Alba Regia Faculty of Engineering"
+            },
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Székesfehérvár",
@@ -103,14 +106,48 @@
             }
           }
         ],
-        "hasCredential": {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "degree",
-          "name": "Bachelor of Science in Computer Science Engineering",
-          "recognizedBy": { "@id": "https://uni-obuda.hu/#org" },
-          "dateCreated": "2025-02",
-          "about": "Computer Science Engineering with focus on software development, 3D simulation, and web technologies"
-        },
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Bachelor of Science in Computer Science Engineering",
+            "recognizedBy": { "@id": "https://uni-obuda.hu/#org" },
+            "dateCreated": "2025-02",
+            "about": "Computer Science Engineering with focus on software development, 3D simulation, and web technologies"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "Microsoft Full-Stack Developer Professional Certificate",
+            "recognizedBy": { "@type": "Organization", "name": "Microsoft" },
+            "dateCreated": "2025",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/BNZ0AWF2YDZA"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "IBM Full-Stack JavaScript Developer Professional Certificate",
+            "recognizedBy": { "@type": "Organization", "name": "IBM" },
+            "dateCreated": "2025",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/W8VH1LBNYHRF"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "Meta Full-Stack Developer Professional Certificate",
+            "recognizedBy": { "@type": "Organization", "name": "Meta" },
+            "dateCreated": "2025",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/JXXAG4WMAGRH"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certificate",
+            "name": "Meta React Native Specialization",
+            "recognizedBy": { "@type": "Organization", "name": "Meta" },
+            "dateCreated": "2024",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/6I3G0SPNS8O3"
+          }
+        ],
         "hasOccupation": {
           "@type": "Occupation",
           "name": "Full-Stack Web Developer",
@@ -127,16 +164,13 @@
           "Search Engine Optimization", "Generative Engine Optimization (GEO)", "Web Performance Optimisation",
           "Responsive Web Design", "Mobile-first Development"
         ],
-        "availableForHire": true,
+        "seeks": {
+          "@type": "Demand",
+          "name": "Freelance projects, full-time roles, and collaborations"
+        },
         "sameAs": [
           "https://github.com/istvanszasz99",
           "https://linkedin.com/in/istvanszasz99"
-        ],
-        "award": [
-          "Microsoft Full-Stack Developer Professional Certificate (2025, Coursera)",
-          "IBM Full-Stack JavaScript Developer Professional Certificate (2025, Coursera)",
-          "Meta Full-Stack Developer Professional Certificate (2024–2025, Coursera)",
-          "Meta React Native Specialization (2024, Coursera)"
         ]
       },
 
@@ -147,8 +181,10 @@
         "name": "István Zoltán Szász — Portfolio",
         "description": "Official portfolio of István Zoltán Szász, Junior Full-Stack Developer from Hungary. Contains work experience, technical skills, featured projects, and contact information.",
         "mainEntity": { "@id": "https://istvanszasz99.dev/#person" },
+        "isPartOf": { "@id": "https://istvanszasz99.dev/#website" },
         "inLanguage": "en-US",
-        "dateModified": "2026-11-02",
+        "dateCreated": "2026-05-11",
+        "dateModified": "2026-11-04",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": ["#about", "#home", "#projects", "#contact"]
@@ -202,15 +238,20 @@
             "@type": "ListItem",
             "position": 3,
             "item": {
-              "@type": "SoftwareApplication",
+              "@type": "SoftwareSourceCode",
               "name": "Simulation of the University Campus in 3D Environment",
+              "url": "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
               "codeRepository": "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
               "description": "A 3D educational simulation of the Óbuda University campus in Székesfehérvár, created with Unreal Engine 5. University thesis project with high-resolution textures and photorealistic rendering.",
               "creator": { "@id": "https://istvanszasz99.dev/#person" },
-              "applicationCategory": "EducationalApplication",
-              "operatingSystem": "Windows",
               "programmingLanguage": ["C++", "Unreal Blueprints"],
-              "keywords": "Unreal Engine 5, Twinmotion, C++, 3D Simulation, University Thesis"
+              "keywords": "Unreal Engine 5, Twinmotion, C++, 3D Simulation, University Thesis",
+              "targetProduct": {
+                "@type": "SoftwareApplication",
+                "name": "Simulation of the University Campus in 3D Environment",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Windows"
+              }
             }
           }
         ]
@@ -294,11 +335,11 @@
     crawler that does not execute JavaScript (Perplexity, Bing Copilot, many LLM bots).
   -->
   <noscript>
-    <article itemscope itemtype="https://schema.org/Person"
+    <article
       style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
 
-      <h1 itemprop="name">István Zoltán Szász</h1>
-      <p itemprop="description">
+      <h1>István Zoltán Szász</h1>
+      <p>
         István Zoltán Szász (alternate spelling: Istvan Zoltan Szasz, username: istvanszasz99) is a
         Junior Full-Stack Web Developer and Computer Science Engineer based in Érd, Hungary. He builds
         modern, responsive web applications with React, Next.js and TypeScript.
@@ -313,15 +354,15 @@
         <address>
           <dl>
             <dt>Email</dt>
-            <dd itemprop="email"><a href="mailto:istvanszasz99@gmail.com">istvanszasz99@gmail.com</a></dd>
+            <dd><a href="mailto:istvanszasz99@gmail.com">istvanszasz99@gmail.com</a></dd>
             <dt>GitHub</dt>
             <dd><a href="https://github.com/istvanszasz99" rel="me">github.com/istvanszasz99</a></dd>
             <dt>LinkedIn</dt>
             <dd><a href="https://linkedin.com/in/istvanszasz99" rel="me">linkedin.com/in/istvanszasz99</a></dd>
             <dt>Website</dt>
-            <dd itemprop="url"><a href="https://istvanszasz99.dev">istvanszasz99.dev</a></dd>
+            <dd><a href="https://istvanszasz99.dev">istvanszasz99.dev</a></dd>
             <dt>Location</dt>
-            <dd itemprop="address">Érd, Pest County, Hungary</dd>
+            <dd>Érd, Pest County, Hungary</dd>
             <dt>Status</dt>
             <dd>Open to opportunities</dd>
             <dt>Certifications</dt>
@@ -408,11 +449,11 @@
 
       <section>
         <h2>Work Experience</h2>
-        <article itemscope itemtype="https://schema.org/OrganizationRole">
-          <h3 itemprop="roleName">Full-Stack Web Developer</h3>
+        <article>
+          <h3>Full-Stack Web Developer</h3>
           <dl>
             <dt>Employer</dt>
-            <dd itemprop="employerOf">MolnarCodes</dd>
+            <dd>MolnarCodes</dd>
             <dt>Period</dt>
             <dd>March 2026 – May 2026</dd>
             <dt>Type</dt>
@@ -443,11 +484,11 @@
 
       <section>
         <h2>Education</h2>
-        <article itemscope itemtype="https://schema.org/EducationalOccupationalCredential">
+        <article>
           <h3>Bachelor of Science in Computer Science Engineering</h3>
           <dl>
             <dt>Institution</dt>
-            <dd itemprop="recognizedBy">Óbuda University, Alba Regia Faculty of Engineering</dd>
+            <dd>Óbuda University, Alba Regia Faculty of Engineering</dd>
             <dt>Location</dt>
             <dd>Székesfehérvár, Hungary</dd>
             <dt>Period</dt>
@@ -455,7 +496,7 @@
             <dt>Thesis</dt>
             <dd>Simulation of the Óbuda University Campus in a 3D Environment using Unreal Engine 5</dd>
             <dt>Credential</dt>
-            <dd itemprop="credentialCategory">BSc degree</dd>
+            <dd>BSc degree</dd>
           </dl>
         </article>
         <article>
@@ -499,54 +540,53 @@
 
       <section>
         <h2>Featured Projects</h2>
-        <article itemscope itemtype="https://schema.org/WebSite">
-          <h3 itemprop="name">Frontend development for solidfinances.hu</h3>
+        <article>
+          <h3>Frontend development for solidfinances.hu</h3>
           <dl>
             <dt>Category</dt>
             <dd>Web Development — Frontend</dd>
             <dt>Client</dt>
             <dd>MolnarCodes</dd>
             <dt>Live URL</dt>
-            <dd><a href="https://solidfinances.hu" itemprop="url">solidfinances.hu</a></dd>
+            <dd><a href="https://solidfinances.hu">solidfinances.hu</a></dd>
             <dt>Technologies</dt>
             <dd>React, Tailwind CSS, Responsive Design, Chrome DevTools</dd>
             <dt>Description</dt>
-            <dd itemprop="description">
+            <dd>
               Frontend development for a Hungarian financial services website. Built with React and
               Tailwind CSS, optimised for performance and all screen sizes.
             </dd>
           </dl>
         </article>
-        <article itemscope itemtype="https://schema.org/WebSite">
-          <h3 itemprop="name">Full-Stack development for mindenegyseg.hu</h3>
+        <article>
+          <h3>Full-Stack development for mindenegyseg.hu</h3>
           <dl>
             <dt>Category</dt>
             <dd>Web Development — Full-Stack</dd>
             <dt>Client</dt>
             <dd>MolnarCodes</dd>
             <dt>Live URL</dt>
-            <dd><a href="https://mindenegyseg.hu" itemprop="url">mindenegyseg.hu</a></dd>
+            <dd><a href="https://mindenegyseg.hu">mindenegyseg.hu</a></dd>
             <dt>Technologies</dt>
             <dd>Next.js, Tailwind CSS, GSAP, Shadcn/ui, Responsive Design, Chrome DevTools</dd>
             <dt>Description</dt>
-            <dd itemprop="description">
+            <dd>
               Full-Stack development for a Hungarian website. Built with Next.js and Tailwind CSS,
               GSAP animations, and Shadcn/ui components. Fully responsive and performance-optimised.
             </dd>
           </dl>
         </article>
-        <article itemscope itemtype="https://schema.org/SoftwareApplication">
-          <h3 itemprop="name">Simulation of the University Campus in 3D Environment</h3>
+        <article>
+          <h3>Simulation of the University Campus in 3D Environment</h3>
           <dl>
             <dt>Category</dt>
             <dd>3D Development — Academic Thesis</dd>
             <dt>Repository</dt>
-            <dd><a href="https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project"
-                itemprop="codeRepository">GitHub</a></dd>
+            <dd><a href="https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project">GitHub</a></dd>
             <dt>Technologies</dt>
             <dd>Unreal Engine 5, Twinmotion, C++</dd>
             <dt>Description</dt>
-            <dd itemprop="description">
+            <dd>
               A 3D educational simulation allowing users to virtually visit the campus of Óbuda
               University in Székesfehérvár, Hungary. Created using Unreal Engine 5 with high-resolution
               textures for photorealistic rendering. This was the university BSc thesis project.
