@@ -12,7 +12,7 @@ const projects = [
     description:
       "Frontend development for solidfinances.hu at MolnarCodes, a financial services website. Built with React & Tailwind CSS, and optimized for performance and all screen sizes.",
     tech: ["React", "Tailwind CSS", "Responsive Design", "Chrome DevTools"],
-    image: "./image/solidfinances.hu.png",
+    image: "./image/solidfinances.hu.webp",
     color: "#00ffcc",
     github: "",
     live: "https://solidfinances.hu",
@@ -31,7 +31,7 @@ const projects = [
       "Responsive Design",
       "Chrome DevTools",
     ],
-    image: "./image/mindenegyseg.hu.png",
+    image: "./image/mindenegyseg.hu.webp",
     color: "#00ffcc",
     github: "",
     live: "https://mindenegyseg.hu",
@@ -43,7 +43,7 @@ const projects = [
     description:
       "A 3D educational simulation, where the user can visit the campus of Óbuda University in Székesfehérvár. The Simulation was created using the Unreal Engine 5 3D graphics engine. It uses high resolution textures to make the environment and buildings look more realistic.",
     tech: ["Unreal Engine 5", "Twinmotion", "C++"],
-    image: "./image/3d-campus.png",
+    image: "./image/3d-campus.webp",
     color: "#ff5f9e",
     github: "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
     live: "",
@@ -98,7 +98,6 @@ export function Projects() {
           </article>
         ))}
       </article>
-      <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}
       <motion.div
@@ -133,30 +132,24 @@ export function Projects() {
                 </motion.h2>
               </div>
             </div>
-            <motion.a
-              href="https://github.com/istvanszasz99?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 no-underline pb-1 border-b border-white/20"
+            <motion.div
               initial={{ opacity: 0 }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      borderColor: "rgba(255,255,255,0.2)",
-                    }
-                  : {}
-              }
+              animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5 }}
-              whileHover={{ borderColor: "#ccff00" }}
-              whileTap={{ scale: 0.96, borderColor: "#ccff00" }}
             >
-              <span className="font-space text-white/50 text-[13px] tracking-[0.08em] uppercase">
-                View All on GitHub
-              </span>
-              <ArrowUpRight size={16} className="text-white/50" />
-            </motion.a>
+              <Button
+                variant="ghost"
+                shape="underline"
+                href="https://github.com/istvanszasz99?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="font-space text-[13px] tracking-[0.08em] uppercase">
+                  View All on GitHub
+                </span>
+                <ArrowUpRight size={16} />
+              </Button>
+            </motion.div>
           </div>
         </div>
 

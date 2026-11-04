@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { motion, type HTMLMotionProps, type Variants } from "motion/react";
 
 type ButtonVariant = "primary" | "ghost";
-type ButtonShape = "square" | "pill" | "circle";
+type ButtonShape = "square" | "pill" | "circle" | "underline";
 type ButtonSize = "sm" | "md" | "none";
 
 // Animation states are owned by Button, so they can't be passed in. Put entrance
@@ -21,7 +21,10 @@ type ManagedProps =
 type BaseProps = {
   variant?: ButtonVariant;
   shape?: ButtonShape;
-  /** `none` drops the padding so `className` can set its own. Ignored by `circle`. */
+  /**
+   * `none` drops the padding so `className` can set its own. Ignored by `circle`
+   * and `underline`.
+   */
   size?: ButtonSize;
   /**
    * Primary only. Keeps the button's size on hover and slides the label 5px
@@ -73,13 +76,14 @@ const wipeVariants: Variants = {
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "overflow-hidden bg-[#ccff00] text-[#050505] font-space text-[14px] font-semibold tracking-[0.08em] uppercase",
-  ghost: "border border-white/20 text-white text-base font-['Roboto']",
+  ghost: "text-white text-base font-['Roboto']",
 };
 
 const shapeClasses: Record<ButtonShape, string> = {
   square: "",
   pill: "rounded-full",
   circle: "rounded-full w-10 h-10",
+  underline: "pb-1",
 };
 
 const paddingClasses: Record<ButtonVariant, Record<ButtonSize, string>> = {
@@ -98,6 +102,7 @@ export function Button({
 }: ButtonProps) {
   const disabled = "disabled" in rest && rest.disabled;
   const slides = variant === "primary" && slideOnHover;
+  const underlined = shape === "underline";
 
   const motionProps = {
     variants:
@@ -116,8 +121,10 @@ export function Button({
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ccff00]",
       "disabled:opacity-60 disabled:cursor-not-allowed",
       variantClasses[variant],
+      variant === "ghost" &&
+        (underlined ? "border-b border-white/20" : "border border-white/20"),
       shapeClasses[shape],
-      shape === "circle" ? "" : paddingClasses[variant][size],
+      shape === "circle" || underlined ? "" : paddingClasses[variant][size],
       className,
     ]
       .filter(Boolean)
@@ -137,7 +144,7 @@ export function Button({
       )}
       <motion.span
         className={`relative flex w-full items-center justify-center ${
-          variant === "primary" ? "gap-2" : "gap-3"
+          variant === "primary" || underlined ? "gap-2" : "gap-3"
         }`}
         variants={slides ? labelSlideVariants : undefined}
         transition={{ duration: 0.2 }}

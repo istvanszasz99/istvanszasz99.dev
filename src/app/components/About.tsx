@@ -56,7 +56,6 @@ export function About() {
           <dd>React, Next.js, TypeScript, Tailwind CSS, Node.js, Express.js</dd>
         </dl>
       </article>
-      <div className="noise-overlay" />
 
       {/* Section label */}
       <motion.div
@@ -90,7 +89,7 @@ export function About() {
               {/* Decorative code block */}
               <div className="absolute top-8 left-8 right-8">
                 <motion.div
-                  className="p-5 rounded-xl border border-white/5 bg-black/40 backdrop-blur-[10px]"
+                  className="p-5 rounded-xl border border-white/5 bg-black/40"
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8, duration: 0.6 }}

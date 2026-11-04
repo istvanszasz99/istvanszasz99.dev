@@ -116,7 +116,6 @@ export function Contact() {
           </dl>
         </address>
       </article>
-      <div className="noise-overlay" />
 
       {/* Lime gradient bg */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-200 h-100 pointer-events-none bg-[radial-gradient(ellipse_at_50%_100%,rgba(204,255,0,0.07)_0%,transparent_70%)]" />

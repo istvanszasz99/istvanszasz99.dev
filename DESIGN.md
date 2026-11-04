@@ -203,7 +203,7 @@ components:
     size: 40px
   text-link:
     backgroundColor: transparent
-    textColor: "{colors.body}"
+    textColor: "{colors.on-surface}"
     typography: "{typography.nav-link}"
   top-nav:
     backgroundColor: transparent
@@ -479,13 +479,13 @@ Generous vertical space lets the oversized headlines land one at a time. Horizon
 | Flat | No shadow, no border | Section bands and hero |
 | Hairline | 1px `{colors.hairline}` border | Inputs, cards, chips, rows |
 | Stepped surface | `{colors.surface-alt}` or `{colors.surface-raised}` background | Alternate bands, skill cards |
-| Blur | `backdrop-blur-md` over a translucent surface | Scrolled navbar, About code window |
+| Blur | `backdrop-blur-md` over a translucent surface | Open mobile menu only. Avoid it on anything that stays on screen during scrolling |
 | Sticky stack | `sticky` cards with increasing `z-index` and scroll-linked scale | Skill cards |
 
 The elevation philosophy is **surface steps first, no shadows**. Layer order is navbar `z-50`, mobile backdrop `z-40`, and noise overlay 9997.
 
 ### Decorative Depth
-- `noise-overlay`: SVG fractal-noise grain at 2.5% opacity, fixed globally and repeated per section.
+- `noise-overlay`: SVG fractal-noise grain at 5% opacity, as one fixed layer in `App.tsx`. Don't add it per section.
 - `bg-grid`: An 80px line grid at 4% opacity behind the hero.
 - Lime radial glows: Slowly breathing orbs in the hero and a static glow behind Contact.
 
@@ -515,7 +515,7 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`top-nav`** — Fixed bar, transparent at the top of the page. A round lime "IS" mark and wordmark sit at the left, with links at the right in `{typography.nav-link}`. The active link turns lime with a sliding 1px underline.
 
-**`top-nav-scrolled`** — After 50px of scroll, the background becomes `{colors.surface}` at 95% with `backdrop-blur-md` and a `{colors.hairline-soft}` bottom edge.
+**`top-nav-scrolled`** — After 50px of scroll, the background becomes `{colors.surface}` at 95% with a `{colors.hairline-soft}` bottom edge.
 
 **`top-nav-cta`** — The Contact link, a small `button-ghost` pill.
 
@@ -529,15 +529,15 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`button-ghost-circle`** — 40px circular `button-ghost` holding one icon, used for project links.
 
-Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, `shape` is `square`, `pill` or `circle`, and `size` is `sm`, `md` or `none`. Use it for any new button rather than restyling a link. Set `slideOnHover` on a primary button to keep its size on hover, slide the label and icons 5px right over 0.2s, and scale to 0.98 on tap, as on "Send Message". Entrance animations go on a wrapping motion element.
+Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, `shape` is `square`, `pill`, `circle` or `underline`, and `size` is `sm`, `md` or `none`. Use it for any new button rather than restyling a link. Set `slideOnHover` on a primary button to keep its size on hover, slide the label and icons 5px right over 0.2s, and scale to 0.98 on tap, as on "Send Message". Entrance animations go on a wrapping motion element.
 
-**`text-link`** — Uppercase link with a bottom hairline that turns lime on hover, such as "View All on GitHub".
+**`text-link`** — `button-ghost` with `shape="underline"`: an uppercase `{typography.nav-link}` label with only a bottom hairline, such as "View All on GitHub". It takes the same lime hover and scaling.
 
 ### Cards & Containers
 
 **`hero-band`** — Full-height band with the grid, glows, tag line, name, typewriter role, bio, buttons and stats, plus a scroll indicator.
 
-**`section-band`** + **`section-band-alt`** — Standard section wrappers with noise, a section label, the container and `py-32`.
+**`section-band`** + **`section-band-alt`** — Standard section wrappers with a section label, the container and `py-32`.
 
 **`section-label`** — A lime rule and a faint uppercase word in the section's top-left corner.
 
@@ -645,7 +645,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 4. Headlines stay uppercase Bebas Neue, and labels stay tracked uppercase Space Grotesk.
 5. Black + white + lime is the trinity. Don't introduce a new surface hue.
 6. When in doubt about emphasis, go bigger before adding another accent.
-7. New sections start by copying a similar section's wrapper, noise overlay and section label.
+7. New sections start by copying a similar section's wrapper and section label.
 
 ## Known Gaps
 

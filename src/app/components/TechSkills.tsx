@@ -233,7 +233,6 @@ export function TechSkills() {
           </ul>
         </section>
       </article>
-      <div className="noise-overlay" />
 
       {/* Side label — matches About positioning */}
       <motion.div

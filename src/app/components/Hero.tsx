@@ -11,22 +11,18 @@ const roles = [
   "Frontend Specialist",
 ];
 
-export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
+// Kept apart from Hero so each typed letter doesn't re-render the whole section,
+// and paused while off screen.
+function TypewriterRole() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref);
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  // Typewriter effect
   useEffect(() => {
+    if (!isInView) return;
+
     const current = roles[roleIndex];
     let timeout: ReturnType<typeof setTimeout>;
 
@@ -46,7 +42,35 @@ export function Hero() {
       }, speed);
     }
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex]);
+  }, [displayText, isDeleting, roleIndex, isInView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="flex items-center gap-4 mb-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.3, duration: 0.5 }}
+    >
+      <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse" />
+      <span className="font-space text-white/60 text-[clamp(16px,2vw,22px)] tracking-wider">
+        {displayText}
+        <span className="hero-caret text-[#ccff00]">|</span>
+      </span>
+    </motion.div>
+  );
+}
+
+export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const lines = ["ISTVAN", "{ZOLTAN} SZASZ"];
 
@@ -108,25 +132,13 @@ export function Hero() {
           <dd>Open to opportunities</dd>
         </dl>
       </article>
-      {/* Noise overlay */}
-      <div className="noise-overlay" />
 
       {/* Grid background */}
       <div className="absolute inset-0 opacity-[0.04] bg-grid" />
 
       {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        style={{ willChange: "transform, opacity" }}
-      />
-      <motion.div
-        className="absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]"
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        style={{ willChange: "transform, opacity" }}
-      />
+      <div className="hero-orb-a absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]" />
+      <div className="hero-orb-b absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]" />
 
       <motion.div
         className="relative z-10 max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto"
@@ -168,24 +180,7 @@ export function Hero() {
         </div>
 
         {/* Typewriter role */}
-        <motion.div
-          className="flex items-center gap-4 mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.5 }}
-        >
-          <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse" />
-          <span className="font-space text-white/60 text-[clamp(16px,2vw,22px)] tracking-wider">
-            {displayText}
-            <motion.span
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 0.8, repeat: Infinity }}
-              className="text-[#ccff00]"
-            >
-              |
-            </motion.span>
-          </span>
-        </motion.div>
+        <TypewriterRole />
 
         {/* Bio text */}
         <motion.p
@@ -268,12 +263,7 @@ export function Hero() {
         <span className="font-space text-white/30 text-[11px] tracking-[0.15em] uppercase writing-vertical-rl">
           Scroll
         </span>
-        <motion.div
-          className="w-px h-16 bg-linear-to-b from-[#ccff00] to-transparent"
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ originY: 0 }}
-        />
+        <div className="hero-scroll-line w-px h-16 bg-linear-to-b from-[#ccff00] to-transparent" />
       </motion.div>
     </section>
   );

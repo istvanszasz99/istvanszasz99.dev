@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 // Colors at or above this brightness would hide the lime arrow.
 const LIGHT_THRESHOLD = 0.55;
+const SCROLL_SETTLE_MS = 150;
 
 // Computed colors can be rgb(), oklab() or oklch(), so a canvas normalizes them.
 function createColorReader() {
@@ -83,12 +84,15 @@ export function CursorTone() {
     };
 
     let frame = 0;
-    let latest: MouseEvent | null = null;
+    let scrollTimer: ReturnType<typeof setTimeout> | undefined;
+    let isScrolling = false;
+    let pointer: { x: number; y: number } | null = null;
 
     const update = () => {
       frame = 0;
-      if (!latest || !(latest.target instanceof Element)) return;
-      if (needsContrast(latest.target, latest.clientX, latest.clientY)) {
+      if (!pointer || isScrolling) return;
+      const element = document.elementFromPoint(pointer.x, pointer.y);
+      if (element && needsContrast(element, pointer.x, pointer.y)) {
         root.dataset.cursorTone = "contrast";
       } else {
         delete root.dataset.cursorTone;
@@ -96,15 +100,28 @@ export function CursorTone() {
     };
 
     const handleMouseMove = (event: MouseEvent) => {
-      latest = event;
+      pointer = { x: event.clientX, y: event.clientY };
       if (!frame) frame = requestAnimationFrame(update);
     };
 
+    // Skip the checks while scrolling, then re-check what ended up under the pointer.
+    const handleScroll = () => {
+      isScrolling = true;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        isScrolling = false;
+        update();
+      }, SCROLL_SETTLE_MS);
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
       cancelAnimationFrame(frame);
+      clearTimeout(scrollTimer);
       delete root.dataset.cursorTone;
     };
   }, []);

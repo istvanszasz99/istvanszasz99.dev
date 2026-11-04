@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { motion, useScroll, AnimatePresence } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  animate,
+  motion,
+  useScroll,
+  AnimatePresence,
+  type AnimationPlaybackControls,
+} from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
 
@@ -12,11 +18,26 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const SCROLL_SETTLE_MS = 150;
+const MOBILE_MENU_CLOSE_MS = 300;
+
+// Nav click speed. Raise the base or max, or lower the px rate, to slow it down.
+const SCROLL_BASE_SECONDS = 0.9;
+const SCROLL_PX_PER_SECOND = 6000;
+const SCROLL_MAX_SECONDS = 2.2;
+const UNDERLINE_SECONDS = 0.7;
+const UNDERLINE_EASE = [0.65, 0, 0.35, 1] as const;
+// No slow start: from Home, one would still be crawling as About comes into view.
+const SCROLL_EASE = [0.25, 0.25, 0.4, 1] as const;
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
+  const isNavScrolling = useRef(false);
+  const scrollUnlockTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const scrollAnimation = useRef<AnimationPlaybackControls>(undefined);
 
   useEffect(() => {
     const unsub = scrollY.on("change", (y) => {
@@ -25,27 +46,56 @@ export function Navbar() {
     return () => unsub();
   }, [scrollY]);
 
+  const updateActiveSection = useCallback(() => {
+    const sections = [
+      "home",
+      "about",
+      "skills",
+      "experience",
+      "projects",
+      "contact",
+    ];
+    const current = sections.find((id) => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.top <= 100 && rect.bottom > 100;
+    });
+    if (current) setActiveSection(current);
+  }, []);
+
+  // After a nav click the clicked item stays active until scrolling settles, so
+  // the underline doesn't step through the sections on the way there.
+  const scheduleScrollUnlock = useCallback(() => {
+    clearTimeout(scrollUnlockTimer.current);
+    scrollUnlockTimer.current = setTimeout(() => {
+      isNavScrolling.current = false;
+      updateActiveSection();
+    }, SCROLL_SETTLE_MS);
+  }, [updateActiveSection]);
+
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "about",
-        "skills",
-        "experience",
-        "projects",
-        "contact",
-      ];
-      const current = sections.find((id) => {
-        const el = document.getElementById(id);
-        if (!el) return false;
-        const rect = el.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom > 100;
-      });
-      if (current) setActiveSection(current);
+      if (isNavScrolling.current) {
+        scheduleScrollUnlock();
+      } else {
+        updateActiveSection();
+      }
     };
+    // Hand control back as soon as the visitor scrolls for themselves.
+    const stopNavScroll = () => scrollAnimation.current?.stop();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("wheel", stopNavScroll, { passive: true });
+    window.addEventListener("touchstart", stopNavScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", stopNavScroll);
+      window.removeEventListener("touchstart", stopNavScroll);
+      stopNavScroll();
+      clearTimeout(scrollUnlockTimer.current);
+    };
+  }, [scheduleScrollUnlock, updateActiveSection]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -53,10 +103,45 @@ export function Navbar() {
   ) => {
     e.preventDefault();
     const id = href.replace("#", "");
-    setMobileOpen(false);
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+    setActiveSection(id);
+    isNavScrolling.current = true;
+    clearTimeout(scrollUnlockTimer.current);
+
+    const scrollToSection = () => {
+      const target = document.getElementById(id);
+      if (!target) {
+        scheduleScrollUnlock();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const distance = Math.abs(target.getBoundingClientRect().top);
+      scrollAnimation.current?.stop();
+      scrollAnimation.current = animate(0, 1, {
+        duration: Math.min(
+          SCROLL_MAX_SECONDS,
+          SCROLL_BASE_SECONDS + distance / SCROLL_PX_PER_SECOND,
+        ),
+        ease: SCROLL_EASE,
+        onUpdate: (progress) => {
+          // Re-read the target each frame, since lazy sections can shift it.
+          const targetY = target.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: startY + (targetY - startY) * progress,
+            behavior: "instant",
+          });
+          scheduleScrollUnlock();
+        },
+      });
+    };
+
+    if (mobileOpen) {
+      // Let the mobile menu close first.
+      setMobileOpen(false);
+      setTimeout(scrollToSection, MOBILE_MENU_CLOSE_MS);
+    } else {
+      scrollToSection();
+    }
   };
 
   return (
@@ -75,9 +160,9 @@ export function Navbar() {
         )}
       </AnimatePresence>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-400 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 py-5 transition-colors duration-400 ease-in-out ${
           scrolled
-            ? "bg-[#050505]/95 backdrop-blur-md border-b border-white/5"
+            ? "bg-[#050505]/95 border-b border-white/5"
             : "bg-transparent border-b border-transparent"
         }`}
         initial={{ y: -100, opacity: 0 }}
@@ -146,9 +231,8 @@ export function Navbar() {
                       className="absolute -bottom-1 left-0 right-0 h-px bg-[#ccff00]"
                       layoutId="activeNav"
                       transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
+                        duration: UNDERLINE_SECONDS,
+                        ease: UNDERLINE_EASE,
                       }}
                     />
                   )}
