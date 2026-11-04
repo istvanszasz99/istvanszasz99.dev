@@ -1,15 +1,17 @@
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export function Footer() {
+  const { t } = useLanguage();
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: t.nav.items.home, href: "#home" },
+    { label: t.nav.items.about, href: "#about" },
+    { label: t.nav.items.skills, href: "#skills" },
+    { label: t.nav.items.experience, href: "#experience" },
+    { label: t.nav.items.projects, href: "#projects" },
+    { label: t.nav.items.contact, href: "#contact" },
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -20,17 +22,17 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#030303] border-t border-white/5 py-16 overflow-hidden">
+    <footer className="relative bg-canvas-sunken border-t border-line-5 py-16 overflow-hidden">
 
       <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-12 items-center mb-16 text-center sm:text-left">
           {/* Brand */}
           <div>
-            <div className="font-bebas text-white text-[48px] leading-none mb-2">
-              ISTVAN <span className="text-[#ccff00]">{"{ZOLTAN}"} SZASZ</span>
+            <div className="font-bebas text-ink text-[48px] leading-none mb-2">
+              ISTVAN <span className="text-brand-ink">{"{ZOLTAN}"} SZASZ</span>
             </div>
-            <p className="font-space text-white/30 text-[13px] tracking-wider">
-              Junior Full-Stack Developer · Érd, Hungary
+            <p className="font-space text-ink-30 text-[13px] tracking-wider">
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -41,7 +43,7 @@ export function Footer() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNav(e, link.href)}
-                className="no-underline font-space text-white/35 text-[13px] tracking-[0.06em] uppercase hover:text-[#ccff00] transition-colors duration-300"
+                className="no-underline font-space text-ink-35 text-[13px] tracking-[0.06em] uppercase hover:text-brand-ink transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -64,7 +66,7 @@ export function Footer() {
               {
                 Icon: Mail,
                 href: "mailto:istvanszasz99@gmail.com",
-                label: "Email",
+                label: t.footer.emailLabel,
               },
             ].map(({ Icon, href, label }) => (
               <motion.a
@@ -78,9 +80,9 @@ export function Footer() {
                 <Icon
                   width={16}
                   height={16}
-                  className={`${Icon === Mail ? "" : "**:fill-current"} text-white/30 group-hover:text-[#ccff00] transition-colors duration-300`}
+                  className={`${Icon === Mail ? "" : "**:fill-current"} text-ink-30 group-hover:text-brand-ink transition-colors duration-300`}
                 />
-                <span className="font-space text-white/30 text-[13px] tracking-[0.06em] group-hover:text-[#ccff00] transition-colors duration-300">
+                <span className="font-space text-ink-30 text-[13px] tracking-[0.06em] group-hover:text-brand-ink transition-colors duration-300">
                   {label}
                 </span>
               </motion.a>
@@ -89,18 +91,17 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-white/5 mb-8" />
+        <div className="h-px bg-line-5 mb-8" />
 
         {/* Bottom row */}
         <div className="flex items-center justify-between">
-          <span className="font-space text-white/20 text-[12px] tracking-[0.06em]">
-            © {new Date().getFullYear()} Istvan Zoltan Szasz. All rights
-            reserved.
+          <span className="font-space text-ink-20 text-[12px] tracking-[0.06em]">
+            © {new Date().getFullYear()} Istvan Zoltan Szasz. {t.footer.rights}
           </span>
 
           <div className="flex items-center gap-6">
-            <span className="font-space text-white/20 text-[12px]">
-              Built with React · TailwindCSS · Motion
+            <span className="font-space text-ink-20 text-[12px]">
+              {t.footer.builtWith}
             </span>
           </div>
         </div>

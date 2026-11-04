@@ -3,26 +3,22 @@ import { motion, useInView } from "motion/react";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GitHubDark } from "@ridemountainpig/svgl-react";
 import { Button } from "./Button";
+import { useTheme } from "../theme/ThemeContext";
+import { useLanguage } from "../i18n/LanguageContext";
+import { en } from "../i18n/en";
 
 const projects = [
   {
     id: 1,
-    title: "Frontend development for solidfinances.hu",
-    category: "Web Development",
-    description:
-      "Frontend development for solidfinances.hu at MolnarCodes, a financial services website. Built with React & Tailwind CSS, and optimized for performance and all screen sizes.",
     tech: ["React", "Tailwind CSS", "Responsive Design", "Chrome DevTools"],
     image: "./image/solidfinances.hu.webp",
     color: "#00ffcc",
+    colorLight: "#00705c",
     github: "",
     live: "https://solidfinances.hu",
   },
   {
     id: 2,
-    title: "Full-Stack development for mindenegyseg.hu",
-    category: "Web Development",
-    description:
-      "Full-Stack development for mindenegyseg.hu at MolnarCodes. Built with Next.js & Tailwind CSS, animations with GSAP, and UI components from Shadcn.ui. Fully responsive and optimized for performance.",
     tech: [
       "Next.js",
       "Tailwind CSS",
@@ -33,38 +29,49 @@ const projects = [
     ],
     image: "./image/mindenegyseg.hu.webp",
     color: "#00ffcc",
+    colorLight: "#00705c",
     github: "",
     live: "https://mindenegyseg.hu",
   },
   {
     id: 3,
-    title: "Simulation of the University Campus in 3D Environment",
-    category: "3D Development",
-    description:
-      "A 3D educational simulation, where the user can visit the campus of Óbuda University in Székesfehérvár. The Simulation was created using the Unreal Engine 5 3D graphics engine. It uses high resolution textures to make the environment and buildings look more realistic.",
     tech: ["Unreal Engine 5", "Twinmotion", "C++"],
     image: "./image/3d-campus.webp",
     color: "#ff5f9e",
+    colorLight: "#b8185e",
     github: "https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project",
     live: "",
   },
-];
+] as const;
+
+// The sr-only block stays in English for crawlers.
+const crawlerProjects = projects.map((p) => ({
+  ...p,
+  ...en.projects.items[p.id],
+}));
 
 export function Projects() {
   const sectionRef = useRef(null);
+  const { t } = useLanguage();
+  const { theme } = useTheme();
+  const localizedProjects = projects.map((p) => ({
+    ...p,
+    ...t.projects.items[p.id],
+    color: theme === "light" ? p.colorLight : p.color,
+  }));
   const isInView = useInView(sectionRef, { once: true, margin: "-20% 0px" });
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      aria-label="Featured projects by István Zoltán Szász"
-      className="relative bg-[#080808] overflow-hidden py-32"
+      aria-label={t.projects.ariaLabel}
+      className="relative bg-canvas-alt overflow-hidden py-32"
     >
       {/* GEO: sr-only project details for AI crawlers */}
       <article className="sr-only" aria-hidden="true">
         <h2>Featured Projects by István Zoltán Szász</h2>
-        {projects.map((p) => (
+        {crawlerProjects.map((p) => (
           <article key={p.id}>
             <h3>{p.title}</h3>
             <dl>
@@ -106,9 +113,9 @@ export function Projects() {
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <div className="w-6 h-px bg-[#ccff00]" />
-        <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          Projects
+        <div className="w-6 h-px bg-brand-ink" />
+        <span className="font-space text-ink-30 text-[11px] tracking-[0.2em] uppercase">
+          {t.projects.label}
         </span>
       </motion.div>
 
@@ -119,7 +126,7 @@ export function Projects() {
             <div>
               <div className="overflow-hidden">
                 <motion.h2
-                  className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
+                  className="font-bebas text-ink text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
                   initial={{ y: "110%" }}
                   animate={isInView ? { y: "0%" } : {}}
                   transition={{
@@ -128,7 +135,10 @@ export function Projects() {
                     ease: [0.33, 1, 0.68, 1],
                   }}
                 >
-                  FEATURED <span className="text-[#ccff00]">WORKS</span>
+                  {t.projects.headingWhite}{" "}
+                  <span className="text-brand-ink">
+                    {t.projects.headingAccent}
+                  </span>
                 </motion.h2>
               </div>
             </div>
@@ -145,7 +155,7 @@ export function Projects() {
                 rel="noopener noreferrer"
               >
                 <span className="font-space text-[13px] tracking-[0.08em] uppercase">
-                  View All on GitHub
+                  {t.projects.viewAll}
                 </span>
                 <ArrowUpRight size={16} />
               </Button>
@@ -155,7 +165,7 @@ export function Projects() {
 
         {/* ── Alternating project sections ── */}
         <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex flex-col justify-start items-start gap-20">
-          {projects.map((project, i) => {
+          {localizedProjects.map((project, i) => {
             const alignRight = i % 2 === 1;
             return (
               <motion.div
@@ -193,21 +203,21 @@ export function Projects() {
                     </span>
                   </div>
                   {/* Title */}
-                  <h3 className="self-stretch text-white text-4xl font-bold font-['Roboto'] leading-12">
+                  <h3 className="self-stretch text-ink text-4xl font-bold font-['Roboto'] leading-12">
                     {project.title}
                   </h3>
                   {/* Description */}
-                  <div className="self-stretch text-white/50 text-lg font-normal font-['Roboto'] leading-7">
+                  <div className="self-stretch text-ink-50 text-lg font-normal font-['Roboto'] leading-7">
                     {project.description}
                   </div>
                   {/* Tech tags */}
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
+                    {project.tech.map((tag) => (
                       <span
-                        key={t}
-                        className="px-2.5 py-1 rounded-full text-[10px] border border-white/10 font-space text-white/40 tracking-[0.06em] uppercase"
+                        key={tag}
+                        className="px-2.5 py-1 rounded-full text-[10px] border border-line-10 font-space text-ink-40 tracking-[0.06em] uppercase"
                       >
-                        {t}
+                        {t.projects.techLabels[tag] ?? tag}
                       </span>
                     ))}
                   </div>
@@ -220,7 +230,7 @@ export function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`${project.title} on GitHub`}
+                        aria-label={t.projects.onGitHub(project.title)}
                       >
                         <GitHubDark
                           width={16}
@@ -236,7 +246,7 @@ export function Projects() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`${project.title} live site`}
+                        aria-label={t.projects.liveSite(project.title)}
                       >
                         <ExternalLink size={16} />
                       </Button>
@@ -263,7 +273,7 @@ export function Projects() {
               rel="noopener noreferrer"
             >
               <GitHubDark width={18} height={18} className="**:fill-current" />
-              More Projects
+              {t.projects.more}
               <ArrowUpRight size={14} />
             </Button>
           </motion.div>

@@ -10,6 +10,7 @@ import {
   Nextjs,
   Redux,
   ExpressjsDark,
+  ExpressjsLight,
   Nodejs,
   Python,
   Django,
@@ -22,6 +23,7 @@ import {
   MongoDBDark,
   Git,
   GitHubDark,
+  GitHubLight,
   Figma,
   CPlusPlus,
   UnrealEngineDark,
@@ -32,14 +34,19 @@ import {
   Windows,
   MicrosoftOffice,
   MotionDark,
+  MotionLight,
   Cloudflare,
 } from "@ridemountainpig/svgl-react";
+import { useTheme } from "../theme/ThemeContext";
+import { useLanguage } from "../i18n/LanguageContext";
 
 /* ─── Tech stack data ─────────────────────────────────────────── */
 interface Tech {
   name: string;
   color: string;
   icon: React.ReactNode;
+  /** For icons that would vanish on the light theme's background. */
+  iconLight?: React.ReactNode;
 }
 
 const techs: Tech[] = [
@@ -54,6 +61,7 @@ const techs: Tech[] = [
     name: "Motion",
     color: "#F7DF1E",
     icon: <MotionDark width={32} height={32} />,
+    iconLight: <MotionLight width={32} height={32} />,
   },
   {
     name: "JavaScript",
@@ -80,6 +88,7 @@ const techs: Tech[] = [
     name: "Express.js",
     color: "#ffffff",
     icon: <ExpressjsDark width={32} height={32} />,
+    iconLight: <ExpressjsLight width={32} height={32} />,
   },
   {
     name: "Node.js",
@@ -142,6 +151,7 @@ const techs: Tech[] = [
     name: "GitHub",
     color: "#ffffff",
     icon: <GitHubDark width={32} height={32} />,
+    iconLight: <GitHubLight width={32} height={32} />,
   },
   {
     name: "Claude Code",
@@ -171,6 +181,12 @@ const techs: Tech[] = [
     name: "Unreal Engine",
     color: "#0E1128",
     icon: <UnrealEngineDark width={32} height={32} />,
+    // The dark logo is white, so it needs its own dark background on light.
+    iconLight: (
+      <span className="block rounded-full bg-[#050505]">
+        <UnrealEngineDark width={32} height={32} />
+      </span>
+    ),
   },
   {
     name: "Twinmotion",
@@ -218,16 +234,19 @@ interface TechPillProps {
   tech: Tech;
 }
 
-const TechPill = ({ tech }: TechPillProps) => (
-  <div className="flex items-center gap-3 px-5 py-3 rounded-full select-none shrink-0 group transition-colors duration-300">
-    <span className="transition-transform duration-300 group-hover:scale-110">
-      {tech.icon}
-    </span>
-    <span className="text-sm font-semibold tracking-wide whitespace-nowrap text-white/40">
-      {tech.name}
-    </span>
-  </div>
-);
+const TechPill = ({ tech }: TechPillProps) => {
+  const { theme } = useTheme();
+  return (
+    <div className="flex items-center gap-3 px-5 py-3 rounded-full select-none shrink-0 group transition-colors duration-300">
+      <span className="transition-transform duration-300 group-hover:scale-110">
+        {theme === "light" && tech.iconLight ? tech.iconLight : tech.icon}
+      </span>
+      <span className="text-sm font-semibold tracking-wide whitespace-nowrap text-ink-40">
+        {tech.name}
+      </span>
+    </div>
+  );
+};
 
 /* ─── Single scrolling row ────────────────────────────────────── */
 interface MarqueeRowProps {
@@ -325,7 +344,7 @@ const MarqueeRow = ({
   }, [direction, speed, x]);
 
   return (
-    <div className="relative w-full overflow-hidden [cursor:var(--cursor-grab)] active:[cursor:var(--cursor-grabbing)]">
+    <div className="marquee-grab relative w-full overflow-hidden [cursor:var(--cursor-grab)] active:[cursor:var(--cursor-grabbing)]">
       {/* Left fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-transparent" />
       {/* Right fade */}
@@ -377,6 +396,7 @@ const MarqueeRow = ({
 /* ─── Main exported component ─────────────────────────────────── */
 export function TechMarquee() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
   const isInView = useInView(containerRef, { once: true, margin: "-20% 0px" });
 
   const rowOne = techs;
@@ -385,8 +405,8 @@ export function TechMarquee() {
     <section
       ref={containerRef}
       id="tech-stack"
-      aria-label="Tools and technologies used by István Zoltán Szász"
-      className="relative bg-[#080808] py-32 overflow-hidden w-full"
+      aria-label={t.tools.ariaLabel}
+      className="relative bg-canvas-alt py-32 overflow-hidden w-full"
     >
       {/* GEO: sr-only tools list for AI crawlers */}
       <article className="sr-only" aria-hidden="true">
@@ -405,9 +425,9 @@ export function TechMarquee() {
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        <div className="w-6 h-px bg-[#ccff00]" />
-        <span className="font-space text-white/30 text-[11px] tracking-[0.2em] uppercase">
-          Tools &amp; Technologies
+        <div className="w-6 h-px bg-brand-ink" />
+        <span className="font-space text-ink-30 text-[11px] tracking-[0.2em] uppercase">
+          {t.tools.label}
         </span>
       </motion.div>
 
@@ -422,7 +442,7 @@ export function TechMarquee() {
           <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 text-center">
             <div className="overflow-hidden mb-3">
               <motion.h2
-                className="font-bebas text-white text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
+                className="font-bebas text-ink text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
                 initial={{ y: "110%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{
@@ -431,17 +451,17 @@ export function TechMarquee() {
                   ease: [0.33, 1, 0.68, 1],
                 }}
               >
-                TOOLS &amp; <span className="text-[#ccff00]">TECHNOLOGIES</span>
+                {t.tools.headingWhite}{" "}
+                <span className="text-brand-ink">{t.tools.headingAccent}</span>
               </motion.h2>
             </div>
             <motion.p
-              className="text-white/40 text-lg font-normal font-['Roboto'] leading-7"
+              className="text-ink-40 text-lg font-normal font-['Roboto'] leading-7"
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.25 }}
             >
-              A collection of languages, frameworks and tools I use to build
-              fast, scalable &amp; beautiful products.
+              {t.tools.description}
             </motion.p>
           </div>
         </motion.div>

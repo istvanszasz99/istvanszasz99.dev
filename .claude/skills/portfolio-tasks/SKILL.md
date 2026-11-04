@@ -17,6 +17,8 @@ Rules for all playbooks:
 
 ## Where each fact lives
 
+Visible text has two copies: `src/app/i18n/en.ts` and `src/app/i18n/hu.ts`. Change both, and ask the owner to confirm new Hungarian wording. The arrays named below hold only links, logos, colors and tech names, with text matched by `id`.
+
 | Fact | Visible UI | Hidden `sr-only` | `index.html` | `public/llms.txt` |
 |---|---|---|---|---|
 | Project | `Projects.tsx` `projects` | generated from the array | JSON-LD `ItemList`, `<noscript>` | `## Projects` |
@@ -24,7 +26,7 @@ Rules for all playbooks:
 | Education | `Experience.tsx` `education` | `Hero.tsx`, `Experience.tsx` | JSON-LD `Person` and `FAQPage`, `<noscript>` | Summary, Education |
 | Certification | `Experience.tsx` `certifications` | `Hero.tsx`, `Experience.tsx` | JSON-LD `hasCredential` and `FAQPage`, `<noscript>` | `## Certifications`, Contact and status |
 | Technology | `TechMarquee.tsx` `techs`, `TechSkills.tsx` `skills` | `TechSkills.tsx` | JSON-LD `knowsAbout`, `<noscript>` | Technical skills |
-| Stats | `Hero.tsx` and `About.tsx` stats arrays | `Hero.tsx` | `<noscript>` | Contact and status |
+| Stats | `Hero.tsx` stats array | `Hero.tsx` | `<noscript>` | Contact and status |
 | Role, location, availability | `Hero.tsx`, `About.tsx`, `Contact.tsx`, `Footer.tsx` | `Hero.tsx`, `About.tsx`, `Contact.tsx` | title, meta, OG and Twitter tags, JSON-LD, `<noscript>` | Summary, Contact and status |
 
 Structured data is JSON-LD only, so don't add `itemprop` or similar attributes to the `sr-only` blocks. `.claude/rules/seo-files.md` has the format rules for `index.html` and the files in `public/`.
@@ -38,7 +40,7 @@ git grep -n "old value" -- index.html public/llms.txt src/app
 ## add-project
 
 1. Save a screenshot to `public/image/<name>.png`.
-2. Add an entry to `projects` in `src/app/components/Projects.tsx` with `id`, `title`, `category`, `description`, `tech`, `image`, `color`, `github` and `live`. Use `""` for a missing link. Reuse an existing category color when the category matches.
+2. Add an entry to `projects` in `src/app/components/Projects.tsx` with `id`, `tech`, `image`, `color`, `colorLight`, `github` and `live`. Use `""` for a missing link. Reuse an existing category color when the category matches. Add `title`, `category` and `description` under the same `id` in `projects.items` in both dictionaries.
 3. Add the project to the JSON-LD `ItemList` and the `<noscript>` projects in `index.html`.
 4. Add a link under `## Projects` in `public/llms.txt`.
 5. If the total passes a displayed threshold, update the "Projects Completed" stat using **Where each fact lives**.
@@ -49,22 +51,22 @@ Rows alternate sides automatically, so no layout change is needed.
 
 Covers jobs and education.
 
-1. Add an entry to `workExperience` or `education` in `src/app/components/Experience.tsx`, newest first. Use the fields `id`, `title`, `department`, `description`, `location`, `type` (the date range), `link`, `badge` and `icon`.
-2. Save the logo to `public/image/icon/` and reference it through `<Logo src=... alt=... />`.
+1. Add an entry to `workExperience` or `education` in `src/app/components/Experience.tsx`, newest first, with `id`, `link`, `badge` and `logo`. Add `title`, `department`, `description`, `location`, `type` (the date range) and `logoAlt` under the same `id` in `experience.work` or `experience.education` in both dictionaries.
+2. Save the logo to `public/image/icon/` and set its path as `logo`.
 3. Put any supporting PDF in `public/document/` and link it through `link`.
 4. Update the other locations in the table. When a job's status changes, also update the "currently" and "previously" wording.
 
 ## add-certification
 
-1. Add an entry to `certifications` in `src/app/components/Experience.tsx`, with the credential URL as `link`, the issuer as `department` and the platform as `location`.
+1. Add an entry to `certifications` in `src/app/components/Experience.tsx`, with the credential URL as `link`. In `experience.certifications` in both dictionaries, add the same `id` with the issuer as `department` and the platform as `location`.
 2. Add the issuer logo to `public/image/icon/` if it's new.
-3. Update the count in the `Hero.tsx` and `About.tsx` stats and the `sr-only` block, then in `index.html` and `public/llms.txt`.
+3. Update the count in the `Hero.tsx` stats and the `sr-only` block, then in `index.html` and `public/llms.txt`.
 4. Add a link under `## Certifications` in `public/llms.txt`.
 5. In `index.html`, add an entry to JSON-LD `hasCredential`, and update the `FAQPage` answer and the `<noscript>` list.
 
 ## add-tech
 
-1. In `src/app/components/TechMarquee.tsx`, import the icon from `@ridemountainpig/svgl-react` and add `{ name, color, icon: <Icon width={32} height={32} /> }` to `techs`, using the brand color.
+1. In `src/app/components/TechMarquee.tsx`, import the icon from `@ridemountainpig/svgl-react` and add `{ name, color, icon: <Icon width={32} height={32} /> }` to `techs`, using the brand color. If the icon is monochrome, also set `iconLight` to its light-theme variant.
 2. If the package has no icon, add a PNG to `public/image/icon/` and follow how the existing PNG icons are used in that file.
 3. Add it to the matching group in `src/app/components/TechSkills.tsx` if it's a core skill.
 4. Update Technical skills in `public/llms.txt`, plus JSON-LD `knowsAbout` and the `<noscript>` list in `index.html`.
@@ -79,7 +81,7 @@ Covers jobs and education.
 
 ## replace-resume
 
-1. Overwrite `public/document/Resume_EN.pdf`, keeping the filename. `Hero.tsx` links to that path.
+1. Overwrite `public/document/Resume_EN.pdf` or `Resume_HU.pdf`, keeping the filename. `hero.resumeHref` in each dictionary points to its language's file.
 2. Compare the resume with the site and list any facts that now differ. Ask the owner before changing them.
 
 ## add-section

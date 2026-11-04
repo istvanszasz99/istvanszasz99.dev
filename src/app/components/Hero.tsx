@@ -4,21 +4,25 @@ import { Download } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { Button } from "./Button";
-
-const roles = [
-  "Computer Science Engineer",
-  "Junior Full-Stack Developer",
-  "Frontend Specialist",
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 // Kept apart from Hero so each typed letter doesn't re-render the whole section,
 // and paused while off screen.
 function TypewriterRole() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
+  const { t } = useLanguage();
+  const roles = t.hero.roles;
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Start over with the new roles when the language changes.
+  useEffect(() => {
+    setRoleIndex(0);
+    setDisplayText("");
+    setIsDeleting(false);
+  }, [roles]);
 
   useEffect(() => {
     if (!isInView) return;
@@ -42,7 +46,7 @@ function TypewriterRole() {
       }, speed);
     }
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex, isInView]);
+  }, [displayText, isDeleting, roleIndex, isInView, roles]);
 
   return (
     <motion.div
@@ -52,10 +56,10 @@ function TypewriterRole() {
       animate={{ opacity: 1 }}
       transition={{ delay: 1.3, duration: 0.5 }}
     >
-      <div className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse" />
-      <span className="font-space text-white/60 text-[clamp(16px,2vw,22px)] tracking-wider">
+      <div className="w-2 h-2 rounded-full bg-brand-fill animate-pulse" />
+      <span className="font-space text-ink-60 text-[clamp(16px,2vw,22px)] tracking-wider">
         {displayText}
-        <span className="hero-caret text-[#ccff00]">|</span>
+        <span className="hero-caret text-brand-ink">|</span>
       </span>
     </motion.div>
   );
@@ -63,6 +67,7 @@ function TypewriterRole() {
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -78,8 +83,8 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      aria-label="Introduction — István Zoltán Szász, Junior Full-Stack Developer"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#050505] py-32"
+      aria-label={t.hero.ariaLabel}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-canvas py-32"
     >
       {/* GEO: sr-only entity summary — rendered in DOM for AI crawlers that execute JS */}
       <article
@@ -137,8 +142,8 @@ export function Hero() {
       <div className="absolute inset-0 opacity-[0.04] bg-grid" />
 
       {/* Animated gradient orbs */}
-      <div className="hero-orb-a absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,transparent_70%)]" />
-      <div className="hero-orb-b absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.05)_0%,transparent_70%)]" />
+      <div className="hero-orb-a absolute top-1/4 -right-40 w-150 h-150 rounded-full bg-[radial-gradient(circle,rgb(var(--glow)/0.08)_0%,transparent_70%)]" />
+      <div className="hero-orb-b absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgb(var(--glow)/0.05)_0%,transparent_70%)]" />
 
       <motion.div
         className="relative z-10 max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto"
@@ -151,9 +156,9 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
-          <div className="w-8 h-px bg-[#ccff00]" />
-          <span className="font-space text-[#ccff00] text-[12px] tracking-[0.2em] uppercase">
-            Personal Website
+          <div className="w-8 h-px bg-brand-ink" />
+          <span className="font-space text-brand-ink text-[12px] tracking-[0.2em] uppercase">
+            {t.hero.tag}
           </span>
         </motion.div>
 
@@ -170,7 +175,7 @@ export function Hero() {
                   ease: [0.33, 1, 0.68, 1],
                 }}
                 className={`font-bebas text-[clamp(80px,14vw,200px)] leading-[0.9] tracking-[-0.02em] m-0 ${
-                  lineIdx === 0 ? "text-white" : "text-[#ccff00]"
+                  lineIdx === 0 ? "text-ink" : "text-brand-ink"
                 }`}
               >
                 {line}
@@ -187,10 +192,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.7 }}
-          className="font-space text-white/45 text-[15px] leading-[1.8] max-w-140 mb-6"
+          className="font-space text-ink-45 text-[15px] leading-[1.8] max-w-140 mb-6"
         >
-          Junior Full-Stack Web Developer from Hungary with a Bachelor's degree
-          in Computer Science Engineering from Óbuda University.
+          {t.hero.bio}
         </motion.p>
 
         {/* CTA buttons */}
@@ -201,10 +205,10 @@ export function Hero() {
           transition={{ delay: 1.7, duration: 0.7 }}
         >
           <Button
-            href="/document/Resume_EN.pdf"
-            download="Istvan_Zoltan_Szasz_Resume_EN.pdf"
+            href={t.hero.resumeHref}
+            download={t.hero.resumeFilename}
           >
-            Download Resume
+            {t.hero.downloadResume}
             <Download size={16} />
           </Button>
 
@@ -231,21 +235,22 @@ export function Hero() {
 
         {/* Stats */}
         <motion.div
-          className="flex items-center gap-12 mt-16 pt-8 border-t border-white/10"
+          className="flex items-center gap-12 mt-16 pt-8 border-t border-line-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.7 }}
         >
           {[
-            { value: 4, label: "Certifications" },
-            { value: 10, label: "Projects Completed" },
-            { value: 30, label: "Technologies" },
+            { value: 4, suffix: "", label: t.hero.stats.certifications },
+            { value: 10, suffix: "+", label: t.hero.stats.projects },
+            { value: 30, suffix: "+", label: t.hero.stats.technologies },
           ].map((stat, i) => (
             <div key={i} className="flex flex-col">
-              <span className="font-bebas text-[#ccff00] text-[48px] leading-none">
-                <AnimatedNumber target={stat.value} delay={2} />+
+              <span className="font-bebas text-brand-ink text-[48px] leading-none">
+                <AnimatedNumber target={stat.value} delay={2} />
+                {stat.suffix}
               </span>
-              <span className="font-space text-white/40 text-[12px] tracking-widest uppercase mt-1">
+              <span className="font-space text-ink-40 text-[12px] tracking-widest uppercase mt-1">
                 {stat.label}
               </span>
             </div>
@@ -260,10 +265,10 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}
       >
-        <span className="font-space text-white/30 text-[11px] tracking-[0.15em] uppercase writing-vertical-rl">
-          Scroll
+        <span className="font-space text-ink-30 text-[11px] tracking-[0.15em] uppercase writing-vertical-rl">
+          {t.hero.scroll}
         </span>
-        <div className="hero-scroll-line w-px h-16 bg-linear-to-b from-[#ccff00] to-transparent" />
+        <div className="hero-scroll-line w-px h-16 bg-linear-to-b from-brand-ink to-transparent" />
       </motion.div>
     </section>
   );
