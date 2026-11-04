@@ -109,6 +109,12 @@ typography:
     fontWeight: 600
     lineHeight: 1.5
     letterSpacing: 0.08em
+  button-ghost:
+    fontFamily: "Roboto"
+    fontSize: 16px
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: 0em
   nav-link:
     fontFamily: "Space Grotesk, sans-serif"
     fontSize: 13px
@@ -174,23 +180,23 @@ components:
     backgroundColor: "{colors.primary-hover}"
     textColor: "{colors.on-primary}"
     rounded: "{rounded.none}"
-  button-outline:
+  button-ghost:
     backgroundColor: transparent
-    textColor: "{colors.on-surface-strong}"
-    typography: "{typography.button}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.button-ghost}"
     rounded: "{rounded.none}"
-    padding: 16px 24px
-  button-pill:
-    backgroundColor: transparent
-    textColor: "{colors.body}"
-    typography: "{typography.nav-link}"
-    rounded: "{rounded.full}"
     padding: 12px 24px
-  button-pill-hover:
+  button-ghost-hover:
     backgroundColor: transparent
     textColor: "{colors.primary}"
+    rounded: "{rounded.none}"
+  button-ghost-pill:
+    backgroundColor: transparent
+    textColor: "{colors.on-surface}"
+    typography: "{typography.button-ghost}"
     rounded: "{rounded.full}"
-  button-icon-circular:
+    padding: 12px 24px
+  button-ghost-circle:
     backgroundColor: transparent
     textColor: "{colors.on-surface}"
     rounded: "{rounded.full}"
@@ -210,14 +216,10 @@ components:
     typography: "{typography.nav-link}"
   top-nav-cta:
     backgroundColor: transparent
-    textColor: "{colors.primary}"
-    typography: "{typography.nav-link}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.button-ghost}"
     rounded: "{rounded.full}"
     padding: 8px 20px
-  top-nav-cta-hover:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-primary}"
-    rounded: "{rounded.full}"
   hero-band:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.on-surface}"
@@ -315,7 +317,7 @@ components:
     typography: "{typography.nav-link}"
   social-row:
     backgroundColor: transparent
-    textColor: "{colors.on-surface-strong}"
+    textColor: "{colors.on-surface}"
     typography: "{typography.button}"
     rounded: "{rounded.none}"
     padding: 16px 20px
@@ -373,7 +375,7 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 ### Brand & Accent
 - **Lime / Primary** (`{colors.primary}` — #ccff00): The signature accent. Used on primary buttons, highlighted headline words, stats, status dots, section-label rules, the cursor, the scrollbar and text selection.
 - **Lime Hover** (`{colors.primary-hover}` — #aada00): The darker scrollbar-thumb hover. A disabled primary button uses lime at 60% opacity, which `button-primary-disabled` approximates with this token.
-- **Lime Hairline** (`{colors.hairline-focus}` — rgba(204, 255, 0, 0.5)): Focus and hover borders on inputs and outline buttons. Social rows use 40%.
+- **Lime Hairline** (`{colors.hairline-focus}` — rgba(204, 255, 0, 0.5)): Focus and hover borders on inputs.
 - **Lime Glow**: Radial gradients at 5–8% opacity that fade to transparent, and hover fills at 4–15%. These are decorative treatments rather than tokens.
 
 ### Surface
@@ -385,7 +387,7 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 
 ### Text
 - **On Surface** (`{colors.on-surface}` — #ffffff): Headlines and titles.
-- **On Surface Strong** (`{colors.on-surface-strong}` — white at 70%): Outline-button labels, attribute values and social labels.
+- **On Surface Strong** (`{colors.on-surface-strong}` — white at 70%): Attribute values.
 - **On Surface Soft** (`{colors.on-surface-soft}` — white at 60%): Navigation links, lead copy and the typewriter role.
 - **Body** (`{colors.body}` — white at 50%): Reading text. The lowest step that passes WCAG AA, at about 5.3:1 on canvas.
 - **Muted** (`{colors.muted}` — white at 40%): Form labels, tech tags and stat labels. About 3.7:1, so for non-essential text only.
@@ -394,7 +396,7 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 - **On Primary** (`{colors.on-primary}` — #050505): Text on lime.
 
 ### Hairlines
-- **Hairline Strong** (`{colors.hairline-strong}` — white at 20%): Outline buttons.
+- **Hairline Strong** (`{colors.hairline-strong}` — white at 20%): Ghost buttons.
 - **Hairline** (`{colors.hairline}` — white at 10%): Inputs, cards, chips and row dividers.
 - **Hairline Soft** (`{colors.hairline-soft}` — white at 5%): The navbar edge, footer edge and attribute rows.
 
@@ -402,7 +404,7 @@ The site is **dark only**. The light and `.dark` variables in `src/styles/theme.
 - **Error** (`{colors.error}` — #f87171): Form error text. The system has no success color, since success states use lime.
 
 ### Data Colors
-- **Project Web** (`{colors.project-web}` — #00ffcc) and **Project 3D** (`{colors.project-3d}` — #ff5f9e): Set per project in `Projects.tsx`. They tint the category badge (38% border, 9% fill) and the link hover, and never appear outside that project's row.
+- **Project Web** (`{colors.project-web}` — #00ffcc) and **Project 3D** (`{colors.project-3d}` — #ff5f9e): Set per project in `Projects.tsx`. They tint the category badge (38% border, 9% fill) and never appear outside that project's row.
 - **Tech brand colors** in `TechMarquee.tsx` are data for the marquee only.
 - **Code colors** (`{colors.code-keyword}` — #7c9eff, `{colors.code-string}` — #88d8b0): Only for the About card's `profile.ts` window, along with its red, yellow and green window dots.
 
@@ -413,8 +415,8 @@ The system runs **Bebas Neue** for display, **Space Grotesk** for labels and sho
 
 The split is functional:
 - Bebas Neue (weight 400, uppercase) → hero, section headings, stats, footer wordmark
-- Space Grotesk (weight 400–600) → buttons, navigation, labels, chips, hero and contact copy
-- Roboto (weight 400–700) → project, skill and experience titles and descriptions
+- Space Grotesk (weight 400–600) → primary buttons, navigation, labels, chips, hero and contact copy
+- Roboto (weight 400–700) → ghost buttons, project, skill and experience titles and descriptions
 - Monospace → the `profile.ts` window only
 
 Utilities live in `src/styles/tailwind.css` (`font-bebas`, `font-space`). Bebas Neue and Space Grotesk load from Google Fonts in `src/styles/fonts.css`.
@@ -437,7 +439,8 @@ Display tokens hold the largest size of a fluid clamp.
 | `{typography.body-sm}` | 14px | 400 | 24px | 0 | Experience descriptions and meta |
 | `{typography.copy-lg}` | 16px | 400 | 1.8 | 0 | About lead paragraph |
 | `{typography.copy-md}` | 15px | 400 | 1.8 | 0 | Hero and contact copy, input text |
-| `{typography.button}` | 14px | 600 | 1.5 | 0.08em | Button labels, uppercase |
+| `{typography.button}` | 14px | 600 | 1.5 | 0.08em | Primary button labels, uppercase |
+| `{typography.button-ghost}` | 16px | 400 | 1.5 | 0 | Ghost button labels |
 | `{typography.nav-link}` | 13px | 400 | 1.5 | 0.08em | Navigation and small links, uppercase |
 | `{typography.caption}` | 12px | 400 | 1.5 | 0.1em | Stat labels, uppercase |
 | `{typography.caption-uppercase}` | 11px | 400 | 1.5 | 0.2em | Section and form labels, uppercase |
@@ -492,11 +495,11 @@ The elevation philosophy is **surface steps first, no shadows**. Layer order is 
 
 | Token | Value | Use |
 |---|---|---|
-| `{rounded.none}` | 0px | Primary and outline buttons, inputs, social rows, skill cards |
+| `{rounded.none}` | 0px | Primary and ghost buttons, inputs, social rows, skill cards |
 | `{rounded.md}` | 8px | Experience logo tiles |
 | `{rounded.lg}` | 12px | About code window |
 | `{rounded.xl}` | 16px | Project images and the About card |
-| `{rounded.full}` | 9999px | Chips, pill links, icon buttons, status dots, logo mark |
+| `{rounded.full}` | 9999px | Chips, ghost pills and circles, status dots, logo mark |
 
 The `--radius` value in `theme.css` is unused scaffolding, so don't build on it.
 
@@ -514,17 +517,19 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`top-nav-scrolled`** — After 50px of scroll, the background becomes `{colors.surface}` at 95% with `backdrop-blur-md` and a `{colors.hairline-soft}` bottom edge.
 
-**`top-nav-cta`** — The Contact link, a lime-outlined pill. **`top-nav-cta-hover`** fills it with lime.
+**`top-nav-cta`** — The Contact link, a small `button-ghost` pill.
 
 ### Buttons
 
 **`button-primary`** — Lime fill, near-black uppercase `{typography.button}`, square corners, 16px × 32px padding. **`button-primary-hover`** wipes a white layer in from the left over 0.35s. It scales to 1.03 on hover and 0.97 on tap. **`button-primary-disabled`** shows the form's loading state.
 
-**`button-outline`** — Transparent with a `{colors.hairline-strong}` border and text at 70% white. The border turns lime at 50% on hover.
+**`button-ghost`** — Transparent with a `{colors.hairline-strong}` border, white `{typography.button-ghost}` label and 12px × 24px padding. **`button-ghost-hover`** turns the border, label and icons lime, scaling to 1.02 on hover and 0.96 on tap over 0.15s.
 
-**`button-pill`** — "More Projects" link with a `{colors.hairline}` border and white at 5% fill. **`button-pill-hover`** turns the border, icon and label lime.
+**`button-ghost-pill`** — `button-ghost` with full-round corners, used for "More Projects".
 
-**`button-icon-circular`** — 40px circular project link. It fills with the project color and scales to 1.1 on hover.
+**`button-ghost-circle`** — 40px circular `button-ghost` holding one icon, used for project links.
+
+Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, `shape` is `square`, `pill` or `circle`, and `size` is `sm`, `md` or `none`. Use it for any new button rather than restyling a link. Set `slideOnHover` on a primary button to keep its size on hover, slide the label and icons 5px right over 0.2s, and scale to 0.98 on tap, as on "Send Message". Entrance animations go on a wrapping motion element.
 
 **`text-link`** — Uppercase link with a bottom hairline that turns lime on hover, such as "View All on GitHub".
 
@@ -558,7 +563,7 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`text-input-error`** — Red message above the submit button.
 
-**`social-row`** — Full-width contact link row. On hover the border turns lime at 40%, the fill becomes lime at 4%, and an arrow appears.
+**`social-row`** — Full-width contact link row built on `button-ghost`. On hover it takes the ghost treatment and an arrow appears.
 
 ### Tags / Badges
 
@@ -620,7 +625,7 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 ### Touch Targets
 - `{component.button-primary}` and `{component.text-input}` comfortably exceed 44px in height.
-- `{component.button-icon-circular}` is 40 × 40px, slightly under the 44px target.
+- `{component.button-ghost-circle}` is 40 × 40px, slightly under the 44px target.
 - `{component.social-row}` spans the full width of its column.
 
 ### Collapsing Strategy

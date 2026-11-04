@@ -79,7 +79,7 @@ export function Footer() {
                 <Icon
                   width={16}
                   height={16}
-                  className="**:fill-current text-white/30 group-hover:text-[#ccff00] transition-colors duration-300"
+                  className={`${Icon === Mail ? "" : "**:fill-current"} text-white/30 group-hover:text-[#ccff00] transition-colors duration-300`}
                 />
                 <span className="font-space text-white/30 text-[13px] tracking-[0.06em] group-hover:text-[#ccff00] transition-colors duration-300">
                   {label}

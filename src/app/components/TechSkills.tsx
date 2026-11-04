@@ -9,6 +9,7 @@ import {
   Container,
   Database,
 } from "lucide-react";
+import { Button } from "./Button";
 
 /* ─── Data ───────────────────────────────────────────────────── */
 const skills = [
@@ -317,28 +318,9 @@ export function TechSkills() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.35 }}
             >
-              <motion.a
-                href="#tech-stack"
-                className="px-6 py-3 border border-white/20 text-white text-base font-['Roboto'] transition-colors duration-200"
-                animate={{
-                  scale: 1,
-                  borderColor: "rgba(255,255,255,0.2)",
-                  color: "#ffffff",
-                }}
-                whileHover={{
-                  borderColor: "#ccff00",
-                  scale: 1.02,
-                  color: "#ccff00",
-                }}
-                whileTap={{
-                  scale: 0.96,
-                  borderColor: "#ccff00",
-                  color: "#ccff00",
-                }}
-                transition={{ duration: 0.15 }}
-              >
+              <Button variant="ghost" href="#tech-stack">
                 View Tools &amp; Technologies
-              </motion.a>
+              </Button>
             </motion.div>
           </div>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
+import { Button } from "./Button";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -107,19 +108,22 @@ export function Navbar() {
             {navItems.map((item, i) => {
               const isContact = item.href === "#contact";
               return isContact ? (
-                <motion.a
+                <motion.div
                   key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="no-underline px-5 py-2 border border-[#ccff00] rounded-full text-[#ccff00] font-space text-[13px] tracking-[0.08em] uppercase transition-colors duration-200 hover:bg-[#ccff00] hover:text-[#050505]"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
                 >
-                  {item.label}
-                </motion.a>
+                  <Button
+                    variant="ghost"
+                    shape="pill"
+                    size="sm"
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                  >
+                    {item.label}
+                  </Button>
+                </motion.div>
               ) : (
                 <motion.a
                   key={item.label}

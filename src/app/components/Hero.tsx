@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { Download } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { AnimatedNumber } from "./AnimatedNumber";
+import { Button } from "./Button";
 
 const roles = [
   "Computer Science Engineer",
@@ -199,66 +200,38 @@ export function Hero() {
 
         {/* CTA buttons */}
         <motion.div
-          className="flex items-center gap-5 flex-wrap"
+          className="flex items-stretch gap-5 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.7, duration: 0.7 }}
         >
-          <motion.a
+          <Button
             href="/document/Resume_EN.pdf"
             download="Istvan_Zoltan_Szasz_Resume_EN.pdf"
-            className="relative group overflow-hidden px-8 py-4 bg-[#ccff00] no-underline"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
           >
-            <motion.span
-              className="absolute inset-0 bg-white"
-              initial={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.35 }}
-              style={{ originX: 0 }}
-            />
-            <span className="relative flex items-center gap-2 font-space text-[#050505] text-[14px] tracking-[0.08em] uppercase font-semibold">
-              Download Resume
-              <Download size={16} />
-            </span>
-          </motion.a>
+            Download Resume
+            <Download size={16} />
+          </Button>
 
-          <motion.a
+          <Button
+            variant="ghost"
             href="https://github.com/istvanszasz99"
             target="_blank"
             rel="me noopener noreferrer"
-            className="group flex items-center gap-3 px-6 py-4 border border-white/20 no-underline"
-            whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
           >
-            <GitHubDark
-              width={18}
-              height={18}
-              className="**:fill-current text-white/70"
-            />
-            <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
-              GitHub
-            </span>
-          </motion.a>
+            <GitHubDark width={18} height={18} className="**:fill-current" />
+            GitHub
+          </Button>
 
-          <motion.a
+          <Button
+            variant="ghost"
             href="https://linkedin.com/in/istvanszasz99"
             target="_blank"
             rel="me noopener noreferrer"
-            className="group flex items-center gap-3 px-6 py-4 border border-white/20 no-underline"
-            whileHover={{ borderColor: "rgba(204,255,0,0.5)", scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
           >
-            <LinkedIn
-              width={18}
-              height={18}
-              className="**:fill-current text-white/70"
-            />
-            <span className="font-space text-white/70 text-[14px] tracking-[0.06em] uppercase">
-              LinkedIn
-            </span>
-          </motion.a>
+            <LinkedIn width={18} height={18} className="**:fill-current" />
+            LinkedIn
+          </Button>
         </motion.div>
 
         {/* Stats */}
