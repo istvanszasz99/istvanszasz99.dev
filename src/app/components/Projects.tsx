@@ -85,9 +85,7 @@ export function Projects() {
                 <>
                   <dt>Live URL</dt>
                   <dd>
-                    <a href={p.live}>
-                      {p.live}
-                    </a>
+                    <a href={p.live}>{p.live}</a>
                   </dd>
                 </>
               )}
@@ -95,9 +93,7 @@ export function Projects() {
                 <>
                   <dt>Repository</dt>
                   <dd>
-                    <a href={p.github}>
-                      {p.github}
-                    </a>
+                    <a href={p.github}>{p.github}</a>
                   </dd>
                 </>
               )}
@@ -108,7 +104,7 @@ export function Projects() {
 
       {/* Side label — matches About positioning */}
       <motion.div
-        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 tablet:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -121,12 +117,12 @@ export function Projects() {
 
       <div className="flex flex-col justify-start items-center gap-20 overflow-hidden w-full">
         {/* ── Section header ── */}
-        <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto">
-          <div className="flex items-end justify-between">
-            <div>
+        <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto">
+          <div className="flex flex-col items-center gap-6 tablet:flex-row tablet:items-end tablet:justify-between">
+            <div className="text-center tablet:text-left">
               <div className="overflow-hidden">
                 <motion.h2
-                  className="font-bebas text-ink text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
+                  className="font-bebas text-ink text-[clamp(60px,8vw,110px)] wide-screen:text-[150px] leading-[0.9] m-0"
                   initial={{ y: "110%" }}
                   animate={isInView ? { y: "0%" } : {}}
                   transition={{
@@ -164,20 +160,20 @@ export function Projects() {
         </div>
 
         {/* ── Alternating project sections ── */}
-        <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex flex-col justify-start items-start gap-20">
+        <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto flex flex-col justify-start items-start gap-20">
           {localizedProjects.map((project, i) => {
             const alignRight = i % 2 === 1;
             return (
               <motion.div
                 key={project.id}
-                className={`self-stretch flex flex-col items-center gap-16 ${alignRight ? "lg:flex-row-reverse" : "lg:flex-row"}`}
+                className={`self-stretch flex flex-col items-center gap-16 ${alignRight ? "desktop:flex-row-reverse" : "desktop:flex-row"}`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
               >
                 {/* Image — left on even, right on odd (CSS order) */}
-                <div className="w-full lg:w-1/2 h-95 rounded-2xl overflow-hidden shrink-0">
+                <div className="w-full desktop:w-1/2 h-95 wide-screen:h-130 rounded-2xl overflow-hidden shrink-0">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -188,7 +184,7 @@ export function Projects() {
                 </div>
 
                 {/* Text */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-start items-start gap-6">
+                <div className="w-full desktop:w-1/2 flex flex-col justify-start items-start gap-6">
                   {/* Category */}
                   <div className="flex items-center gap-3">
                     <span
@@ -259,7 +255,7 @@ export function Projects() {
 
           {/* ── More Projects Button ── */}
           <motion.div
-            className="self-stretch flex justify-center pt-4"
+            className="self-stretch flex justify-center -mt-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

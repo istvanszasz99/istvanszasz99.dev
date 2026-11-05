@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Mail } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { NameWords } from "./NameWords";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -24,12 +25,12 @@ export function Footer() {
   return (
     <footer className="relative bg-canvas-sunken border-t border-line-5 py-16 overflow-hidden">
 
-      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-12 items-center mb-16 text-center sm:text-left">
+      <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto ">
+        <div className="grid grid-cols-1 tablet:grid-cols-[1fr_auto_auto] gap-12 items-center mb-16 text-center tablet:text-left">
           {/* Brand */}
           <div>
             <div className="font-bebas text-ink text-[48px] leading-none mb-2">
-              ISTVAN <span className="text-brand-ink">{"{ZOLTAN}"} SZASZ</span>
+              <NameWords words={t.brand.lines.flat()} />
             </div>
             <p className="font-space text-ink-30 text-[13px] tracking-wider">
               {t.footer.tagline}
@@ -37,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Nav */}
-          <div className="flex flex-col gap-2 items-center sm:items-start">
+          <div className="flex flex-col gap-2 items-center tablet:items-start">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -51,7 +52,7 @@ export function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="flex flex-col gap-3 items-center sm:items-start">
+          <div className="flex flex-col gap-3 items-center tablet:items-start">
             {[
               {
                 Icon: GitHubDark,
@@ -94,9 +95,9 @@ export function Footer() {
         <div className="h-px bg-line-5 mb-8" />
 
         {/* Bottom row */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center gap-2 text-center tablet:flex-row tablet:justify-between tablet:gap-6 tablet:text-left">
           <span className="font-space text-ink-20 text-[12px] tracking-[0.06em]">
-            © {new Date().getFullYear()} Istvan Zoltan Szasz. {t.footer.rights}
+            © {new Date().getFullYear()} {t.brand.copyright}. {t.footer.rights}
           </span>
 
           <div className="flex items-center gap-6">

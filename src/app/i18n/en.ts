@@ -1,6 +1,16 @@
 // All visible English text. `hu.ts` must match this shape, or `tsc` fails.
 // The sr-only blocks, index.html and llms.txt stay in English for crawlers.
 export const en = {
+  // The owner's name as shown on the page. Hungarian puts the family name first.
+  brand: {
+    // Hero lines, each a list of words. `accent` words use the brand color.
+    lines: [
+      [{ text: "ISTVAN", accent: false }],
+      [{ text: "{ZOLTAN}", accent: true }, { text: "SZASZ", accent: true }],
+    ],
+    display: "István Zoltán Szász",
+    copyright: "Istvan Zoltan Szasz",
+  },
   nav: {
     items: {
       home: "Home",

@@ -22,6 +22,7 @@ Personal portfolio of István Zoltán Szász, live at https://istvanszasz99.dev.
 - Visible text lives in `src/app/i18n/en.ts` and `hu.ts`, read through `useLanguage()`. `hu.ts` must match the shape of `en.ts`, or `tsc` fails. Links, logos, colors and tech names stay in arrays at the top of each section component, matched to their text by `id`.
 - The `sr-only` blocks, `<noscript>`, meta tags, JSON-LD and `llms.txt` stay in English, for crawlers.
 - Theme colors are tokens in `src/styles/index.css`, read through `useTheme()` only when a value can't be a CSS class.
+- Screen sizes use only `mobile:`, `tablet:`, `laptop:`, `desktop:` and `wide-screen:`, set in `src/styles/index.css`. Tailwind's `sm:`, `md:` and the rest generate nothing here, without any error.
 - Treat career facts, dates and links as the owner's to supply. Don't invent or embellish them.
 
 ## Gotchas

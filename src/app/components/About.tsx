@@ -61,7 +61,7 @@ export function About() {
 
       {/* Section label */}
       <motion.div
-        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 tablet:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -72,26 +72,26 @@ export function About() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto  grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto  grid grid-cols-1 desktop:grid-cols-2 gap-20 items-center">
         {/* Left: visual card */}
         <motion.div
-          className="relative"
+          className="relative order-2 desktop:order-1 desktop:h-full"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
         >
           <motion.div
-            className="relative z-10 rounded-2xl overflow-hidden border border-line-10"
+            className="relative z-10 rounded-2xl overflow-hidden border border-line-10 desktop:h-full"
             style={{ y: imgY }}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
           >
             {/* Profile visual */}
-            <div className="w-full h-130 min-[375px]:h-115 sm:h-105 lg:h-115 xl:h-105 relative flex items-end bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
+            <div className="w-full relative flex flex-col desktop:h-full bg-[linear-gradient(145deg,#111111_0%,#0d1a0d_50%,#111111_100%)]">
               {/* Decorative code block */}
-              <div className="absolute top-8 left-8 right-8">
+              <div className="p-3 tablet:p-6 desktop:flex desktop:flex-1 desktop:flex-col">
                 <motion.div
-                  className="p-5 rounded-xl border border-white/5 bg-black/40"
+                  className="p-5 rounded-xl border border-white/5 bg-black/40 desktop:flex-1"
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8, duration: 0.6 }}
@@ -108,7 +108,7 @@ export function About() {
                     { key: "const", val: "developer", color: "var(--card-accent)" },
                     {
                       key: "name",
-                      val: '"István Zoltán Szász"',
+                      val: `"${t.brand.display}"`,
                       color: "#88d8b0",
                     },
                     {
@@ -171,7 +171,7 @@ export function About() {
               </div>
 
               {/* Soft skills at bottom */}
-              <div className="w-full px-2 min-[375px]:px-4 py-5 border-t border-white/10">
+              <div className="w-full px-2 mobile:px-4 py-5 border-t border-white/10">
                 <h3 className="m-0 mb-3 text-center font-space text-white/40 text-[10px] font-normal leading-normal tracking-[0.2em] uppercase">
                   {t.about.softSkillsLabel}
                 </h3>
@@ -202,10 +202,10 @@ export function About() {
         </motion.div>
 
         {/* Right: text content */}
-        <div>
+        <div className="order-1 desktop:order-2">
           <div className="overflow-hidden mb-8">
             <motion.h2
-              className="font-bebas text-ink text-[100px] leading-[0.9] block whitespace-nowrap"
+              className="font-bebas text-ink text-[clamp(60px,8vw,110px)] wide-screen:text-[150px] leading-[0.9] block whitespace-nowrap text-center tablet:text-left"
               initial={{ y: "110%" }}
               animate={isInView ? { y: "0%" } : {}}
               transition={{
