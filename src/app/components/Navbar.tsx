@@ -11,6 +11,7 @@ import { Button } from "./Button";
 import { NavSwitch } from "./NavSwitch";
 import { useTheme } from "../theme/ThemeContext";
 import { useLanguage } from "../i18n/LanguageContext";
+import { NameWords } from "./NameWords";
 
 const navItems = [
   { id: "home", href: "#home" },
@@ -155,7 +156,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 lg:hidden"
+            className="fixed inset-0 z-40 laptop:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -174,13 +175,13 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
       >
-        <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex items-center justify-between">
+        <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto flex items-center justify-between">
           {/* Logo */}
           <motion.a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
             className="flex shrink-0 items-center gap-2 no-underline"
-            aria-label="István Zoltán Szász"
+            aria-label={t.brand.display}
             whileHover={{ scale: 1.02 }}
           >
             <div className="w-8 h-8 shrink-0 rounded-full bg-brand-fill flex items-center justify-center">
@@ -188,17 +189,14 @@ export function Navbar() {
             </div>
             {/* No room beside the switches on narrow phones, or beside the
                 links and switches on small laptops */}
-            <span className="hidden min-[480px]:inline lg:hidden xl:inline whitespace-nowrap font-space text-ink text-[14px] tracking-wider">
-              ISTVAN{" "}
-              <span className="text-brand-ink">
-                {"{"}ZOLTAN{"}"} SZASZ
-              </span>
+            <span className="hidden tablet:inline laptop:hidden desktop:inline whitespace-nowrap font-space text-ink text-[14px] tracking-wider">
+              <NameWords words={t.brand.lines.flat()} />
             </span>
           </motion.a>
 
-          <div className="flex items-center gap-3 lg:gap-5">
+          <div className="flex items-center gap-3 laptop:gap-5">
             {/* Nav links — desktop only */}
-            <div className="hidden lg:flex items-center gap-5 2xl:gap-8">
+            <div className="hidden laptop:flex items-center gap-5 desktop:gap-8">
               {navItems.map((item, i) => {
                 const isContact = item.href === "#contact";
                 return isContact ? (
@@ -270,7 +268,7 @@ export function Navbar() {
 
             {/* Hamburger — mobile only */}
             <button
-              className="lg:hidden text-ink-60 hover:text-brand-ink transition-colors duration-200"
+              className="laptop:hidden text-ink-60 hover:text-brand-ink transition-colors duration-200"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label={t.nav.toggleMenu}
             >
@@ -283,13 +281,13 @@ export function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="lg:hidden border-t border-line-5 bg-canvas/95 backdrop-blur-md"
+              className="laptop:hidden border-t border-line-5 bg-canvas/95 backdrop-blur-md"
               initial={{ opacity: 0, height: 0, overflow: "hidden" }}
               animate={{ opacity: 1, height: "auto", overflow: "visible" }}
               exit={{ opacity: 0, height: 0, overflow: "hidden" }}
               transition={{ duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
             >
-              <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 mx-auto py-6 flex flex-col gap-5 items-center">
+              <div className="max-w-7xl w-11/12 tablet:w-5/6 mx-auto py-6 flex flex-col gap-5 items-center">
                 {navItems.map((item, i) => (
                   <motion.a
                     key={item.id}

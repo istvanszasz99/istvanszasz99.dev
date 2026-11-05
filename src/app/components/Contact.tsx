@@ -129,7 +129,7 @@ export function Contact() {
 
       {/* Section label */}
       <motion.div
-        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 tablet:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -140,14 +140,14 @@ export function Contact() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto ">
+      <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto ">
         {/* Big heading */}
         <div className="text-center mb-20">
           <h2 className="sr-only">{t.contact.srHeading}</h2>
           <div aria-hidden="true">
             <div className="overflow-hidden mb-2">
               <motion.div
-                className="font-bebas text-ink text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
+                className="font-bebas text-ink text-[clamp(60px,10vw,140px)] wide-screen:text-[190px] leading-[0.9] tracking-[-0.02em]"
                 initial={{ y: "110%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{
@@ -161,7 +161,7 @@ export function Contact() {
             </div>
             <div className="overflow-hidden">
               <motion.div
-                className="font-bebas text-brand-ink text-[clamp(60px,10vw,140px)] leading-[0.9] tracking-[-0.02em]"
+                className="font-bebas text-brand-ink text-[clamp(60px,10vw,140px)] wide-screen:text-[190px] leading-[0.9] tracking-[-0.02em]"
                 initial={{ y: "110%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{
@@ -184,7 +184,7 @@ export function Contact() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
+        <div className="grid grid-cols-1 desktop:grid-cols-[1fr_1.2fr] gap-16 items-start">
           {/* Left: Info */}
           <div>
             <motion.div
@@ -198,7 +198,7 @@ export function Contact() {
               </p>
 
               {/* Availability indicator */}
-              <div className="flex items-center gap-3 mb-10">
+              <div className="flex items-center justify-center gap-3 mb-10 tablet:justify-start">
                 <div className="w-3 h-3 rounded-full bg-brand-fill animate-pulse" />
                 <span className="font-space text-brand-ink text-[13px] tracking-[0.08em] uppercase">
                   {t.contact.available}

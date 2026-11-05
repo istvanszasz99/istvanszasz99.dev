@@ -4,6 +4,7 @@ import { Download } from "lucide-react";
 import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { Button } from "./Button";
+import { NameWords } from "./NameWords";
 import { useLanguage } from "../i18n/LanguageContext";
 
 // Kept apart from Hero so each typed letter doesn't re-render the whole section,
@@ -77,7 +78,7 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const lines = ["ISTVAN", "{ZOLTAN} SZASZ"];
+  const lines = t.brand.lines;
 
   return (
     <section
@@ -146,7 +147,7 @@ export function Hero() {
       <div className="hero-orb-b absolute -bottom-20 -left-40 w-125 h-125 rounded-full bg-[radial-gradient(circle,rgb(var(--glow)/0.05)_0%,transparent_70%)]" />
 
       <motion.div
-        className="relative z-10 max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto"
+        className="relative z-10 max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto"
         style={{ y, opacity }}
       >
         {/* Tag line */}
@@ -174,11 +175,9 @@ export function Hero() {
                   delay: 0.7 + lineIdx * 0.15,
                   ease: [0.33, 1, 0.68, 1],
                 }}
-                className={`font-bebas text-[clamp(80px,14vw,200px)] leading-[0.9] tracking-[-0.02em] m-0 ${
-                  lineIdx === 0 ? "text-ink" : "text-brand-ink"
-                }`}
+                className={`font-bebas text-[clamp(80px,14vw,200px)] wide-screen:text-[280px] leading-[0.9] tracking-[-0.02em] m-0 text-ink`}
               >
-                {line}
+                <NameWords words={line} />
               </motion.h1>
             </div>
           ))}
@@ -197,9 +196,11 @@ export function Hero() {
           {t.hero.bio}
         </motion.p>
 
-        {/* CTA buttons */}
+        {/* CTA buttons: one row from tablet. Below that the group is full width:
+            resume on top, then GitHub and LinkedIn at half width each from
+            mobile, and one button per row below that. */}
         <motion.div
-          className="flex items-stretch gap-5 flex-wrap"
+          className="flex w-full flex-col items-stretch gap-4 tablet:w-fit tablet:flex-row tablet:gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.7, duration: 0.7 }}
@@ -212,30 +213,34 @@ export function Hero() {
             <Download size={16} />
           </Button>
 
-          <Button
-            variant="ghost"
-            href="https://github.com/istvanszasz99"
-            target="_blank"
-            rel="me noopener noreferrer"
-          >
-            <GitHubDark width={18} height={18} className="**:fill-current" />
-            GitHub
-          </Button>
+          <div className="flex flex-col items-stretch gap-4 mobile:flex-row tablet:gap-5">
+            <Button
+              variant="ghost"
+              className="mobile:flex-1 mobile:px-3 tablet:flex-none tablet:px-6"
+              href="https://github.com/istvanszasz99"
+              target="_blank"
+              rel="me noopener noreferrer"
+            >
+              <GitHubDark width={18} height={18} className="**:fill-current" />
+              GitHub
+            </Button>
 
-          <Button
-            variant="ghost"
-            href="https://linkedin.com/in/istvanszasz99"
-            target="_blank"
-            rel="me noopener noreferrer"
-          >
-            <LinkedIn width={18} height={18} className="**:fill-current" />
-            LinkedIn
-          </Button>
+            <Button
+              variant="ghost"
+              className="mobile:flex-1 mobile:px-3 tablet:flex-none tablet:px-6"
+              href="https://linkedin.com/in/istvanszasz99"
+              target="_blank"
+              rel="me noopener noreferrer"
+            >
+              <LinkedIn width={18} height={18} className="**:fill-current" />
+              LinkedIn
+            </Button>
+          </div>
         </motion.div>
 
         {/* Stats */}
         <motion.div
-          className="flex items-center gap-12 mt-16 pt-8 border-t border-line-10"
+          className="flex items-stretch gap-3 tablet:gap-12 mt-16 pt-8 border-t border-line-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.7 }}
@@ -245,12 +250,12 @@ export function Hero() {
             { value: 10, suffix: "+", label: t.hero.stats.projects },
             { value: 30, suffix: "+", label: t.hero.stats.technologies },
           ].map((stat, i) => (
-            <div key={i} className="flex flex-col">
+            <div key={i} className="flex min-w-0 flex-1 basis-0 flex-col items-center text-center tablet:flex-none tablet:basis-auto">
               <span className="font-bebas text-brand-ink text-[48px] leading-none">
                 <AnimatedNumber target={stat.value} delay={2} />
                 {stat.suffix}
               </span>
-              <span className="font-space text-ink-40 text-[12px] tracking-widest uppercase mt-1">
+              <span className="font-space text-ink-40 text-[10px] tracking-wider mobile:text-[12px] mobile:tracking-widest uppercase mt-1">
                 {stat.label}
               </span>
             </div>
@@ -260,7 +265,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-32 right-0 sm:right-2 md:right-8 lg:right-16 flex flex-col items-center gap-2"
+        className="absolute bottom-32 hidden tablet:flex tablet:right-8 desktop:right-16 flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.5 }}

@@ -2,6 +2,17 @@ import type { Translation } from "./en";
 
 // Hungarian draft of en.ts. It translates the same facts and adds none.
 export const hu: Translation = {
+  brand: {
+    lines: [
+      [
+        { text: "SZÁSZ", accent: true },
+        { text: "ISTVÁN", accent: false },
+      ],
+      [{ text: "{ZOLTÁN}", accent: true }],
+    ],
+    display: "Szász István Zoltán",
+    copyright: "Szász István Zoltán",
+  },
   nav: {
     items: {
       home: "Főoldal",

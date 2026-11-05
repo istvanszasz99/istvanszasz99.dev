@@ -364,7 +364,7 @@ The site is **dark by default, with a light theme** the visitor can switch to. T
 - Near-black canvas (`{colors.surface}` — #050505) with pure white headlines (`{colors.on-surface}` — #ffffff).
 - Electric-lime accent (`{colors.primary}` — #ccff00), one focal point per view.
 - Uppercase Bebas Neue display type, usually split into a white part and a lime part.
-- The curly-brace wordmark `ISTVAN {ZOLTAN} SZASZ`, which nods to code and appears in the hero, navbar and footer.
+- The curly-brace wordmark `ISTVAN {ZOLTAN} SZASZ`, which nods to code and appears in the hero, navbar and footer. In Hungarian it reads `SZÁSZ ISTVÁN {ZOLTÁN}`, with the family name first. `SZÁSZ` and `{ZOLTÁN}` are lime and `ISTVÁN` is white. The words and their colors come from `brand.lines` in the dictionaries.
 - Text hierarchy built from white at reduced opacity rather than grey hex values.
 - Shape signals function: square controls, rounded media, full-round chips and icon buttons.
 - Section rhythm `{spacing.section}` (128px), with `{spacing.band}` (80px) between major blocks.
@@ -452,13 +452,13 @@ Utilities live in `src/styles/tailwind.css` (`font-bebas`, `font-space`). Bebas 
 
 ### Hierarchy
 
-Display tokens hold the largest size of a fluid clamp.
+Display tokens hold the largest size of a fluid clamp. At `wide-screen`, the hero, contact and section headings step up to 280px, 190px and 150px.
 
 | Token | Size | Weight | Line Height | Letter Spacing | Use |
 |---|---|---|---|---|---|
 | `{typography.display-xl}` | clamp(80px, 14vw, 200px) | 400 | 0.9 | -0.02em | Hero name |
 | `{typography.display-lg}` | clamp(60px, 10vw, 140px) | 400 | 0.9 | -0.02em | "LET'S BUILD SOMETHING GREAT" |
-| `{typography.display-md}` | clamp(60px, 8vw, 110px) | 400 | 0.9 | 0 | Section headings (About is a fixed 100px) |
+| `{typography.display-md}` | clamp(60px, 8vw, 110px) | 400 | 0.9 | 0 | Section headings |
 | `{typography.display-sm}` | 48px | 400 | 1 | 0 | Hero stats and footer wordmark (the sent message is 40px) |
 | `{typography.display-xs}` | 24px | 400 | 1.33 | 0.1em | Experience group headings |
 | `{typography.title-lg}` | 36px | 700 | 48px | 0 | Project titles |
@@ -492,11 +492,11 @@ Bebas Neue and Space Grotesk are open fonts, so no substitute is needed. If Beba
 - **Card padding:** `{spacing.xl}` (`p-8`) on skill cards.
 
 ### Grid & Container
-- **Max content width:** `{spacing.container}` (`max-w-7xl`), narrowed by viewport.
-- **Standard container:** Every section uses `max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto`. Reuse this exact string.
+- **Max content width:** `{spacing.container}` (`max-w-7xl`), narrowed by viewport, and 1800px at `wide-screen`.
+- **Standard container:** Every section uses `max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto`. Reuse this exact string.
 - **Page order:** Hero, About, Skills, Tech Marquee, Experience, Projects, Contact, Footer.
-- **Section label:** An absolutely positioned `top-12 left-4 sm:left-8 md:left-16` row with a 24px lime rule and a `{typography.caption-uppercase}` word.
-- **Split layouts:** One column on mobile, two at `lg`. About uses equal columns, Contact uses `1fr 1.2fr`, and project rows alternate with `lg:flex-row-reverse`.
+- **Section label:** An absolutely positioned `top-12 left-4 tablet:left-16` row with a 24px lime rule and a `{typography.caption-uppercase}` word.
+- **Split layouts:** One column below `desktop`, two from it. About uses equal columns, Contact uses `1fr 1.2fr`, and project rows alternate with `desktop:flex-row-reverse`.
 
 ### Whitespace Philosophy
 Generous vertical space lets the oversized headlines land one at a time. Horizontal space narrows the container on large screens rather than stretching content, so line lengths stay comfortable even on very wide displays.
@@ -548,7 +548,7 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`top-nav-cta`** — The Contact link, a small `button-ghost` pill.
 
-**Nav switches** — `NavSwitch.tsx`: two 56 × 28px pills at the far right of the bar, for theme (moon and sun) and language (EN and HU). The default option is on the left, and a thumb in `ink` (white in dark, near-black in light) slides to the active one. The tap area extends to 44px high through a pseudo-element. Below `lg` they sit left of the hamburger. The wordmark is hidden below 480px and from `lg` to `xl`, where the bar has no room for it, leaving the "IS" mark. Dark and EN are the defaults, and the visitor's choice is saved in `localStorage` and applied by an inline script in `index.html` before first paint.
+**Nav switches** — `NavSwitch.tsx`: two 56 × 28px pills at the far right of the bar, for theme (moon and sun) and language (EN and HU). The default option is on the left, and a thumb in `ink` (white in dark, near-black in light) slides to the active one. The tap area extends to 44px high through a pseudo-element. Below `laptop` they sit left of the hamburger. The wordmark is hidden below `tablet` and from `laptop` to `desktop`, where the bar has no room for it, leaving the "IS" mark. Dark and EN are the defaults, and the visitor's choice is saved in `localStorage` and applied by an inline script in `index.html` before first paint.
 
 ### Buttons
 
@@ -572,7 +572,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`section-label`** — A lime rule and a faint uppercase word in the section's top-left corner.
 
-**`stat-value`** + **`stat-label`** — Count-up number, above a small uppercase label, with a `+` suffix on open-ended totals only (projects and technologies, not certifications). Hero only.
+**`stat-value`** + **`stat-label`** — Count-up number, above a small uppercase label, both centered in their card. Below `tablet` the three cards share the row in equal thirds. with a `+` suffix on open-ended totals only (projects and technologies, not certifications). Hero only.
 
 **`profile-visual-card`** + **`profile-visual-tint`** — The About card's rounded container with a diagonal gradient. Below the code window, a soft-skills row shows three Lucide icons in `card-accent` with short labels.
 
@@ -610,7 +610,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`footer`** — Sunken band with the wordmark, navigation and social links. Links turn lime on hover.
 
-**`footer-legal`** — Copyright and "Built with" line.
+**`footer-legal`** — Copyright and "Built with" line. A single row from `tablet`, and two centered lines below it.
 
 ### Motion & Cursor
 
@@ -649,12 +649,15 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 ### Breakpoints
 
-| Name | Width | Key Changes |
-|---|---|---|
-| Mobile | < 640px | Hamburger nav; container `w-11/12`; all splits one column; footer centered and single column |
-| Tablet | 640–1024px | Container narrows to `w-5/6` at 768px; footer becomes three columns at 640px; hamburger nav stays |
-| Desktop | 1024–1536px | Full nav links; splits become two columns; project rows alternate; container `w-3/4` at 1280px |
-| Wide | > 1536px | Container `w-2/3`, capped at 1280px |
+These are the only breakpoints. They are set in `@theme` in `src/styles/index.css`, which clears Tailwind's defaults, so `sm:`, `md:` and the rest generate nothing. Don't use arbitrary ones such as `min-[500px]:`.
+
+| Name | Class prefix | From | Key Changes |
+|---|---|---|---|
+| Mobile | `mobile:` | 375px | Hero buttons go from three rows to two, full width; hero stat labels and the `profile.ts` card reach full size |
+| Tablet | `tablet:` | 768px | Container `w-5/6`; navbar wordmark appears; section labels move in; footer three columns; footer legal, experience rows and hero buttons become one row; scroll indicator appears |
+| Laptop | `laptop:` | 1024px | Full nav links. Page content keeps the tablet layout |
+| Desktop | `desktop:` | 1440px | Splits become two columns; project rows alternate; container `w-3/4`, capped at 1280px; wordmark returns next to the nav links |
+| Wide Screen | `wide-screen:` | 2560px | Container capped at 1800px; display type and project images grow |
 
 ### Touch Targets
 - `{component.button-primary}` and `{component.text-input}` comfortably exceed 44px in height.
@@ -662,12 +665,13 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 - `{component.social-row}` spans the full width of its column.
 
 ### Collapsing Strategy
-- Navigation collapses to a hamburger below `lg`, opening a centered menu that slides down under the bar.
+- Navigation collapses to a hamburger below `laptop`, opening a centered menu that slides down under the bar.
+- Hero buttons sit in one left-aligned row from `tablet`. Below that the group is full width, like the Send Message button. From `mobile` the resume button takes the first row, and GitHub and LinkedIn share the second at half width each. Below `mobile` there is one full-width button per row.
 - Split layouts stack with the visual or info column first.
 - Display type scales through `clamp()`, so sizes shrink with the viewport instead of breaking at set points.
 
 ### Image Behavior
-- Project images are full width on mobile and half width from `lg`, at a fixed height with `object-cover`.
+- Project images are full width on mobile and half width from `desktop`, at a fixed height with `object-cover` (taller at `wide-screen`).
 - Logos stay at a fixed 48px at every breakpoint.
 
 ## Iteration Guide
@@ -687,6 +691,5 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 - **Low-contrast labels.** In the dark theme, `{component.section-label}`, `{component.footer}`, `{component.footer-legal}` and several 10–12px labels fall below WCAG AA.
 - **Small hamburger target.** The menu button is a 22px icon with no padding.
 - **Marquee font.** `tech-pill` names set no font family and inherit the browser default sans stack.
-- **Hard-coded About heading.** Its fixed 100px with `whitespace-nowrap` ignores the fluid `{typography.display-md}` scale.
 - **Tokens are written by hand.** The theme tokens in `src/styles/index.css` aren't generated from this file, so keep the two in step. `src/styles/theme.css` holds unrelated scaffolding values.
 - **CSS-shorthand padding.** Two-value `padding` entries follow CSS shorthand, which is broader than the single dimension in Google's token schema, so the linter may warn about them.

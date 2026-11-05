@@ -94,7 +94,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
   return (
     <motion.div
       key={exp.id}
-      className="self-stretch py-6 border-t border-line-10 flex flex-col sm:flex-row items-start sm:justify-between gap-4 sm:gap-6"
+      className="self-stretch py-6 border-t border-line-10 flex flex-col tablet:flex-row items-start tablet:justify-between gap-4 tablet:gap-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -107,7 +107,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
 
       {/* Left: subtitle title + bold institution/company */}
       <div className="flex flex-col gap-1 flex-1">
-        <div className="flex items-center gap-2 flex-wrap">
+        <div>
           <span className="text-ink-40 text-sm font-space tracking-wide">
             {exp.title}
           </span>
@@ -116,7 +116,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
               href={exp.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink-30 hover:text-brand-ink transition-colors duration-200"
+              className="ml-2 inline-block align-middle text-ink-30 hover:text-brand-ink transition-colors duration-200"
             >
               <ArrowUpRight size={13} />
             </a>
@@ -133,7 +133,7 @@ function EntryRow({ exp, i }: { exp: Entry; i: number }) {
       </div>
 
       {/* Right: date range + badge + location */}
-      <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
+      <div className="flex flex-col items-start tablet:items-end gap-1 shrink-0">
         <div className="flex items-center gap-1">
           {/* if current --> use gap-2*/}{" "}
           {/* Right: date range + badge + location */}
@@ -303,7 +303,7 @@ export function Experience() {
 
       {/* Section label — absolute, side positioned (matches About) */}
       <motion.div
-        className="absolute top-12 left-4 sm:left-8 md:left-16 flex items-center gap-3"
+        className="absolute top-12 left-4 tablet:left-16 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -314,12 +314,12 @@ export function Experience() {
         </span>
       </motion.div>
 
-      <div className="max-w-7xl w-11/12 sm:w-11/12 md:w-5/6 lg:w-5/6 xl:w-3/4 2xl:w-2/3 mx-auto flex flex-col items-center gap-20">
+      <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto flex flex-col items-center gap-20">
         {/* ── Header ── */}
         <div className="w-full max-w-3xl flex flex-col items-center gap-4">
           <div className="overflow-hidden w-full text-center">
             <motion.h2
-              className="font-bebas text-ink text-[clamp(60px,8vw,110px)] leading-[0.9] m-0"
+              className="font-bebas text-ink text-[clamp(60px,8vw,110px)] wide-screen:text-[150px] leading-[0.9] m-0"
               initial={{ y: "110%" }}
               animate={isInView ? { y: "0%" } : {}}
               transition={{
