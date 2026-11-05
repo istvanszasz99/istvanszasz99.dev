@@ -289,6 +289,7 @@ export const hu: Translation = {
     tagline: "Junior Full-Stack fejlesztő · Érd, Magyarország",
     emailLabel: "E-mail",
     rights: "Minden jog fenntartva.",
+    privacySettings: "Adatvédelmi beállítások",
     builtWith: "Készült: React · TailwindCSS · Motion",
   },
 };

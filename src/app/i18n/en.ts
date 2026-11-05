@@ -289,6 +289,7 @@ export const en = {
     tagline: "Junior Full-Stack Developer · Érd, Hungary",
     emailLabel: "Email",
     rights: "All rights reserved.",
+    privacySettings: "Privacy settings",
     builtWith: "Built with React · TailwindCSS · Motion",
   },
 };
