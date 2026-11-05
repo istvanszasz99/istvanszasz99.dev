@@ -610,7 +610,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`footer`** — Sunken band with the wordmark, navigation and social links. Links turn lime on hover.
 
-**`footer-legal`** — Copyright and "Built with" line. A single row from `tablet`, and two centered lines below it.
+**`footer-legal`** — Copyright, privacy settings and "Built with" line. A single row from `tablet`, and three centered lines below it. The privacy settings button opens the Cookiebot dialog. It uses `text-ink-50` and an underline so it stays readable as a control, and turns lime on hover.
 
 ### Motion & Cursor
 
