@@ -6,7 +6,10 @@ export const en = {
     // Hero lines, each a list of words. `accent` words use the brand color.
     lines: [
       [{ text: "ISTVAN", accent: false }],
-      [{ text: "{ZOLTAN}", accent: true }, { text: "SZASZ", accent: true }],
+      [
+        { text: "{ZOLTAN}", accent: true },
+        { text: "SZASZ", accent: true },
+      ],
     ],
     display: "István Zoltán Szász",
     copyright: "Istvan Zoltan Szasz",
@@ -25,7 +28,8 @@ export const en = {
     hungarian: "Hungarian language",
   },
   hero: {
-    ariaLabel: "Introduction — István Zoltán Szász, Junior Full-Stack Developer",
+    ariaLabel:
+      "Introduction — István Zoltán Szász, Junior Full-Stack Developer",
     tag: "Personal Website",
     roles: [
       "Computer Science Engineer",
@@ -68,7 +72,7 @@ export const en = {
     headingWhite: "TECH",
     headingAccent: "SKILLS",
     paragraphs: [
-      "Proficient across the modern web stack—React, Next.js, TypeScript, and Node.js—delivering scalable applications with responsive UI, optimized performance, and production-grade deployment workflows using Docker, Kubernetes, and cloud platforms.",
+      "Proficient across the modern web stacks like React, Next.js, TypeScript, and Node.js . Delivering scalable applications with responsive UI, optimized performance, and production-grade deployment workflows using Docker, Kubernetes, and cloud platforms.",
       "With expertise in frontend frameworks, backend architecture, mobile development, and emerging technologies like 3D graphics and game engines, I create comprehensive digital solutions that combine aesthetic design with robust functionality.",
       "Beyond technical proficiency, I'm passionate about solving complex problems through clean, maintainable code and creating seamless user experiences. I stay current with industry trends and best practices, constantly exploring new technologies to expand my skill set and deliver innovative solutions.",
     ],

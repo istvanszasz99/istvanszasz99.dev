@@ -72,7 +72,7 @@ export const hu: Translation = {
     headingWhite: "TECHNIKAI",
     headingAccent: "KÉSZSÉGEK",
     paragraphs: [
-      "Otthonosan mozgok a modern webes stackben – React, Next.js, TypeScript és Node.js –, és skálázható alkalmazásokat készítek reszponzív felülettel, optimalizált teljesítménnyel és éles üzemre kész telepítési folyamatokkal, Docker, Kubernetes és felhőplatformok használatával.",
+      "Otthonosan mozgok a modern webes stackben, mint React, Next.js, TypeScript és Node.js .Skálázható alkalmazásokat készítek reszponzív felülettel, optimalizált teljesítménnyel és éles üzemre kész telepítési folyamatokkal, Docker, Kubernetes és felhőplatformok használatával.",
       "A frontend keretrendszerekben, a backend architektúrában, a mobilfejlesztésben és az olyan feltörekvő technológiákban, mint a 3D grafika és a játékmotorok, szerzett szakértelmemmel átfogó digitális megoldásokat hozok létre, amelyek az esztétikus dizájnt megbízható működéssel ötvözik.",
       "A technikai tudáson túl szenvedélyem az összetett problémák megoldása tiszta, karbantartható kóddal és a gördülékeny felhasználói élmény megteremtése. Követem az iparági trendeket és a bevált gyakorlatokat, és folyamatosan új technológiákat fedezek fel, hogy bővítsem a tudásomat és innovatív megoldásokat nyújtsak.",
     ],
