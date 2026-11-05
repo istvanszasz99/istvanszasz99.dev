@@ -2,7 +2,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -14,6 +16,17 @@ const metaThemeColors: Record<Theme, string> = {
   light: "#efefe8",
 };
 
+const systemLight = "(prefers-color-scheme: light)";
+
+function hasSavedTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    return saved === "light" || saved === "dark";
+  } catch {
+    return false;
+  }
+}
+
 type ThemeContextValue = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
@@ -22,12 +35,13 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // The inline script in index.html has already applied any saved choice.
+  // The inline script in index.html has already applied the saved or system theme.
   const [theme, setThemeState] = useState<Theme>(() =>
     document.documentElement.dataset.theme === "light" ? "light" : "dark",
   );
+  const followsSystem = useRef(!hasSavedTheme());
 
-  const setTheme = useCallback((next: Theme) => {
+  const applyTheme = useCallback((next: Theme) => {
     setThemeState(next);
     const root = document.documentElement;
     if (next === "light") {
@@ -35,15 +49,36 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else {
       delete root.dataset.theme;
     }
+  }, []);
+
+  // The slider's choice replaces the system setting from here on.
+  const setTheme = useCallback(
+    (next: Theme) => {
+      followsSystem.current = false;
+      applyTheme(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Storage can be blocked. The choice then lasts until the page is closed.
+      }
+    },
+    [applyTheme],
+  );
+
+  useEffect(() => {
+    const media = window.matchMedia(systemLight);
+    const onChange = (event: MediaQueryListEvent) => {
+      if (followsSystem.current) applyTheme(event.matches ? "light" : "dark");
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, [applyTheme]);
+
+  useEffect(() => {
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", metaThemeColors[next]);
-    try {
-      localStorage.setItem("theme", next);
-    } catch {
-      // Storage can be blocked. The choice then lasts until the page is closed.
-    }
-  }, []);
+      ?.setAttribute("content", metaThemeColors[theme]);
+  }, [theme]);
 
   const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 

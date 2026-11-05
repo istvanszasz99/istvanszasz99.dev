@@ -292,6 +292,28 @@ export const en = {
     privacySettings: "Privacy settings",
     builtWith: "Built with React · TailwindCSS · Motion",
   },
+  cookieWidget: {
+    title: "Cookie settings",
+    state: "Your current state",
+    consents: {
+      necessary: "Necessary",
+      preferences: "Preferences",
+      statistics: "Statistics",
+      marketing: "Marketing",
+    },
+    showDetails: "Show details",
+    hideDetails: "Hide details",
+    consentDate: "Consent date:",
+    consentId: "Your consent ID:",
+    withdraw: "Withdraw your consent",
+    change: "Change your consent",
+    open: "Open cookie settings widget",
+    close: "Close cookie settings widget",
+    logo: "Cookiebot by Usercentrics - opens in a new window",
+    required: "Allowed and not customizable",
+    allowed: "Allowed",
+    notAllowed: "Not allowed",
+  },
 };
 
 export type Translation = typeof en;

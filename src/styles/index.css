@@ -430,6 +430,23 @@ a {
   border-color: var(--brand-fill) !important;
   color: var(--on-brand) !important;
 }
+/* Withdraw, while it can be clicked. The disabled state stays as Cookiebot draws it. */
+#CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled) {
+  transition: color 0.2s 0.3s, background-color 0.2s, border-color 0.2s;
+}
+:root[data-theme="light"] #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled) {
+  border-color: var(--line-20) !important;
+}
+:root[data-theme="light"] #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled):hover {
+  background-color: var(--canvas-sunken) !important;
+  border-color: var(--ink-30) !important;
+  opacity: 1;
+}
+:root:not([data-theme="light"]) #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled):hover {
+  background-color: var(--ink-70) !important;
+  border-color: var(--ink-70) !important;
+  opacity: 1;
+}
 #CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-approved svg,
 #CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-approved svg * {
   fill: var(--brand-ink) !important;

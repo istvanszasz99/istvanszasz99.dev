@@ -4,13 +4,6 @@ import { GitHubDark, LinkedIn } from "@ridemountainpig/svgl-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { NameWords } from "./NameWords";
 
-declare global {
-  interface Window {
-    // Loaded by the script in index.html. Missing if a browser extension blocks it.
-    Cookiebot?: { show: () => void };
-  }
-}
-
 export function Footer() {
   const { t } = useLanguage();
   const navLinks = [
@@ -110,7 +103,7 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 tablet:flex-row tablet:gap-6">
             <button
               type="button"
-              onClick={() => window.Cookiebot?.show()}
+              onClick={() => window.Cookiebot?.renew()}
               className="py-2 font-space text-ink-50 text-[12px] tracking-[0.06em] underline underline-offset-4 cursor-pointer hover:text-brand-ink transition-colors duration-300"
             >
               {t.footer.privacySettings}
