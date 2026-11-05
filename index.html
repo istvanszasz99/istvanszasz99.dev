@@ -5,19 +5,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Cookiebot consent manager. Auto-blocking only works if this stays the first script on the page -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="3382d4a8-0e8f-424b-8f39-410ad9f63d48"
-    data-blockingmode="auto" type="text/javascript"></script>
-
-  <!-- Applies the visitor's saved theme and language before the first paint -->
+  <!-- Applies the saved or detected theme and language before the first paint, and
+       passes the language to Cookiebot. It loads nothing and sets no cookies, so it
+       can run ahead of Cookiebot. ThemeContext and LanguageContext repeat the detection. -->
   <script>
     (function () {
+      var root = document.documentElement;
+      var theme, lang;
       try {
-        if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
-        if (localStorage.getItem("lang") === "hu") document.documentElement.lang = "hu";
+        theme = localStorage.getItem("theme");
+        lang = localStorage.getItem("lang");
       } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      if (lang !== "hu" && lang !== "en") {
+        lang = (navigator.languages || [navigator.language]).some(function (l) {
+          return l.toLowerCase().split("-")[0] === "hu";
+        }) ? "hu" : "en";
+      }
+      if (theme === "light") root.dataset.theme = "light";
+      root.lang = lang;
+
+      // Sets data-culture as soon as the tag below is parsed, before uc.js runs.
+      new MutationObserver(function (records, observer) {
+        var script = document.getElementById("Cookiebot");
+        if (!script) return;
+        script.setAttribute("data-culture", lang.toUpperCase());
+        observer.disconnect();
+      }).observe(root, { childList: true, subtree: true });
     })();
   </script>
+
+  <!-- Cookiebot consent manager. Auto-blocking only works if this is the first script that loads anything -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="3382d4a8-0e8f-424b-8f39-410ad9f63d48"
+    data-blockingmode="auto" type="text/javascript"></script>
 
   <!-- Preconnect for Google Fonts to avoid render-blocking DNS/TLS handshakes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

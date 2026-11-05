@@ -239,6 +239,219 @@ a {
   color: var(--on-brand);
 }
 
+/* ── Cookiebot banner and widget ──────────────────────────────── */
+/* The Cookiebot Manager holds one set of colors, left at its White defaults.
+   These override it, which needs !important. Cookiebot's IDs may change, so check
+   both themes after a Cookiebot update. The selectors follow its own stylesheet. */
+:root {
+  --cookie-card: #1a1a1a;
+}
+:root[data-theme="light"] {
+  --cookie-card: var(--canvas-alt);
+}
+
+/* Card, in both themes. The fades, unselected tabs and button edges are white in
+   Cookiebot's CSS only to match its white card, so they follow the card too. */
+#CybotCookiebotDialog,
+#CookiebotWidget #CookiebotWidget-widgetContent,
+#CybotCookiebotDialog.CybotCompact #CybotCookiebotDialogBody::after,
+#CybotCookiebotDialog .CybotCookiebotScrollContainer .CybotCookiebotScrollbarContainer {
+  background-color: var(--cookie-card) !important;
+}
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink {
+  border-bottom-color: var(--cookie-card) !important;
+}
+#CybotCookiebotDialogFooter .CybotCookiebotDialogBodyButton:not(#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll) {
+  border-color: var(--cookie-card) !important;
+}
+#CybotCookiebotDialog .CybotCookiebotFader {
+  background-image: linear-gradient(to top, var(--cookie-card), transparent) !important;
+}
+#CybotCookiebotDialog .CybotCookiebotFaderLeft {
+  background-image: linear-gradient(to right, var(--cookie-card), transparent) !important;
+}
+#CybotCookiebotDialog .CybotCookiebotFaderRight {
+  background-image: linear-gradient(to left, var(--cookie-card), transparent) !important;
+}
+
+/* Everything else in the dark theme. The light theme keeps Cookiebot's defaults.
+   :where() adds no specificity, so the highlight rules below can still win. */
+:where(:root:not([data-theme="light"])) {
+  #CybotCookiebotDialog {
+    color: var(--ink) !important;
+    box-shadow: 0 0 0 1px var(--line-10), 0 32px 68px rgb(0 0 0 / 0.3) !important;
+  }
+  #CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink,
+  #CybotCookiebotDialogDetailBulkConsentLink,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieProvider:not(.CybotCookiebotDialogDetailBodyContentCookieInfoCount) {
+    color: var(--ink) !important;
+  }
+  #CybotCookiebotDialogPoweredbyCybot svg,
+  #CybotCookiebotDialog #CybotCookiebotBannerCloseButtonE2E,
+  #CybotCookiebotDialog .CybotCookiebotBannerCloseButton {
+    fill: var(--ink) !important;
+  }
+
+  /* Separators */
+  #CybotCookiebotDialogHeader,
+  #CybotCookiebotDialogNav,
+  #CybotCookiebotDialog .CybotCookiebotScrollContainer,
+  #CybotCookiebotDialog .CybotCookiebotDialogGpcContainer,
+  #CybotCookiebotDialog .CookieCard,
+  #CybotCookiebotDialogBodyLevelButtonsSelectPane,
+  #CybotCookiebotDialogBodyLevelButtonsSelectPane .CybotCookiebotDialogBodyLevelButtonWrapper,
+  #CybotCookiebotDialogDetailBulkConsent,
+  #CybotCookiebotDialogDetailBulkConsent::before,
+  #CybotCookiebotDialogDetailBulkConsentListWrapper,
+  #CybotCookiebotDialogDetailBulkConsentListWrapper > span,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyEmptyCategoryMessage,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieGroup,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieInfo,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieInfoFooter,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieInfoWrapper::before {
+    border-color: var(--line-20) !important;
+  }
+
+  /* Tinted panels and count badges */
+  #CybotCookiebotDialogDetailBulkConsentListWrapper,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieInfo,
+  #CybotCookiebotDialogDetailBodyContentCookieContainerTypes .CybotCookiebotDialogDetailBodyContentCookieGroup:not(.open):hover {
+    background-color: var(--line-5) !important;
+  }
+  #CybotCookiebotDialogTabContent .CybotCookiebotDialogDetailBulkConsentCount {
+    background-color: var(--line-20) !important;
+  }
+
+  /* Arrows, which are drawn with borders */
+  #CybotCookiebotDialog a::before,
+  #CybotCookiebotDialog a::after,
+  #CybotCookiebotDialog button::before,
+  #CybotCookiebotDialog button::after {
+    border-color: var(--ink) !important;
+  }
+
+  /* Buttons: the light theme's black buttons, inverted */
+  #CybotCookiebotDialogFooter .CybotCookiebotDialogBodyButton {
+    background-color: var(--ink) !important;
+    color: var(--canvas) !important;
+  }
+  #CybotCookiebotDialogFooter #CybotCookiebotDialogBodyLevelButtonCustomize .CybotCookiebotDialogArrow {
+    border-color: var(--canvas) !important;
+  }
+
+  /* Toggles and scrollbars */
+  #CybotCookiebotDialog .CybotCookiebotDialogBodyLevelButtonSlider {
+    background-color: var(--line-20) !important;
+  }
+  #CybotCookiebotDialog input:checked + .CybotCookiebotDialogBodyLevelButtonSlider::before {
+    background-color: var(--on-brand) !important;
+  }
+  #CybotCookiebotDialog * {
+    scrollbar-color: var(--scrollbar-thumb) var(--cookie-card) !important;
+  }
+
+  /* Widget */
+  #CookiebotWidget #CookiebotWidget-widgetContent,
+  #CookiebotWidget #CookiebotWidget-widgetContent * {
+    color: var(--ink) !important;
+    border-color: var(--line-20) !important;
+  }
+  #CookiebotWidget #CookiebotWidget-widgetContent svg,
+  #CookiebotWidget #CookiebotWidget-widgetContent svg * {
+    fill: var(--ink) !important;
+  }
+  #CookiebotWidget .CookiebotWidget-logo svg circle {
+    fill: var(--brand-fill) !important;
+  }
+  #CookiebotWidget .CookiebotWidget-logo svg path {
+    fill: var(--on-brand) !important;
+  }
+  #CookiebotWidget #CookiebotWidget-widgetContent #CookiebotWidget-btn-withdraw {
+    background-color: var(--ink) !important;
+    border-color: var(--ink) !important;
+    color: var(--canvas) !important;
+  }
+  #CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-consent-details-box {
+    background-color: var(--line-5) !important;
+  }
+}
+
+/* The widget's round button, in the light theme */
+:root[data-theme="light"] #CookiebotWidget .CookiebotWidget-logo svg circle {
+  fill: var(--brand-fill) !important;
+}
+:root[data-theme="light"] #CookiebotWidget .CookiebotWidget-logo svg path {
+  fill: #ffffff !important;
+}
+
+/* Highlight, in both themes: olive in light, #ccff00 in dark. Last, so it wins. */
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink:hover,
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink.CybotCookiebotDialogActive,
+#CybotCookiebotDialogDetailBulkConsentLink:hover,
+#CybotCookiebotDialog .CookieCard .CybotCookiebotDialogDetailBodyContentCookieContainerButton:hover,
+#CybotCookiebotDialog .CookieCard .CybotCookiebotDialogDetailBodyContentIABv2Tab:hover,
+#CybotCookiebotDialogBodyLevelButtonsSelectPane label:not([for="CybotCookiebotDialogBodyLevelButtonNecessary"]) .CybotCookiebotDialogBodyLevelButtonDescription:hover,
+#CybotCookiebotDialog.CybotCompact #CybotCookiebotDialogBodyButtons .CybotCookiebotDialogBodyContentControlsWrapper .CybotCookiebotDialogBodyLevelButtonLabel,
+#CybotCookiebotDialog #CybotCookiebotDialogBodyContentText a,
+#CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonIABHeaderViewPartnersLink,
+#CybotCookiebotDialog #CybotCookiebotDialogDetailBulkConsentList dt a,
+#CybotCookiebotDialog #CybotCookiebotDialogDetailFooter a,
+#CybotCookiebotDialog .CybotCookiebotDialogBodyLevelButtonIABDescription a,
+#CybotCookiebotDialog .CybotCookiebotDialogDetailBodyContentCookieLink,
+#CybotCookiebotDialog .CybotCookiebotDialogDsrFormUrlDiv a,
+#CybotCookiebotDialogDetailBodyContentTextAbout a,
+#CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-show-consent-details {
+  color: var(--brand-ink) !important;
+}
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink.CybotCookiebotDialogActive {
+  border-bottom-color: var(--brand-ink) !important;
+}
+#CybotCookiebotDialog a:hover::before,
+#CybotCookiebotDialog a:hover::after,
+#CybotCookiebotDialog button:hover::before,
+#CybotCookiebotDialog button:hover::after {
+  border-color: var(--brand-ink) !important;
+}
+#CybotCookiebotDialog input:checked + .CybotCookiebotDialogBodyLevelButtonSlider {
+  background-color: var(--brand-ink) !important;
+}
+#CybotCookiebotDialogTabContent input:focus + .CybotCookiebotDialogBodyLevelButtonSlider {
+  box-shadow: 0 0 1px var(--brand-ink) !important;
+}
+#CybotCookiebotDialog:focus-visible,
+#CybotCookiebotDialog :focus-visible,
+#CybotCookiebotDialog .CybotCookiebotDialogBodyLevelButtonSliderWrapper input:focus-visible + span,
+#CookiebotWidget :focus-visible {
+  outline-color: var(--brand-ink) !important;
+}
+#CybotCookiebotDialogFooter #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
+#CookiebotWidget #CookiebotWidget-widgetContent #CookiebotWidget-btn-change {
+  background-color: var(--brand-fill) !important;
+  border-color: var(--brand-fill) !important;
+  color: var(--on-brand) !important;
+}
+/* Withdraw, while it can be clicked. The disabled state stays as Cookiebot draws it. */
+#CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled) {
+  transition: color 0.2s 0.3s, background-color 0.2s, border-color 0.2s;
+}
+:root[data-theme="light"] #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled) {
+  border-color: var(--line-20) !important;
+}
+:root[data-theme="light"] #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled):hover {
+  background-color: var(--canvas-sunken) !important;
+  border-color: var(--ink-30) !important;
+  opacity: 1;
+}
+:root:not([data-theme="light"]) #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw:not(:disabled):hover {
+  background-color: var(--ink-70) !important;
+  border-color: var(--ink-70) !important;
+  opacity: 1;
+}
+#CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-approved svg,
+#CookiebotWidget #CookiebotWidget-widgetContent .CookiebotWidget-approved svg * {
+  fill: var(--brand-ink) !important;
+}
+
 /* Noise overlay – fixed (global) */
 .noise-overlay {
   position: fixed;

@@ -358,7 +358,7 @@ The page has four surface modes that pace the scroll:
 3. **Raised card** (`{colors.surface-raised}`) — the stacking skill cards
 4. **Sunken footer** (`{colors.surface-sunken}`) — closes the page
 
-The site is **dark by default, with a light theme** the visitor can switch to. The tokens in this file describe dark, and **Light theme** under Colors lists how they change. The variables in `src/styles/theme.css` are unused shadcn scaffolding, and no component uses a `dark:` variant. Components use the theme tokens in `src/styles/index.css`, such as `bg-canvas` and `text-ink-40`.
+The site **follows the visitor's system theme, dark or light**, until they choose one with the switch. The tokens in this file describe dark, and **Light theme** under Colors lists how they change. The variables in `src/styles/theme.css` are unused shadcn scaffolding, and no component uses a `dark:` variant. Components use the theme tokens in `src/styles/index.css`, such as `bg-canvas` and `text-ink-40`.
 
 **Key Characteristics:**
 - Near-black canvas (`{colors.surface}` — #050505) with pure white headlines (`{colors.on-surface}` — #ffffff).
@@ -548,7 +548,7 @@ The site uses no portrait photography or illustration. Visual interest comes fro
 
 **`top-nav-cta`** — The Contact link, a small `button-ghost` pill.
 
-**Nav switches** — `NavSwitch.tsx`: two 56 × 28px pills at the far right of the bar, for theme (moon and sun) and language (EN and HU). The default option is on the left, and a thumb in `ink` (white in dark, near-black in light) slides to the active one. The tap area extends to 44px high through a pseudo-element. Below `laptop` they sit left of the hamburger. The wordmark is hidden below `tablet` and from `laptop` to `desktop`, where the bar has no room for it, leaving the "IS" mark. Dark and EN are the defaults, and the visitor's choice is saved in `localStorage` and applied by an inline script in `index.html` before first paint.
+**Nav switches** — `NavSwitch.tsx`: two 56 × 28px pills at the far right of the bar, for theme (moon and sun) and language (EN and HU). Dark and EN are on the left, and a thumb in `ink` (white in dark, near-black in light) slides to the active one. The tap area extends to 44px high through a pseudo-element. Below `laptop` they sit left of the hamburger. The wordmark is hidden below `tablet` and from `laptop` to `desktop`, where the bar has no room for it, leaving the "IS" mark. A new visitor gets their system theme, and Hungarian if it is anywhere in their device's language list, otherwise English. Both keep following the device until the visitor moves that switch. Their choice is then saved in `localStorage`. An inline script in `index.html` applies the saved or detected values before first paint. The language also sets Cookiebot's `data-culture`, so the banner matches the site, and the privacy widget's text comes from `cookieWidget` in the dictionaries.
 
 ### Buttons
 
@@ -611,6 +611,10 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 **`footer`** — Sunken band with the wordmark, navigation and social links. Links turn lime on hover.
 
 **`footer-legal`** — Copyright, privacy settings and "Built with" line. A single row from `tablet`, and three centered lines below it. The privacy settings button opens the Cookiebot dialog. It uses `text-ink-50` and an underline so it stays readable as a control, and turns lime on hover.
+
+### Cookie Banner
+
+**`cookiebot-dialog`** — Cookiebot's consent banner and privacy widget. The Cookiebot Manager stays on its White defaults, and overrides in `src/styles/index.css` set the colors from the tokens. Both themes use `--brand-ink` as the highlight (links, active tab, checked toggles, focus rings) and `--cookie-card` as the card: `--canvas-alt` in light, dark grey `#1a1a1a` in dark. The widget's "Change your consent" button and the banner's "Allow all" use `--brand-fill` with `--on-brand` text. The widget's "Withdraw your consent" has a `--line-20` border in light and darkens on hover in both themes, while its disabled state stays as Cookiebot draws it. The widget's round button is `--brand-fill` with a white logo in light, and `--brand-fill` with an `--on-brand` logo in dark. Light keeps Cookiebot's other defaults, including its black buttons. Dark uses `--ink` text, `--line-20` separators and white buttons with `--canvas` text for the other banner buttons and the widget's "Withdraw your consent". Check both themes after a Cookiebot update, since the overrides depend on its element IDs.
 
 ### Motion & Cursor
 
