@@ -612,6 +612,10 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`footer-legal`** — Copyright, privacy settings and "Built with" line. A single row from `tablet`, and three centered lines below it. The privacy settings button opens the Cookiebot dialog. It uses `text-ink-50` and an underline so it stays readable as a control, and turns lime on hover.
 
+### Cookie Banner
+
+**`cookiebot-dialog`** — Cookiebot's consent banner and privacy widget. The Cookiebot Manager stays on its White defaults, and overrides in `src/styles/index.css` set the colors from the tokens. Both themes use `--brand-ink` as the highlight (links, active tab, checked toggles, focus rings) and `--cookie-card` as the card: `--canvas-alt` in light, dark grey `#1a1a1a` in dark. The widget's "Change your consent" button and the banner's "Allow all" use `--brand-fill` with `--on-brand` text. The widget's round button is `--brand-fill` with a white logo in light, and `--brand-fill` with an `--on-brand` logo in dark. Light keeps Cookiebot's other defaults, including its black buttons. Dark uses `--ink` text, `--line-20` separators and white buttons with `--canvas` text for the other banner buttons and the widget's "Withdraw your consent". Check both themes after a Cookiebot update, since the overrides depend on its element IDs.
+
 ### Motion & Cursor
 
 **`scrollbar-thumb`** — 4px lime scrollbar, darkening on hover.
