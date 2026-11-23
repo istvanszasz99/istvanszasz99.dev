@@ -25,6 +25,9 @@ const Projects = lazy(() =>
 const Contact = lazy(() =>
   import("./components/Contact").then((m) => ({ default: m.Contact })),
 );
+const Support = lazy(() =>
+  import("./components/Support").then((m) => ({ default: m.Support })),
+);
 const Footer = lazy(() =>
   import("./components/Footer").then((m) => ({ default: m.Footer })),
 );
@@ -53,6 +56,7 @@ export default function App() {
             <Experience />
             <Projects />
             <Contact />
+            <Support />
           </Suspense>
         </main>
 

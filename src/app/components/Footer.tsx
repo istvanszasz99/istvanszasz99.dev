@@ -101,6 +101,13 @@ export function Footer() {
           </span>
 
           <div className="flex flex-col items-center gap-2 tablet:flex-row tablet:gap-6">
+            <a
+              href="#support"
+              onClick={(e) => handleNav(e, "#support")}
+              className="py-2 font-space text-ink-50 text-[12px] tracking-[0.06em] underline underline-offset-4 hover:text-brand-ink transition-colors duration-300"
+            >
+              {t.footer.support}
+            </a>
             <button
               type="button"
               onClick={() => window.Cookiebot?.renew()}

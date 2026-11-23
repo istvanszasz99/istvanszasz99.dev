@@ -606,11 +606,13 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 **`hairline-divider`**, **`hairline-divider-strong`** + **`hairline-divider-soft`** — The three 1px line strengths.
 
+**`support-card`**: `Support.tsx` sits between Contact and the footer, in a compact `py-10`/`tablet:py-14` band on the plain canvas, with no card, border or fill of its own. On the left are a coffee icon and label, a white and lime Bebas headline, the body text and a primary "Support" button with the Revolut mark (Simple Icons path) on an 18px app-icon tile in the inverted button colors (`on-brand` tile with an `ink` mark: black on white in light, white on black in dark) to `revolut.me/istvanszasz99`. On the right is the QR code. The QR shows at every breakpoint, as a crisp inline SVG of black modules on a white 8px rounded tile, 112px (128px from `laptop`) in both themes so it always scans, with a caption below. Below `tablet` the block stacks and centers. Only the Revtag link is published. Account numbers, BIC and bank codes stay off the site.
+
 ### Footer
 
 **`footer`** — Sunken band with the wordmark, navigation and social links. Links turn lime on hover.
 
-**`footer-legal`** — Copyright, privacy settings and "Built with" line. A single row from `tablet`, and three centered lines below it. The privacy settings button opens the Cookiebot dialog. It uses `text-ink-50` and an underline so it stays readable as a control, and turns lime on hover.
+**`footer-legal`** — Copyright, a "Support" link that scrolls to `support-card`, privacy settings and "Built with" line. A single row from `tablet`, and three centered lines below it. The privacy settings button opens the Cookiebot dialog. It uses `text-ink-50` and an underline so it stays readable as a control, and turns lime on hover.
 
 ### Cookie Banner
 
