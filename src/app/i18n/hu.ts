@@ -238,21 +238,27 @@ export const hu: Translation = {
     items: {
       1: {
         title: "A solidfinances.hu frontend fejlesztése",
-        category: "Webfejlesztés",
+        categories: ["Webfejlesztés"],
         description:
           "A solidfinances.hu pénzügyi szolgáltatási weboldal frontend fejlesztése a MolnarCodes-nál. React és Tailwind CSS használatával készült, teljesítményre és minden képernyőméretre optimalizálva.",
       },
       2: {
         title: "A mindenegyseg.hu Full-Stack fejlesztése",
-        category: "Webfejlesztés",
+        categories: ["Webfejlesztés"],
         description:
           "A mindenegyseg.hu Full-Stack fejlesztése a MolnarCodes-nál. Next.js és Tailwind CSS használatával készült, GSAP animációkkal és Shadcn.ui komponensekkel. Teljesen reszponzív és teljesítményre optimalizált.",
       },
       3: {
         title: "Az egyetemi kampusz szimulációja 3D környezetben",
-        category: "3D fejlesztés",
+        categories: ["3D fejlesztés"],
         description:
           "3D oktatási szimuláció, amelyben a felhasználó bejárhatja az Óbudai Egyetem székesfehérvári kampuszát. A szimuláció az Unreal Engine 5 3D grafikus motorral készült, és nagy felbontású textúrái révén a környezet és az épületek valósághűbben hatnak.",
+      },
+      4: {
+        title: "KaruTrade – Full-Stack fejlesztés nulláról a publikálásig",
+        categories: ["Webfejlesztés", "Szoftverfejlesztés"],
+        description:
+          "Piactér gyűjthető Discord Bot kártyák cseréjéhez Discord felhasználók között. Cloudflare Workers-en futó Next.js weboldal D1 adatbázissal, valamint egy discord.js bot, amely meghirdeti a kártyákat, értesítéseket küld és ellenőrzi a cseréket.",
       },
     },
   },

@@ -220,7 +220,7 @@
         "isPartOf": { "@id": "https://istvanszasz99.dev/#website" },
         "inLanguage": "en-US",
         "dateCreated": "2026-05-11",
-        "dateModified": "2026-11-04",
+        "dateModified": "2026-11-23",
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": ["#about", "#home", "#projects", "#contact"]
@@ -242,11 +242,24 @@
         "@id": "https://istvanszasz99.dev/#projects",
         "name": "Featured Projects by István Zoltán Szász",
         "description": "A selection of web development and 3D development projects completed by István Zoltán Szász.",
-        "numberOfItems": 3,
+        "numberOfItems": 4,
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
+            "item": {
+              "@type": "WebSite",
+              "name": "KaruTrade — Full-Stack Development",
+              "url": "https://karutrade.app",
+              "description": "A marketplace for trading collectible Discord Bot cards between Discord users. A Next.js website on Cloudflare Workers with a D1 database, and a discord.js bot that lists cards, sends notifications and verifies trades.",
+              "creator": { "@id": "https://istvanszasz99.dev/#person" },
+              "keywords": "Next.js, TypeScript, Tailwind CSS, Cloudflare Workers, Discord.js, Node.js, Full-Stack Development, Web Development, Software Development",
+              "inLanguage": "en"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
             "item": {
               "@type": "WebSite",
               "name": "solidfinances.hu — Frontend Development",
@@ -259,7 +272,7 @@
           },
           {
             "@type": "ListItem",
-            "position": 2,
+            "position": 3,
             "item": {
               "@type": "WebSite",
               "name": "mindenegyseg.hu — Full-Stack Development",
@@ -272,7 +285,7 @@
           },
           {
             "@type": "ListItem",
-            "position": 3,
+            "position": 4,
             "item": {
               "@type": "SoftwareSourceCode",
               "name": "Simulation of the University Campus in 3D Environment",
@@ -576,6 +589,23 @@
 
       <section>
         <h2>Featured Projects</h2>
+        <article>
+          <h3>KaruTrade — Full-Stack development from scratch to publish</h3>
+          <dl>
+            <dt>Category</dt>
+            <dd>Web Development, Software Development</dd>
+            <dt>Live URL</dt>
+            <dd><a href="https://karutrade.app">karutrade.app</a></dd>
+            <dt>Technologies</dt>
+            <dd>Next.js, TypeScript, Tailwind CSS, Cloudflare Workers, Discord.js, Node.js</dd>
+            <dt>Description</dt>
+            <dd>
+              A marketplace for trading collectible Discord Bot cards between Discord users. A Next.js
+              website on Cloudflare Workers with a D1 database, and a discord.js bot that lists cards,
+              sends notifications and verifies trades.
+            </dd>
+          </dl>
+        </article>
         <article>
           <h3>Frontend development for solidfinances.hu</h3>
           <dl>

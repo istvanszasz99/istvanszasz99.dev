@@ -238,21 +238,27 @@ export const en = {
     items: {
       1: {
         title: "Frontend development for solidfinances.hu",
-        category: "Web Development",
+        categories: ["Web Development"],
         description:
           "Frontend development for solidfinances.hu at MolnarCodes, a financial services website. Built with React & Tailwind CSS, and optimized for performance and all screen sizes.",
       },
       2: {
         title: "Full-Stack development for mindenegyseg.hu",
-        category: "Web Development",
+        categories: ["Web Development"],
         description:
           "Full-Stack development for mindenegyseg.hu at MolnarCodes. Built with Next.js & Tailwind CSS, animations with GSAP, and UI components from Shadcn.ui. Fully responsive and optimized for performance.",
       },
       3: {
         title: "Simulation of the University Campus in 3D Environment",
-        category: "3D Development",
+        categories: ["3D Development"],
         description:
           "A 3D educational simulation, where the user can visit the campus of Óbuda University in Székesfehérvár. The Simulation was created using the Unreal Engine 5 3D graphics engine. It uses high resolution textures to make the environment and buildings look more realistic.",
+      },
+      4: {
+        title: "KaruTrade — Full-Stack development from scratch to publish",
+        categories: ["Web Development", "Software Development"],
+        description:
+          "A marketplace for trading collectible Discord Bot cards between Discord users. A Next.js website on Cloudflare Workers with a D1 database, and a discord.js bot that lists cards, sends notifications and verifies trades.",
       },
     },
   },

@@ -598,7 +598,7 @@ Both button variants come from `Button.tsx`: `variant` is `primary` or `ghost`, 
 
 ### Tags / Badges
 
-**`badge-category-web`** + **`badge-category-3d`** — Project category pill tinted with the project's color.
+**`badge-category-web`** + **`badge-category-3d`** — Project category pill tinted with the project's color. A project can have several categories; each gets its own pill, in a wrapping row with a 12px gap.
 
 **`badge-tech`** — Muted tech-tag pill with a `{colors.hairline}` border.
 

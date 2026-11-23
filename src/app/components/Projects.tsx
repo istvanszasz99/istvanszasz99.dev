@@ -9,6 +9,22 @@ import { en } from "../i18n/en";
 
 const projects = [
   {
+    id: 4,
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Cloudflare Workers",
+      "Discord.js",
+      "Node.js",
+    ],
+    image: "./image/karutrade.app.webp",
+    color: "#00ffcc",
+    colorLight: "#00705c",
+    github: "",
+    live: "https://karutrade.app",
+  },
+  {
     id: 1,
     tech: ["React", "Tailwind CSS", "Responsive Design", "Chrome DevTools"],
     image: "./image/solidfinances.hu.webp",
@@ -76,7 +92,7 @@ export function Projects() {
             <h3>{p.title}</h3>
             <dl>
               <dt>Category</dt>
-              <dd>{p.category}</dd>
+              <dd>{p.categories.join(", ")}</dd>
               <dt>Technologies</dt>
               <dd>{p.tech.join(", ")}</dd>
               <dt>Description</dt>
@@ -186,17 +202,20 @@ export function Projects() {
                 {/* Text */}
                 <div className="w-full desktop:w-1/2 flex flex-col justify-start items-start gap-6">
                   {/* Category */}
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="px-3 py-1 rounded-full border font-space text-[10px] tracking-widest uppercase"
-                      style={{
-                        color: project.color,
-                        borderColor: `${project.color}60`,
-                        backgroundColor: `${project.color}18`,
-                      }}
-                    >
-                      {project.category}
-                    </span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {project.categories.map((category) => (
+                      <span
+                        key={category}
+                        className="px-3 py-1 rounded-full border font-space text-[10px] tracking-widest uppercase"
+                        style={{
+                          color: project.color,
+                          borderColor: `${project.color}60`,
+                          backgroundColor: `${project.color}18`,
+                        }}
+                      >
+                        {category}
+                      </span>
+                    ))}
                   </div>
                   {/* Title */}
                   <h3 className="self-stretch text-ink text-4xl font-bold font-['Roboto'] leading-12">

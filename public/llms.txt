@@ -43,6 +43,7 @@ István has developed full-stack applications through academic, certificate-base
 
 ## Projects
 
+- [KaruTrade](https://karutrade.app): Full-stack project built from scratch to publish, a marketplace for trading collectible Discord Bot cards between Discord users; a Next.js website on Cloudflare Workers with a D1 database, and a discord.js bot that lists cards, sends notifications and verifies trades
 - [solidfinances.hu](https://solidfinances.hu): Frontend development at MolnarCodes for a Hungarian financial services website, built with React and Tailwind CSS and optimised for performance and all screen sizes
 - [mindenegyseg.hu](https://mindenegyseg.hu): Full-stack development at MolnarCodes for a Hungarian website, built with Next.js, Tailwind CSS, GSAP and shadcn/ui
 - [3D university campus simulation](https://github.com/istvanszasz99/OE-AMK_University_Thesis_Project): BSc thesis project, a 3D educational simulation of the Óbuda University campus in Székesfehérvár, built with Unreal Engine 5, Twinmotion and C++
