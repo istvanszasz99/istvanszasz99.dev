@@ -285,11 +285,22 @@ export const hu: Translation = {
     sentHeading: "ÜZENET ELKÜLDVE!",
     sentBody: "Köszönöm, hogy írtál! 24 órán belül válaszolok.",
   },
+  support: {
+    ariaLabel: "Szász István Zoltán munkájának támogatása",
+    label: "Támogatás",
+    headingWhite: "TÁMOGATNÁD A",
+    headingAccent: "MUNKÁIMAT?",
+    body: "Ha hasznosnak találtad valamelyik projektemet, vagy egyszerűen tetszik, amin dolgozom, egy kis támogatással sokat segítesz abban, hogy folytassam.",
+    button: "Támogatás",
+    qrAlt: "QR-kód a revolut.me/istvanszasz99 oldalhoz",
+    qrCaption: "Olvasd be a telefonod kamerájával vagy a Revolut appal.",
+  },
   footer: {
     tagline: "Junior Full-Stack fejlesztő · Érd, Magyarország",
     emailLabel: "E-mail",
     rights: "Minden jog fenntartva.",
     privacySettings: "Adatvédelmi beállítások",
+    support: "Támogatás",
     builtWith: "Készült: React · TailwindCSS · Motion",
   },
   cookieWidget: {

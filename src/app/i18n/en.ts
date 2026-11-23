@@ -285,11 +285,22 @@ export const en = {
     sentHeading: "MESSAGE SENT!",
     sentBody: "Thanks for reaching out. I'll get back to you within 24 hours.",
   },
+  support: {
+    ariaLabel: "Support István Zoltán Szász's work",
+    label: "Support",
+    headingWhite: "SUPPORT",
+    headingAccent: "MY WORK?",
+    body: "If one of my projects helped you, or you simply like what I'm working on, a small contribution goes a long way in helping me keep building.",
+    button: "Support",
+    qrAlt: "QR code for revolut.me/istvanszasz99",
+    qrCaption: "Scan with your phone camera or the Revolut app.",
+  },
   footer: {
     tagline: "Junior Full-Stack Developer · Érd, Hungary",
     emailLabel: "Email",
     rights: "All rights reserved.",
     privacySettings: "Privacy settings",
+    support: "Support",
     builtWith: "Built with React · TailwindCSS · Motion",
   },
   cookieWidget: {
