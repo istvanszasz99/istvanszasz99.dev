@@ -28,7 +28,7 @@ export function Support() {
     >
       <div className="max-w-7xl w-11/12 tablet:w-5/6 desktop:w-3/4 wide-screen:max-w-450 mx-auto">
         <motion.div
-          className="flex flex-col items-center gap-6 text-center tablet:flex-row tablet:justify-center tablet:gap-16 tablet:text-left"
+          className="flex flex-col items-center gap-6 text-center tablet:flex-row tablet:justify-between tablet:gap-10 tablet:text-left"
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
